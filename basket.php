@@ -9,37 +9,48 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <title>Coffezin</title>
     <style>
-        .header {
-            text-align: center;
-            margin-top: 10px;
-        }
-        hr {
-            background-color: black;
-            height: 2px;
-        }
-        .between-items {
-            background-color: white;
-            height: 5px;
-        }
-        li {
-            list-style: none;
 
-        }
-        .links {
-            margin-top: 15px;
-        }
-        .links a {
+        /* Navbar */
+
+        .links .link {
+            margin: 0 0 10px 10px;
             background-color: green;
             color: white;
             text-decoration: none;
             padding: 5px;
         }
+        .brand {
+            color: white;
+            font-size: 32px;
+        }
+        .navbar {
+            background-color: olive;
+        }
+        .overhead {
+            height: 5px;
+            background-color: black;
+            margin: 0;
+        }
+
+        /* Container */
+
         .container {
+            margin-top: 75px;
             background-color: #808000;
             padding: 0 25px;
-            margin-top: 20px;
             border: 5px black solid;
             border-radius: 15px;
+        }
+
+        /* Form */
+
+        hr {
+            background-color: black;
+            height: 2px;
+        }
+        .header {
+            text-align: center;
+            margin-top: 10px;
         }
         .product-img {
             background-color: white;
@@ -48,6 +59,11 @@
             height: 128px;
             width: 128px;
         }
+        .product-name {
+            padding: 10px;
+            color: white;
+            font-size: 24px;
+        }
         .price {
             text-align: center;
             margin-top: 10px;
@@ -55,14 +71,13 @@
             font-size: 24px;
             margin-bottom: 10px;
         }
-        .product-name {
-            padding: 10px;
-            color: white;
-            font-size: 24px;
+        .between-items {
+            background-color: white;
+            height: 5px;
         }
         .btn {
-            margin-top: 20px;
-            margin-bottom: 20px;
+
+            margin: 30px 10px 30px 0;
         }
         .btn-success {
             margin: 0;
@@ -71,10 +86,14 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="links">
-            <a class="btn btn-success" href="">Домой</a>
+    <nav class="navbar navbar-expand-lg">
+        <div class="links container-md">
+            <a class="brand navbar-brand" href="#">Coffezin</a>
+            <a class="link btn btn-success" href="">Домой</a>
         </div>
+    </nav>
+    <hr class="overhead">
+    <div class="container">
         <div class="header">
             <h2>Корзина</h2>
             <hr>
@@ -83,9 +102,9 @@
             <li>
                 <div class="product-item">
                     <div class="row align-items-center">
-                        <div class="product-img col-lg-3 col-md-3">Много текста вместо картинки и тд</div>
-                        <div class="product-name col-lg-9 col-md-9">Кофемолка POLARIS PCG 0815</div>
-                        <div class="price col-lg-12 col-md-12">999 грн</div>
+                        <div class="product-img col-lg-3 col-md-3 col-4">Много текста вместо картинки и тд</div>
+                        <div class="product-name col-lg-9 col-md-9 col-8">Кофемолка POLARIS PCG 0815</div>
+                        <div class="price col-lg-12 col-md-12 col-12">999 грн</div>
                     </div>
                 </div>
             </li>
@@ -93,15 +112,15 @@
             <li>
                 <div class="product-item">
                     <div class="row align-items-center">
-                        <div class="product-img col-lg-3 col-md-3">Много текста вместо картинки и тд</div>
-                        <div class="product-name col-lg-9 col-md-9">Кофемолка GORENJE SMK150E (CG9139-GS)</div>
-                        <div class="price col-lg-12 col-md-12">1199 грн</div>
+                        <div class="product-img col-lg-3 col-md-3 col-4">Много текста вместо картинки и тд</div>
+                        <div class="product-name col-lg-9 col-md-9 col-8">Кофемолка GORENJE SMK150E (CG9139-GS)</div>
+                        <div class="price col-lg-12 col-md-12 col-12">1199 грн</div>
                     </div>
                 </div>
             </li>
         </ol>
         <div class="text-right">
-            <button type="button" class="btn btn-primary">Оформить заказ</button>
+                <button name="submit" type="submit" class="btn btn-primary">Оформить заказ</button>
         </div>
     </div>
 </body>
