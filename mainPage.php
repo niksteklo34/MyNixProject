@@ -12,7 +12,7 @@
         .container {
             margin-top: 200px;
             border: 5px black solid;
-            border-radius: 3%;
+            border-radius: 15px;
             height: 575px;
             width: 800px;
             background-color: #808000;
