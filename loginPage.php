@@ -13,6 +13,7 @@
         /* Navbar */
 
         .links .link {
+            font-size: 18px;
             margin: 0 0 10px 10px;
             background-color: green;
             color: white;
