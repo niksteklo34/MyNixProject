@@ -13,6 +13,7 @@
         /* Navbar */
 
         .links .link {
+            font-size: 18px;
             margin: 0 0 10px 10px;
             background-color: green;
             color: white;
@@ -77,7 +78,7 @@
         }
         .btn {
 
-            margin: 30px 10px 30px 0;
+            margin: 0 10px 30px 0;
         }
         .btn-success {
             margin: 0;
