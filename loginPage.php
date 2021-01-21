@@ -9,25 +9,44 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <title>Coffezin</title>
     <style>
+
+        /* Navbar */
+
+        .links .link {
+            margin: 0 0 10px 10px;
+            background-color: green;
+            color: white;
+            text-decoration: none;
+            padding: 5px;
+        }
+        .brand {
+            color: white;
+            font-size: 32px;
+        }
+        .navbar {
+            background-color: olive;
+        }
+        hr {
+            height: 5px;
+            background-color: black;
+            margin: 0;
+        }
+
+        /* Container */
+
         .container {
-            margin-top: 200px;
+            margin-top: 75px;
             border: 5px black solid;
             border-radius: 15px;
             height: 575px;
             width: 400px;
             background-color: #808000;
         }
-        .links {
-            margin-top: 15px;
-        }
-        .links a {
-            background-color: green;
-            color: white;
-            text-decoration: none;
-            padding: 5px;
-        }
+
+        /* Form */
+
         .form {
-            margin-top: 15px;
+            margin-top: 35px;
         }
         .checkbox {
             margin-top: 30px;
@@ -47,39 +66,43 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="links">
-            <a class="btn" href="">Домой</a>
-            <a class="btn" href="">Авторизоваться</a>
+    <nav class="navbar navbar-expand-lg">
+        <div class="links container-md">
+            <a class="brand navbar-brand" href="#">Coffezin</a>
+            <a class="link btn btn-success" href="">Домой</a>
+            <a class="link btn btn-success" href="">Авторизрваться</a>
         </div>
+    </nav>
+    <hr>
+    <div class="container">
         <div class="form">
             <div class="form-floating mb-3">
-                <label for="floatingInput">Имя</label>
-                <input type="email" class="form-control" id="floatingInput" placeholder="Имя" name="name">
+                <label for="name">Имя</label>
+                <input type="text" class="form-control" id="name" placeholder="Имя" name="name">
             </div>
             <div class="form-floating mb-3">
-                <label for="floatingPassword">Фамилия</label>
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Фамилия">
+                <label for="surname">Фамилия</label>
+                <input type="text" class="form-control" id="surname" placeholder="Фамилия" name="surname">
             </div>
             <div class="form-floating mb-3">
-                <label for="floatingInput">Email</label>
-                <input type="email" class="form-control" id="floatingInput" placeholder="Email-адрес">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" placeholder="Email-адрес" name="email">
             </div>
             <div class="form-floating mb-3">
-                <label for="floatingPassword">Пароль</label>
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Пароль">
+                <label for="password">Пароль</label>
+                <input type="password" class="form-control" id="password" placeholder="Пароль" name="password">
             </div>
         </div>
         <div class="checkbox">
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                <input class="form-check-input" type="checkbox" value="checkbox" id="flexCheckChecked">
                 <label class="form-check-label" for="flexCheckChecked">
-                    Принимаете правила лиц. соглашения
+                    Принимаю <a href="#">правила лиц. соглашения</a>
                 </label>
             </div>
         </div>
         <div class="button">
-            <button type="button" class="btn btn-success">Зарегистрироваться</button>
+            <button type="submit" class="btn btn-success">Зарегистрироваться</button>
         </div>
     </div>
 </body>
