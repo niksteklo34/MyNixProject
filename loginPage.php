@@ -9,41 +9,34 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <title>Coffezin</title>
     <style>
-
         .container {
             margin-top: 200px;
             border: 5px black solid;
-            border-radius: 3%;
+            border-radius: 15px;
             height: 575px;
             width: 400px;
             background-color: #808000;
         }
-
         .links {
             margin-top: 15px;
         }
-
         .links a {
             background-color: green;
             color: white;
             text-decoration: none;
             padding: 5px;
         }
-
         .form {
             margin-top: 15px;
         }
-
         .checkbox {
             margin-top: 30px;
             margin-bottom: 30px;
             text-align: center;
         }
-
         .button {
             text-align: center;
         }
-
         .btn-success {
             font-size: 18px;
             padding: 15px;
@@ -54,7 +47,6 @@
     </style>
 </head>
 <body>
-
     <div class="container">
         <div class="links">
             <a class="btn" href="">Домой</a>
@@ -90,6 +82,5 @@
             <button type="button" class="btn btn-success">Зарегистрироваться</button>
         </div>
     </div>
-
 </body>
 </html>
