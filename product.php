@@ -9,14 +9,41 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <title>Coffezin</title>
     <style>
-        .links {
-            margin: 15px;
-        }
-        .links a {
+
+        /* Navbar */
+
+        .links .link {
+            font-size: 18px;
+            margin: 0 0 10px 10px;
             background-color: green;
             color: white;
             text-decoration: none;
             padding: 5px;
+        }
+        .brand {
+            color: white;
+            font-size: 32px;
+        }
+        .navbar {
+            background-color: olive;
+        }
+        hr {
+            height: 5px;
+            background-color: black;
+            margin: 0;
+        }
+
+        /* Container */
+
+        .container {
+            margin-top: 75px;
+        }
+        .product-img {
+            background-color: white;
+            border: black 5px solid;
+            border-radius: 15px;
+            height: 400px;
+            width: 300px;
         }
         .product-info {
             background-color: #808000;
@@ -27,24 +54,24 @@
             height: 200px;
             width: 500px;
         }
-        .product-img {
-            background-color: white;
-            border: black 5px solid;
-            border-radius: 15px;
-            height: 400px;
-            width: 300px;
-        }
-        .price {
-            text-align: center;
-            color: crimson;
-            font-size: 24px;
-        }
         .product-name {
             text-align: center;
             padding: 15px;
             color: white;
             font-size: 20px;
             word-wrap: break-word
+        }
+        .price-bar {
+            margin-top: 15px;
+        }
+        .price {
+            text-align: center;
+            color: crimson;
+            font-size: 24px;
+        }
+        .btn {
+            padding: 10px;
+            margin-left: 10px;
         }
         .product-desc {
             font-size: 18px;
@@ -55,22 +82,18 @@
             border: 5px black solid;
             border-radius: 15px;
         }
-        .btn {
-            padding: 10px;
-            margin-left: 10px;
-        }
-        .price-bar {
-            margin-top: 15px;
-        }
-
 
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="links">
-            <a class="btn btn-success" href="">Домой</a>
+    <nav class="navbar navbar-expand-lg">
+        <div class="links container-md">
+            <a class="brand navbar-brand" href="#">Coffezin</a>
+            <a class="link btn btn-success" href="">Домой</a>
         </div>
+    </nav>
+    <hr>
+    <div class="container">
         <div class="row">
             <div class="product-img col-lg-5 col-md-5">Много текста вместо картинки и тд</div>
             <div class="product-info col-lg-5 col-md-5">
