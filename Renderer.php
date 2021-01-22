@@ -1,13 +1,12 @@
 <?php
 
-class renderClass
+class Renderer
 {
-    public function render( $template,  $layout, array $data)
+    public function render($template, $layout, array $products)
     {
         ob_start();
         require_once __DIR__ . "/templates/" . $template .".php";
         $content = ob_get_clean();
-
         require_once __DIR__ . "/templates/" . $layout . ".php";
     }
 }

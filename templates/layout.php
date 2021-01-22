@@ -30,7 +30,7 @@
         hr {
             height: 5px;
             background-color: black;
-            margin: 0;
+            margin: 0;ф
         }
 
         /* Container */
@@ -84,6 +84,7 @@
             margin-top: 10px;
             margin-bottom: 10px;
         }
+
     </style>
 </head>
 <body>

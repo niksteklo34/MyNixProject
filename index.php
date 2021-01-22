@@ -2,9 +2,9 @@
 
 require_once "autoloader.php";
 
-$obj = new renderClass();
+$templator = new Renderer();
 
-$obj->render('content','layout', [
+$templator->render('content','layout', [
     [
         "name" => "Кофемолка POLARIS PCG 0815",
         "img" => "Много текста вместо картинки и тд",
