@@ -1,0 +1,67 @@
+/* Navbar */
+
+.links .link {
+    font-size: 18px;
+    margin: 0 0 10px 10px;
+    background-color: green;
+    color: white;
+    text-decoration: none;
+    padding: 5px;
+}
+.brand {
+    color: white;
+    font-size: 32px;
+}
+.navbar {
+    background-color: olive;
+}
+hr {
+    height: 5px;
+    background-color: black;
+    margin: 0;
+}
+
+/* Container */
+
+.container {
+    margin-top: 75px;
+    border: 5px black solid;
+    border-radius: 15px;
+    height: 575px;
+    width: 800px;
+    background-color: #808000;
+}
+.text {
+    margin-top: 75px;
+    color: white;
+}
+.form-find {
+    max-width: 300px;
+    margin: 25px auto 25px;
+}
+.catalog {
+    margin-top: 30px;
+}
+
+/* Footer */
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    line-height: 60%;
+    background-color: olive;
+}
+.over-footer {
+    margin: 0;
+    background-color: black;
+    height: 5px;
+}
+.footer-text {
+    margin: 20px 20px 0 0;
+    font-size: 20px;
+    font-weight: 400;
+    color: white;
+}

@@ -1,4 +1,3 @@
-</head>
 <body>
 <footer class="footer">
     <hr class="over-footer">
@@ -7,4 +6,3 @@
     </div>
 </footer>
 </body>
-</html>

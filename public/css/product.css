@@ -1,0 +1,95 @@
+/* Navbar */
+
+.links .link {
+    font-size: 18px;
+    margin: 0 0 10px 10px;
+    background-color: green;
+    color: white;
+    text-decoration: none;
+    padding: 5px;
+}
+.brand {
+    color: white;
+    font-size: 32px;
+}
+.navbar {
+    background-color: olive;
+}
+hr {
+    height: 5px;
+    background-color: black;
+    margin: 0;
+}
+
+/* Container */
+
+.container {
+    margin-top: 75px;
+}
+/*.product-img {*/
+/*    background-color: white;*/
+/*    border: black 5px solid;*/
+/*    border-radius: 15px;*/
+/*    height: 400px;*/
+/*    width: 300px;*/
+/*}*/
+.product-info {
+    background-color: #808000;
+    padding: 0 25px;
+    border: 5px black solid;
+    border-radius: 15px;
+    margin: auto auto;
+    height: 200px;
+    width: 500px;
+}
+.product-name {
+    text-align: center;
+    padding: 15px;
+    color: white;
+    font-size: 20px;
+    word-wrap: break-word
+}
+.price-bar {
+    margin-top: 15px;
+}
+.price {
+    text-align: center;
+    color: crimson;
+    font-size: 24px;
+}
+.btn {
+    padding: 10px;
+    margin-left: 10px;
+}
+.product-desc {
+    font-size: 18px;
+    color: white;
+    background-color: #808000;
+    padding: 25px;
+    margin-top: 40px;
+    border: 5px black solid;
+    border-radius: 15px;
+}
+
+/* Footer */
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    line-height: 60%;
+    background-color: olive;
+}
+.over-footer {
+    margin: 0;
+    background-color: black;
+    height: 5px;
+}
+.footer-text {
+    margin: 20px 20px 0 0;
+    font-size: 20px;
+    font-weight: 400;
+    color: white;
+}
