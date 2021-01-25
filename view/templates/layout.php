@@ -30,7 +30,7 @@
         hr {
             height: 5px;
             background-color: black;
-            margin: 0;ф
+            margin: 0;
         }
 
         /* Container */
@@ -85,20 +85,38 @@
             margin-bottom: 10px;
         }
 
+        /* Footer */
+
+        .footer {
+            position: static;
+            bottom: 0;
+            width: 100%;
+            height: 60px;
+            line-height: 60%;
+            background-color: olive;
+            margin-top: 75px;
+        }
+        .over-footer {
+            margin: 0;
+            background-color: black;
+            height: 5px;
+        }
+        .footer-text {
+            margin: 20px 20px 0 0;
+            font-size: 20px;
+            font-weight: 400;
+            color: white;
+        }
+
     </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg">
-    <div class="links container-md">
-        <a class="brand navbar-brand" href="#">Coffezin</a>
-        <a class="link btn btn-success" href="">Домой</a>
-    </div>
-</nav>
-<hr>
+<?php require_once "layouts/header.php"?>
 <div class="container">
     <ul>
         <?php echo $content ?>
     </ul>
 </div>
+<?php require_once "layouts/footer.php"?>
 </body>
 </html>
