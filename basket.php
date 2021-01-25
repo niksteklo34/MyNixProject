@@ -27,16 +27,17 @@
         .navbar {
             background-color: olive;
         }
-        .overhead {
+        hr {
             height: 5px;
             background-color: black;
-            margin: 0;
+            margin: 0 0 15px 0;
         }
 
         /* Container */
 
         .container {
             margin-top: 75px;
+            margin-bottom: 150px;
             background-color: #808000;
             padding: 0 25px;
             border: 5px black solid;
@@ -45,10 +46,6 @@
 
         /* Form */
 
-        hr {
-            background-color: black;
-            height: 2px;
-        }
         .header {
             text-align: center;
             margin-top: 10px;
@@ -84,16 +81,34 @@
             margin: 0;
         }
 
+        /* Footer */
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            line-height: 60%;
+            background-color: olive;
+        }
+        .over-footer {
+            margin: 0;
+            background-color: black;
+            height: 5px;
+        }
+        .footer-text {
+            margin: 20px 20px 0 0;
+            font-size: 20px;
+            font-weight: 400;
+            color: white;
+        }
+
+
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg">
-        <div class="links container-md">
-            <a class="brand navbar-brand" href="#">Coffezin</a>
-            <a class="link btn btn-success" href="">Домой</a>
-        </div>
-    </nav>
-    <hr class="overhead">
+    <?php require_once "layouts/header.php" ?>
     <div class="container">
         <div class="header">
             <h2>Корзина</h2>
@@ -124,5 +139,6 @@
                 <button name="submit" type="submit" class="btn btn-primary">Оформить заказ</button>
         </div>
     </div>
+    <?php require_once "layouts/footer.php" ?>
 </body>
 </html>

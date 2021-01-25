@@ -37,6 +37,7 @@
 
         .container {
             margin-top: 75px;
+            margin-bottom: 150px;
             border: 5px black solid;
             border-radius: 15px;
             height: 575px;
@@ -63,18 +64,38 @@
             color: white;
             background-color: green;
         }
+        .apply {
+            border: 5px black solid;
+            border-radius: 15px;
+        }
+
+        /* Footer */
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            line-height: 60%;
+            background-color: olive;
+        }
+        .over-footer {
+            margin: 0;
+            background-color: black;
+            height: 5px;
+        }
+        .footer-text {
+            margin: 20px 20px 0 0;
+            font-size: 20px;
+            font-weight: 400;
+            color: white;
+        }
 
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg">
-        <div class="links container-md">
-            <a class="brand navbar-brand" href="#">Coffezin</a>
-            <a class="link btn btn-success" href="">Домой</a>
-            <a class="link btn btn-success" href="">Авторизрваться</a>
-        </div>
-    </nav>
-    <hr>
+    <?php require_once "layouts/header.php" ?>
     <div class="container">
         <div class="form">
             <div class="form-floating mb-3">
@@ -102,9 +123,15 @@
                 </label>
             </div>
         </div>
-        <div class="button">
-            <button type="submit" class="btn btn-success">Зарегистрироваться</button>
+        <div class="row buttons-bar justify-content-center">
+            <div class="button">
+                <button type="submit" class="apply btn btn-success col">Зарегистрироваться</button>
+            </div>
+            <div class="button">
+                <button type="submit" class="apply btn btn-success col">Войти</button>
+            </div>
         </div>
     </div>
+    <?php require_once "layouts/footer.php" ?>
 </body>
 </html>
