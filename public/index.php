@@ -1,36 +1,55 @@
 <?php
 
-//  Подключение автозагрузчика
 require_once "../autoloader.php";
 
-// Подключения файла(бд) с данными
+use classes\Storage;
+use classes\renderClass;
+use classes\MyException;
+use classes\LayoutRendererException;
+use classes\TemplateRendererException;
+use classes\NonIdException;
+use classes\logger\Logger;
+
 $products = require_once __DIR__ . '/../Data/storage.php';
 
+$logger = new Logger();
+$logger2 = new Logger('TemplateRendererLogs');
+
 try {
-    // Подготовка строки запроса
     $pageName = trim($_SERVER['REQUEST_URI'], '/');
 
-// Если строка запроса пуста - установить значение main
     if ($pageName == '') {
         $pageName = 'main';
     }
 
-// Установка значения для подключения контента страницы
     $templateName = $pageName . "Template";
 
-    $storage = new Storage($products);
+    $storage = new Storage($products, $logger);
 
-    $contentById = $storage->getProductDataById(1);
+    $id = 2;
 
-    if ($contentById) {
-//        var_dump($contentById);
-    } else {
-        throw new MyException('Товара с таким id нет!');
+    $contentById = $storage->getProductDataById($id);
+
+    if (!$contentById) {
+        throw new MyException('id not found');
+
     }
+        // var_dump($contentById);
 
     $obj = new renderClass();
 
     $obj->render($templateName, $pageName, $products);
+
+} catch (LayoutRendererException $errors) {
+    $logger2->warning($errors->getMessage(), ["zaglushka"]);
+//        echo $errors->getMessage();
+} catch (TemplateRendererException $errors) {
+    $logger2->warning($errors->getMessage(), ["zaglushka"]);
+//        echo $errors->getMessage();
 } catch (MyException $errors) {
-    echo $errors->getMessage();
+    $logger->warning($errors->getMessage(), ['id' => $id]);
+} catch (NonIdException $errors) {
+
+} catch (Exception $errors) {
+
 }
