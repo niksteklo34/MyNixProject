@@ -1,23 +1,24 @@
 <?php
 
-require_once "autoloader.php";
+require_once "../autoloader.php";
 
-use classes\Storage;
-use classes\renderClass;
-use classes\exceptions\MyException;
-use classes\exceptions\LayoutRendererException;
-use classes\exceptions\TemplateRendererException;
-use classes\exceptions\NonIdException;
-use classes\logger\Logger;
+use App\models\Storage;
+use App\tools\renderClass;
+use App\exceptions\MyException;
+use App\exceptions\LayoutRendererException;
+use App\exceptions\TemplateRendererException;
+use App\exceptions\NonIdException;
+use App\tools\logger\Logger;
 
-$products = require_once __DIR__ . '/../models/products.php';
+$products = require_once __DIR__ . '/../App/models/products.php';
 
 $logger = new Logger();
 $logger2 = new Logger('TemplateRendererLogs');
 
+// get url string
+$pageName = trim($_SERVER['REQUEST_URI'], '/');
+
 try {
-    // get url string
-    $pageName = trim($_SERVER['REQUEST_URI'], '/');
 
     // url is empty use main page
     if ($pageName == '') {

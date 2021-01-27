@@ -1,6 +1,6 @@
 <?php
 
-namespace classes\logger;
+namespace App\tools\logger;
 
 class LogLevel
 {

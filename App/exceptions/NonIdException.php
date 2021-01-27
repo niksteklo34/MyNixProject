@@ -1,7 +1,7 @@
 <?php
 
 
-namespace classes\exceptions;
+namespace App\exceptions;
 
 use Exception;
 
