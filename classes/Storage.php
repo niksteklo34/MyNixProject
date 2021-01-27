@@ -3,6 +3,7 @@
 namespace classes;
 
 use classes\logger\LoggerInterface;
+use classes\exceptions\NonIdException;
 
 class Storage
 {
@@ -21,12 +22,11 @@ class Storage
     public function getProductDataById(int $id) : array
     {
         foreach ($this->products as $product) {
-            // функции с массивами
             if ($id == $product['id']){
                 return $product;
             }
         }
         $this->logger->warning('Id not found', ['id' => $id]);
-        throw new NonIdException('FFF');
+        throw new NonIdException('Id not found');
     }
 }

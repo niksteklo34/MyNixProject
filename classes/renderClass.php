@@ -2,6 +2,9 @@
 
 namespace classes;
 
+use classes\exceptions\TemplateRendererException;
+use classes\exceptions\LayoutRendererException;
+
 class renderClass
 {
     public function render( $template,  $layout, array $products)
