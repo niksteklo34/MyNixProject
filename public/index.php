@@ -10,7 +10,7 @@ use classes\exceptions\TemplateRendererException;
 use classes\exceptions\NonIdException;
 use classes\logger\Logger;
 
-$products = require_once __DIR__ . '/../Data/storage.php';
+$products = require_once __DIR__ . '/../models/products.php';
 
 $logger = new Logger();
 $logger2 = new Logger('TemplateRendererLogs');
