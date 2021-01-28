@@ -1,16 +1,16 @@
 <?php
 
-namespace classes;
+namespace App\tools;
 
-use classes\exceptions\TemplateRendererException;
-use classes\exceptions\LayoutRendererException;
+use App\exceptions\TemplateRendererException;
+use App\exceptions\LayoutRendererException;
 
 class renderClass
 {
-    public function render( $template,  $layout, array $products)
+    public function render( $template,  $layout, $products)
     {
-        $layouts = "/../pages/layouts/";
-        $templates = "/../pages/templates/";
+        $layouts = "/../view/layouts/";
+        $templates = "/../view/templates/";
 
         // include header
         ob_start();
