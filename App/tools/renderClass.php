@@ -7,7 +7,7 @@ use App\exceptions\LayoutRendererException;
 
 class renderClass
 {
-    public function render( $template,  $layout, array $products)
+    public function render( $template,  $layout, $products)
     {
         $layouts = "/../view/layouts/";
         $templates = "/../view/templates/";

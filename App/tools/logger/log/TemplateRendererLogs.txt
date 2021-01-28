@@ -1,81 +1,81 @@
 =====
 File name: TemplateRendererLogs.txt 
 Level: warning
-Message: Content not found
-Context: zaglushka
+Message: Layout not found
+Context: Route for: "bsaf/sdf/dsf" not found(Layout)
 
-2021-01-26 07:31:15
+2021-01-28 11:56:53
 =====
 
 =====
 File name: TemplateRendererLogs.txt 
 Level: warning
-Message: Content not found
-Context: zaglushka
+Message: Layout not found
+Context: Route for: "bsaf/sdf/dsf" not found(Layout)
 
-2021-01-26 07:34:37
+2021-01-28 11:57:34
 =====
 
 =====
 File name: TemplateRendererLogs.txt 
 Level: warning
-Message: Content not found
-Context: zaglushka
+Message: Layout not found
+Context: Route for: "bsaf/sdf/dsf" not found(Layout)
 
-2021-01-27 11:14:56
+2021-01-28 11:57:41
 =====
 
 =====
 File name: TemplateRendererLogs.txt 
 Level: warning
-Message: Content not found
-Context: zaglushka
+Message: Layout not found
+Context: Route for: "%3Cbr%20/%3E%3Cfont%20size='1'%3E%3Ctable%20class='xdebug-error%20xe-notice'%20dir='ltr'%20border='1'%20cellspacing='0'%20cellpadding='1'%3E%3Ctr%3E%3Cth%20align='left'%20bgcolor='" not found(Layout)
 
-2021-01-27 11:15:10
+2021-01-28 12:38:02
 =====
 
 =====
 File name: TemplateRendererLogs.txt 
 Level: warning
-Message: Content not found
-Context: zaglushka
+Message: Layout not found
+Context: Route for: "%3Cbr%20/%3E%3Cfont%20size='1'%3E%3Ctable%20class='xdebug-error%20xe-notice'%20dir='ltr'%20border='1'%20cellspacing='0'%20cellpadding='1'%3E%3Ctr%3E%3Cth%20align='left'%20bgcolor='" not found(Layout)
 
-2021-01-27 11:15:20
+2021-01-28 12:38:19
 =====
 
 =====
 File name: TemplateRendererLogs.txt 
 Level: warning
-Message: Content not found
-Context: zaglushka
+Message: Layout not found
+Context: Route for: "%3Cbr%20/%3E%3Cfont%20size='1'%3E%3Ctable%20class='xdebug-error%20xe-notice'%20dir='ltr'%20border='1'%20cellspacing='0'%20cellpadding='1'%3E%3Ctr%3E%3Cth%20align='left'%20bgcolor='" not found(Layout)
 
-2021-01-27 11:24:14
+2021-01-28 12:38:40
 =====
 
 =====
 File name: TemplateRendererLogs.txt 
 Level: warning
-Message: Content not found
-Context: zaglushka
+Message: Layout not found
+Context: Route for: "%3Cbr%20/%3E%3Cfont%20size='1'%3E%3Ctable%20class='xdebug-error%20xe-notice'%20dir='ltr'%20border='1'%20cellspacing='0'%20cellpadding='1'%3E%3Ctr%3E%3Cth%20align='left'%20bgcolor='" not found(Layout)
 
-2021-01-27 11:24:14
+2021-01-28 12:39:38
 =====
 
 =====
 File name: TemplateRendererLogs.txt 
 Level: warning
-Message: Content not found
-Context: zaglushka
+Message: Layout not found
+Context: Route for: "basket.%D0%B2%D0%B0" not found(Layout)
 
-2021-01-27 02:50:19
+2021-01-28 12:45:09
 =====
 
 =====
 File name: TemplateRendererLogs.txt 
 Level: warning
-Message: Content not found
-Context: zaglushka
+Message: Layout not found
+Context: Route for: "basket." not found(Layout)
 
-2021-01-27 02:50:29
+2021-01-28 12:45:11
 =====
 
