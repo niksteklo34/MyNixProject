@@ -10,6 +10,10 @@ use App\exceptions\NonIdException;
 
 try {
 
+//    $o = new \App\models\Product();
+//    $p = $o->getAll();
+//    echo $p[0] -> id;
+
     $router = new Router();
     $router->matchRoute();
 
