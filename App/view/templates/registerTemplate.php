@@ -1,9 +1,12 @@
 <head>
     <link rel="stylesheet" href="css/login.css">
 </head>
+<head>
+    <link rel="stylesheet" href="css/login.css">
+</head>
 <form action="" method="post">
     <div class="form">
-        <h1>Войти</h1>
+        <h1>Регистрация</h1>
         <hr class="over-text">
         <div class="form-floating mb-3">
             <label for="name">Имя</label>
@@ -32,22 +35,12 @@
     </div>
     <div class="row buttons-bar justify-content-center">
         <div class="button">
-            <button type="submit" class="apply btn btn-success col">Войти</button>
+            <button type="submit" class="apply btn btn-success col" style="padding: 10px 75px 10px 75px">Зарегистрироваться</button>
         </div>
-        <div class="button">
-            <button class="apply btn btn-success col"><a href="register" style="text-decoration: none;color: white">Зарегистрироваться</a></button>
-        </div>
-        <?php
-        $session = new \App\session\Authentication();
-        if (!empty($_POST)) {
-            global $name, $password;
-            $_SESSION['name'] = $_POST['name'];
-            $_SESSION['password'] = $_POST['password'];
-        }
-        $session->auth($_SESSION['name'], $_SESSION['password']);
-        ?>
-        <?php if ($session->isAuth()): ?>
-            <p style="text-align: center;margin-top: 10px;font-size: 20px;color: white">Вы авторизовались, <?php echo $session->login?>!</p>
-        <?php endif; ?>
-
+    </div>
+    <?php if (!empty($_POST['name'])): ?>
+        <p style="text-align: center;margin-top: 10px;font-size: 20px;color: white">Вы зарегистрировались, <?php echo $_POST['name']?>!<br>Теперь <a href="login">войдите</a></p>
+    <?php else: ?>
+        <p style="text-align: center;margin-top: 10px;font-size: 20px;color: white">Введите данные для регистрации</p>
+    <?php endif; ?>
 </form>

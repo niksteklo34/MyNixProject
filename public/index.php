@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 require_once "../autoloader.php";
 require_once '../App/config/routes.php';
 
@@ -22,5 +24,5 @@ try {
 } catch (NonIdException $errors) {
     echo $errors->getMessage();
 } catch (Exception $errors) {
-
+    echo $errors->getMessage();
 }

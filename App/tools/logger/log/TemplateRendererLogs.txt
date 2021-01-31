@@ -115,3 +115,66 @@ Context: Route for: "%D0%9A%D0%BE%D1%84%D0%B5%D0%BC%D0%BE%D0%BB%D0%BA%D0%B0%20AR
 2021-01-28 02:40:52
 =====
 
+=====
+File name: TemplateRendererLogs.txt 
+Level: warning
+Message: Layout not found
+Context: Route for: "login?name=&surname=&email=&password=" not found(Layout)
+
+2021-01-31 09:22:01
+=====
+
+=====
+File name: TemplateRendererLogs.txt 
+Level: warning
+Message: Layout not found
+Context: Route for: "login?name=&surname=&email=&password=" not found(Layout)
+
+2021-01-31 09:22:19
+=====
+
+=====
+File name: TemplateRendererLogs.txt 
+Level: warning
+Message: Layout not found
+Context: Route for: "user" not found(Layout)
+
+2021-01-31 09:56:45
+=====
+
+=====
+File name: TemplateRendererLogs.txt 
+Level: warning
+Message: Layout not found
+Context: Route for: "user" not found(Layout)
+
+2021-01-31 09:56:45
+=====
+
+=====
+File name: TemplateRendererLogs.txt 
+Level: warning
+Message: Layout not found
+Context: Route for: "user" not found(Layout)
+
+2021-01-31 09:57:15
+=====
+
+=====
+File name: TemplateRendererLogs.txt 
+Level: warning
+Message: Layout not found
+Context: Route for: "user" not found(Layout)
+
+2021-01-31 09:57:15
+=====
+
+=====
+File name: TemplateRendererLogs.txt 
+Level: warning
+Message: Layout not found
+Context: Route for: "css/register.css" not found(Layout)
+
+2021-01-31 10:52:59
+=====
+

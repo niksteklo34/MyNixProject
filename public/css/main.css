@@ -15,6 +15,13 @@
 .navbar {
     background-color: olive;
 }
+.username {
+    font-size: 24px;
+    color: aliceblue;
+    position: absolute;
+    right: 10px;
+    top: 20px;
+}
 hr {
     height: 5px;
     background-color: black;
