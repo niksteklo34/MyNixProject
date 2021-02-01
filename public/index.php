@@ -1,7 +1,5 @@
 <?php
 
-session_start();
-
 require_once "../autoloader.php";
 require_once '../App/config/routes.php';
 
@@ -9,6 +7,10 @@ use App\exceptions\MyException;
 use App\exceptions\LayoutRendererException;
 use App\exceptions\TemplateRendererException;
 use App\exceptions\NonIdException;
+use App\session\Session;
+
+$session = new Session();
+$session->start();
 
 try {
 

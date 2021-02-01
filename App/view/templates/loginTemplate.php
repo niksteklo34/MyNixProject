@@ -40,8 +40,9 @@
         <?php
         $session = new \App\session\Authentication();
         if (!empty($_POST)) {
-            global $name, $password;
             $_SESSION['name'] = $_POST['name'];
+            $_SESSION['surname'] = $_POST['surname'];
+            $_SESSION['email'] = $_POST['email'];
             $_SESSION['password'] = $_POST['password'];
         }
         if (isset($_SESSION['name']) && isset($_SESSION['password'])) {
@@ -51,5 +52,4 @@
         <?php if ($session->isAuth()): ?>
             <p style="text-align: center;margin-top: 10px;font-size: 20px;color: white">Вы авторизовались, <?php echo $session->login?>!</p>
         <?php endif; ?>
-
 </form>

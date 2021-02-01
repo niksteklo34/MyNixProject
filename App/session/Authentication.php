@@ -3,11 +3,19 @@
 
 namespace App\session;
 
+use App\session\Session;
 
 class Authentication
 {
+    public Session $session;
     public $login;
     public $pass;
+
+
+    public function __construct()
+    {
+        $this->session = new Session();
+    }
 
     public function auth(string $login, string $pass): bool
     {
@@ -16,21 +24,14 @@ class Authentication
         return true;
     }
 
-    public function isAuth(): bool
+    public function isAuth()
     {
-        if (!empty($this->login) && !empty($this->pass)) {
-            return true;
-        } else {
-            return false;
-        }
-
+        return $this->session->sessionExists();
     }
 
-    public function getLogin(): string
+    public function getLogin()
     {
-        if (isset($this->login)) {
-            return $this->login;
-        }
+        return $this->login;
     }
 
     public function logOut(): void
