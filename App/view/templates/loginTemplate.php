@@ -44,7 +44,9 @@
             $_SESSION['name'] = $_POST['name'];
             $_SESSION['password'] = $_POST['password'];
         }
-        $session->auth($_SESSION['name'], $_SESSION['password']);
+        if (isset($_SESSION['name']) && isset($_SESSION['password'])) {
+            $session->auth($_SESSION['name'], $_SESSION['password']);
+        }
         ?>
         <?php if ($session->isAuth()): ?>
             <p style="text-align: center;margin-top: 10px;font-size: 20px;color: white">Вы авторизовались, <?php echo $session->login?>!</p>
