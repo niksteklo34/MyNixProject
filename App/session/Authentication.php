@@ -36,9 +36,6 @@ class Authentication
 
     public function logOut(): void
     {
-        session_abort();
-
-        session_start();
-        session_abort();
+        $this->session->destroy();
     }
 }

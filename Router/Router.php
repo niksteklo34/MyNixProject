@@ -1,7 +1,9 @@
 <?php
 
-use App\exceptions\TemplateRendererException;
-use App\exceptions\LayoutRendererException;
+namespace Router;
+
+use App\Exceptions\TemplateRendererException;
+use App\Exceptions\LayoutRendererException;
 use App\tools\logger\Logger;
 
 class Router
@@ -41,7 +43,7 @@ class Router
         if (self::checkRoute(self::getUrlString())) {
             $controllerName = ucfirst(self::$route['controller']) . "Controller";
             $actionName = ucfirst(self::$route['action']);
-            $strNameSpace = "App\controllers\\$controllerName";
+            $strNameSpace = "Controllers\\$controllerName";
             if (class_exists($strNameSpace)) {
                 $object = new $strNameSpace(self::$route);
                 $object->$actionName();

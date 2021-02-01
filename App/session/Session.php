@@ -1,6 +1,6 @@
 <?php
 
-namespace App\session;
+namespace App\Session;
 
 class Session
 {
@@ -22,10 +22,6 @@ class Session
         } else {
             return false;
         }
-    }
-
-    public function fff() {
-        return $_SESSION['name'];
     }
 
     public function sessionExists(): bool
@@ -69,7 +65,7 @@ class Session
 
     public function get($key)
     {
-        return $_SESSION[$key];
+        return $_SESSION["$key"];
     }
 
     public function delete($key): void

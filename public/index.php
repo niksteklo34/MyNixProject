@@ -1,13 +1,14 @@
 <?php
 
-require_once "../autoloader.php";
+require_once "../vendor/autoload.php";
 require_once '../App/config/routes.php';
 
-use App\exceptions\MyException;
-use App\exceptions\LayoutRendererException;
-use App\exceptions\TemplateRendererException;
-use App\exceptions\NonIdException;
-use App\session\Session;
+use App\Exceptions\MyException;
+use App\Exceptions\LayoutRendererException;
+use App\Exceptions\TemplateRendererException;
+use App\Exceptions\NonIdException;
+use App\Session\Session;
+use Router\Router;
 
 $session = new Session();
 $session->start();

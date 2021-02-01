@@ -178,3 +178,210 @@ Context: Route for: "css/register.css" not found(Layout)
 2021-01-31 10:52:59
 =====
 
+=====
+File name: TemplateRendererLogs.txt 
+Level: warning
+Message: Layout not found
+Context: Route for: "''" not found(Layout)
+
+2021-02-01 04:19:26
+=====
+
+=====
+File name: TemplateRendererLogs.txt 
+Level: warning
+Message: Layout not found
+Context: Route for: "''" not found(Layout)
+
+2021-02-01 04:19:33
+=====
+
+=====
+File name: TemplateRendererLogs.txt 
+Level: warning
+Message: Layout not found
+Context: Route for: "" not found(Layout)
+
+2021-02-01 05:13:55
+=====
+
+=====
+File name: TemplateRendererLogs.txt 
+Level: warning
+Message: Layout not found
+Context: Route for: "" not found(Layout)
+
+2021-02-01 05:14:34
+=====
+
+=====
+File name: TemplateRendererLogs.txt 
+Level: warning
+Message: Layout not found
+Context: Route for: "" not found(Layout)
+
+2021-02-01 05:14:53
+=====
+
+=====
+File name: TemplateRendererLogs.txt 
+Level: warning
+Message: Layout not found
+Context: Route for: "" not found(Layout)
+
+2021-02-01 05:15:05
+=====
+
+=====
+File name: TemplateRendererLogs.txt 
+Level: warning
+Message: Layout not found
+Context: Route for: "" not found(Layout)
+
+2021-02-01 05:15:06
+=====
+
+=====
+File name: TemplateRendererLogs.txt 
+Level: warning
+Message: Layout not found
+Context: Route for: "main" not found(Layout)
+
+2021-02-01 05:15:22
+=====
+
+=====
+File name: TemplateRendererLogs.txt 
+Level: warning
+Message: Layout not found
+Context: Route for: "main" not found(Layout)
+
+2021-02-01 05:15:22
+=====
+
+=====
+File name: TemplateRendererLogs.txt 
+Level: warning
+Message: Layout not found
+Context: Route for: "main" not found(Layout)
+
+2021-02-01 05:15:50
+=====
+
+=====
+File name: TemplateRendererLogs.txt 
+Level: warning
+Message: Layout not found
+Context: Route for: "main" not found(Layout)
+
+2021-02-01 05:16:29
+=====
+
+=====
+File name: TemplateRendererLogs.txt 
+Level: warning
+Message: Layout not found
+Context: Route for: "main" not found(Layout)
+
+2021-02-01 05:16:36
+=====
+
+=====
+File name: TemplateRendererLogs.txt 
+Level: warning
+Message: Content not found
+Context: Route for: "login" not found(Template)
+
+2021-02-01 05:18:49
+=====
+
+=====
+File name: TemplateRendererLogs.txt 
+Level: warning
+Message: Content not found
+Context: Route for: "login" not found(Template)
+
+2021-02-01 05:19:24
+=====
+
+=====
+File name: TemplateRendererLogs.txt 
+Level: warning
+Message: Content not found
+Context: Route for: "login" not found(Template)
+
+2021-02-01 05:19:25
+=====
+
+=====
+File name: TemplateRendererLogs.txt 
+Level: warning
+Message: Content not found
+Context: Route for: "login" not found(Template)
+
+2021-02-01 05:19:32
+=====
+
+=====
+File name: TemplateRendererLogs.txt 
+Level: warning
+Message: Content not found
+Context: Route for: "login" not found(Template)
+
+2021-02-01 05:25:50
+=====
+
+=====
+File name: TemplateRendererLogs.txt 
+Level: warning
+Message: Content not found
+Context: Route for: "login" not found(Template)
+
+2021-02-01 05:26:23
+=====
+
+=====
+File name: TemplateRendererLogs.txt 
+Level: warning
+Message: Content not found
+Context: Route for: "login" not found(Template)
+
+2021-02-01 05:29:50
+=====
+
+=====
+File name: TemplateRendererLogs.txt 
+Level: warning
+Message: Content not found
+Context: Route for: "login" not found(Template)
+
+2021-02-01 05:30:02
+=====
+
+=====
+File name: TemplateRendererLogs.txt 
+Level: warning
+Message: Layout not found
+Context: Route for: "" not found(Layout)
+
+2021-02-01 05:31:10
+=====
+
+=====
+File name: TemplateRendererLogs.txt 
+Level: warning
+Message: Layout not found
+Context: Route for: "ms" not found(Layout)
+
+2021-02-01 05:31:19
+=====
+
+=====
+File name: TemplateRendererLogs.txt 
+Level: warning
+Message: Layout not found
+Context: Route for: "5" not found(Layout)
+
+2021-02-01 06:17:17
+=====
+

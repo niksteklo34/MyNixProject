@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\controllers;
+namespace Controllers;
 
 
 use App\models\Storage;

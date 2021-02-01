@@ -1,11 +1,6 @@
 <?php
-
-    if (!isset($_SESSION['name'])) {
-        $username = "Войти";
-    } else {
-        $username = "Привет, " . $_SESSION['name'] . '!';
-    }
-
+use App\session\Session;
+$session = new Session();
 ?>
 
 <nav class="navbar navbar-expand-lg">
@@ -16,9 +11,9 @@
         <a class="link btn btn-success" href="catalog">Каталог</a>
         <a class="link btn btn-success" href="basket">Корзина</a>
         <?php if (!isset($_SESSION['name'])): ?>
-        <a class="username" href="login"><?php echo $username?></a>
+        <a class="username" href="login">Войти</a>
         <?php else: ?>
-        <p class="username" href="login"><?php echo $username?></p>
+        <p class="username" href="login">Привет, <?php echo $session->get('name')?>!</p>
         <?php endif; ?>
     </div>
 </nav>
