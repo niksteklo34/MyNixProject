@@ -26,7 +26,8 @@ class Storage
                 return $product;
             }
         }
-        $this->logger->warning('Id not found', ['id' => $id]);
+        // Используется логгирование с помощью Monolog
+        // $this->logger->warning('Id not found', ['id' => $id]);
         throw new NonIdException('Id not found');
     }
 }

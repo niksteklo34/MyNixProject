@@ -52,7 +52,7 @@ class Session
 
     public function setSavePath($savePath): void
     {
-        session_save_path($savePath);
+        session_save_path("$savePath");
     }
 
     public function get($key)

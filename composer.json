@@ -7,5 +7,7 @@
             "Controllers\\": "App/Controllers"
         }
     },
-    "require": {}
+    "require": {
+        "monolog/monolog": "^2.2"
+    }
 }
