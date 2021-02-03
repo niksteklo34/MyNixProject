@@ -40,19 +40,12 @@ $auth = new \App\session\Authentication();
         <div class="button">
             <button class="apply btn btn-success col"><a href="register" style="text-decoration: none;color: white">Зарегистрироваться</a></button>
         </div>
-        <?php
-        if (!empty($_POST)) {
-            $_SESSION['name'] = $_POST['name'];
-            $_SESSION['surname'] = $_POST['surname'];
-            $_SESSION['email'] = $_POST['email'];
-            $_SESSION['password'] = $_POST['password'];
-        }
-        if (isset($_SESSION['name']) && isset($_SESSION['password'])) {
-            $auth->auth($_SESSION['name'], $_SESSION['password']);
-        }
-        ?>
-        <?php if ($auth->isAuth()): ?>
-            <p style="text-align: center;margin-top: 10px;font-size: 20px;color: white">Вы авторизовались, <?php echo $auth->login?>!</p>
-            <?php header("Location: login"); ?>
+        <?php if (!empty($_POST)): ?>
+            <?php if($auth->auth($_POST['name'], $_POST['surname'], $_POST['email'], $_POST['password'])): ?>
+                    <p style="text-align: center;margin-top: 10px;font-size: 20px;color: white">Вы авторизовались, <?php echo $auth->login?>!</p>
+                    <?php header("Location: login"); ?>
+                <?php else: ?>
+                    <p style="text-align: center;margin-top: 10px;font-size: 20px;color: white">Неверный логин или пароль!</p>
+            <?php endif; ?>
         <?php endif; ?>
 </form>

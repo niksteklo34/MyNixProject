@@ -21,21 +21,12 @@ class AuthController
         $template = 'loginTemplate';
         $layout = 'login';
 
-//        $this->validateData($_SESSION);
-
         if ($this->authentication->isAuth()) {
             $template = 'loginedTemplate';
         }
 
         $this->renderClass->render($template, $layout, []);
     }
-
-
-    public function validateData(array $array) {
-        var_dump($array);
-    }
-
-
 
     public function logout() {
         $this->authentication->logOut();

@@ -15,13 +15,21 @@ class Authentication
     public function __construct()
     {
         $this->session = new Session();
+        $this->login = 'Nikita';
+        $this->pass = 'Niksteklo34';
     }
 
-    public function auth(string $login, string $pass): bool
+    public function auth(string $login, string $surname, string $email, string $pass) : bool
     {
-        $this->login = $login;
-        $this->pass = $pass;
-        return true;
+        if ($this->login == $login && $this->pass == $pass) {
+            $this->session->set('name', $login);
+            $this->session->set('surname', $surname);
+            $this->session->set('email', $email);
+            $this->session->set('pass', $pass);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public function isAuth()
@@ -31,7 +39,7 @@ class Authentication
 
     public function getLogin()
     {
-        return $this->login;
+        return $this->session->get('name');
     }
 
     public function logOut(): void

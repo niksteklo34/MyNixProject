@@ -17,20 +17,12 @@ class Session
 
     public function cookieExists(): bool
     {
-        if (!empty($_COOKIE)) {
-            return true;
-        } else {
-            return false;
-        }
+        return empty($_COOKIE) ? false : true;
     }
 
     public function sessionExists(): bool
     {
-        if (!empty($_SESSION)) {
-            return true;
-        } else {
-            return false;
-        }
+        return empty($_SESSION) ? false : true;
     }
 
     public function setName($name): void
@@ -70,6 +62,6 @@ class Session
 
     public function delete($key): void
     {
-        unset($_SESSION[$key]);
+        if ($this->sessionExists()) unset($_SESSION[$key]);
     }
 }
