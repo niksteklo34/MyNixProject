@@ -2,8 +2,8 @@
 
 namespace Controllers;
 
-use App\tools\renderClass;
-use App\models\Product;
+use App\Tools\renderClass;
+use App\Models\Product;
 
 class CatalogController
 {

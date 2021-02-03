@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\tools\logger;
+namespace App\Tools\Logger;
 
 
 class Logger implements LoggerInterface

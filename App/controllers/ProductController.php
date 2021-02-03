@@ -2,7 +2,7 @@
 
 namespace Controllers;
 
-use App\tools\renderClass;
+use App\Tools\renderClass;
 
 class ProductController
 {

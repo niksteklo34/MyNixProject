@@ -4,8 +4,8 @@
 namespace Controllers;
 
 
-use App\models\Storage;
-use App\tools\logger\Logger;
+use App\Models\Storage;
+use App\Tools\Logger\Logger;
 
 class StorageController
 {
