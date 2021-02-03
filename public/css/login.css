@@ -15,6 +15,13 @@
 .navbar {
     background-color: olive;
 }
+.username {
+    font-size: 24px;
+    color: aliceblue;
+    position: absolute;
+    right: 10px;
+    top: 20px;
+}
 hr {
     height: 5px;
     background-color: black;
@@ -28,8 +35,7 @@ hr {
     margin-bottom: 150px;
     border: 5px black solid;
     border-radius: 15px;
-    height: 575px;
-    /*width: 200px;*/
+    height: 625px;
     max-width: 500px;
     background-color: #808000;
 }
@@ -37,7 +43,14 @@ hr {
 /* Form */
 
 .form {
-    margin-top: 35px;
+    margin-top: 15px;
+}
+h1 {
+    color: white;
+}
+.over-text {
+    height: 2px;
+    margin: 2px 0 2px 0;
 }
 .checkbox {
     margin-top: 30px;

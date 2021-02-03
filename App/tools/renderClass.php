@@ -1,9 +1,9 @@
 <?php
 
-namespace App\tools;
+namespace App\Tools;
 
-use App\exceptions\TemplateRendererException;
-use App\exceptions\LayoutRendererException;
+use App\Exceptions\TemplateRendererException;
+use App\Exceptions\LayoutRendererException;
 
 class renderClass
 {

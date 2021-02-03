@@ -1,9 +1,9 @@
 <?php
 
-namespace App\models;
+namespace App\Models;
 
-use App\tools\logger\LoggerInterface;
-use App\exceptions\NonIdException;
+use App\Tools\Logger\LoggerInterface;
+use App\Exceptions\NonIdException;
 
 class Storage
 {

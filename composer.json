@@ -1,0 +1,11 @@
+{
+    "name": "vagrant/code",
+    "autoload": {
+        "psr-4": {
+            "App\\": "App/",
+            "Router\\": "Router/",
+            "Controllers\\": "App/Controllers"
+        }
+    },
+    "require": {}
+}

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\models;
+namespace App\Models;
 
 
 class Product
@@ -29,7 +29,7 @@ class Product
             $object->img = $productProperties[2];
             $object->description = $productProperties[3];
             $object->price = $productProperties[4];
-            $object->status = $productProperties[4];
+            $object->status = $productProperties[5];
 
             array_push($productData, $object);
         }
