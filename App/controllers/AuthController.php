@@ -3,8 +3,8 @@
 
 namespace Controllers;
 
-use App\session\Authentication;
-use App\tools\renderClass;
+use App\Session\Authentication;
+use App\Tools\renderClass;
 
 class AuthController
 {
