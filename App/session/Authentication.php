@@ -19,9 +19,10 @@ class Authentication
         $this->pass = 'Niksteklo34';
     }
 
-    public function auth(string $login, string $surname, string $email, string $pass) : bool
+    public function auth(string $login, string $surname, string $email, string $pass)
     {
         if ($this->login == $login && $this->pass == $pass) {
+//            $this->session->setSavePath(dirname(__DIR__) . "/storage/sessions");
             $this->session->set('name', $login);
             $this->session->set('surname', $surname);
             $this->session->set('email', $email);

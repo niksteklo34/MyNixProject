@@ -56,22 +56,24 @@ class Logger implements LoggerInterface
 
     public function log($level, $message, array $context = array())
     {
-        if ($this->name === '') {
-            $handle = fopen(__DIR__ . "/log/errorsLogs.txt", 'a');
-            $context = implode(',', $context);
-            $time = date('Y-m-d h:i:s');
-            $message = "=====\nLevel: {$level}\nMessage: {$message}\nContext: {$context}\n\n{$time}\n=====\n\n";
-            fwrite($handle, $message);
-            fclose($handle);
-            self::$badId = $context;
+        // Перешли на использование Monolog
+
+//        if ($this->name === '') {
+//            $handle = fopen(__DIR__ . "/log/errorsLogs.txt", 'a');
+//            $context = implode(',', $context);
+//            $time = date('Y-m-d h:i:s');
+//            $message = "=====\nLevel: {$level}\nMessage: {$message}\nContext: {$context}\n\n{$time}\n=====\n\n";
+//            fwrite($handle, $message);
+//            fclose($handle);
+//            self::$badId = $context;
 //            return $this->badId;
-        } else {
-            $handle = fopen( __DIR__ . "/log/" . $this->name . '.txt', 'a');
-            $context = implode(',', $context);
-            $time = date('Y-m-d h:i:s');
-            $message = "=====\nFile name: {$this->name}.txt \nLevel: {$level}\nMessage: {$message}\nContext: {$context}\n\n{$time}\n=====\n\n";
-            fwrite($handle, $message);
-            fclose($handle);
-        }
+//        } else {
+//            $handle = fopen( __DIR__ . "/log/" . $this->name . '.txt', 'a');
+//            $context = implode(',', $context);
+//            $time = date('Y-m-d h:i:s');
+//            $message = "=====\nFile name: {$this->name}.txt \nLevel: {$level}\nMessage: {$message}\nContext: {$context}\n\n{$time}\n=====\n\n";
+//            fwrite($handle, $message);
+//            fclose($handle);
+//        }
     }
 }

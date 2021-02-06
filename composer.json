@@ -1,5 +1,6 @@
 {
     "name": "vagrant/code",
+	"minimum-stability": "dev",
     "autoload": {
         "psr-4": {
             "App\\": "App/",
@@ -7,5 +8,8 @@
             "Controllers\\": "App/Controllers"
         }
     },
-    "require": {}
+    "require": {
+        "monolog/monolog": "^2.2",
+        "niksteklo34/logger": "dev-master"
+    }
 }

@@ -19,7 +19,7 @@ class StorageController
         // function for work with storage
         $storage = new Storage($products, $logger);
 
-        $id = 2;
+        $id = 7;
 
         $contentById = $storage->getProductDataById($id);
 
