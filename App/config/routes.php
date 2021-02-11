@@ -10,5 +10,5 @@ Router::addNewRoute('^login$', ['controller' => 'auth', "action" => "login"]);
 Router::addNewRoute('^user$', ['controller' => 'auth', "action" => "user"]);
 Router::addNewRoute('^register', ['controller' => 'auth', "action" => "reg"]);
 
-Router::addNewRoute('^product$', ['controller' => 'product', "action" => "index"]);
+Router::addNewRoute('product/\d+', ['controller' => 'product', "action" => "index"]);
 Router::addNewRoute('^catalog$', ['controller' => 'catalog', "action" => "index"]);

@@ -18,12 +18,12 @@ class AuthController
     }
 
     public function login() {
-        $template = 'loginTemplate';
-        $layout = 'login';
-
-        if ($this->authentication->isAuth()) {
+        if (!isset($_SESSION['name'])) {
+            $template = 'loginTemplate';
+        } else {
             $template = 'loginedTemplate';
         }
+        $layout = 'login';
 
         $this->renderClass->render($template, $layout, []);
     }

@@ -31,7 +31,7 @@ try {
     $log->warning('Id not found');
     echo $errors->getMessage();
 } catch (NonIdException $errors) {
-    $log->warning('Id not found');
+    $log->warning($errors->getMessage());
     echo $errors->getMessage();
 } catch (Exception $errors) {
     $log->warning('');

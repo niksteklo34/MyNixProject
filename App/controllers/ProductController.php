@@ -2,24 +2,33 @@
 
 namespace Controllers;
 
+use App\Models\Product;
 use App\Tools\renderClass;
 
 class ProductController
 {
-    public array $route;
 
-    public function __construct(array $route)
-    {
-        $this->route = $route;
+    public static function checkProduct($products, $uri){
+        $productInfo = [];
+        foreach ($products as $product) {
+            if ($product->id == $uri['1']) {
+                $productInfo = $product;
+            }
+        }
+        return $productInfo;
     }
 
     public function Index() {
-        $template = $this->route['controller'] . 'Template';
-        $layout = $this->route['controller'];
+        $template = 'productTemplate';
+        $layout = 'product';
+
+        $productObject = new Product();
+
+        $products = $productObject->getAll();
 
         $obj = new renderClass();
 
-        $obj->render($template, $layout, []);
+        $obj->render($template, $layout, $products);
     }
 
 }

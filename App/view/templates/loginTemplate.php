@@ -40,12 +40,25 @@ $auth = new \App\session\Authentication();
         <div class="button">
             <button class="apply btn btn-success col"><a href="register" style="text-decoration: none;color: white">Зарегистрироваться</a></button>
         </div>
-        <?php if (!empty($_POST)): ?>
-            <?php if($auth->auth($_POST['name'], $_POST['surname'], $_POST['email'], $_POST['password'])): ?>
-                    <p style="text-align: center;margin-top: 10px;font-size: 20px;color: white">Вы авторизовались, <?php echo $auth->login?>!</p>
-                    <?php header("Location: login"); ?>
-                <?php else: ?>
-                    <p style="text-align: center;margin-top: 10px;font-size: 20px;color: white">Неверный логин или пароль!</p>
-            <?php endif; ?>
-        <?php endif; ?>
+
+        <?php
+        if (!empty($_POST['name'])) {
+            $name = trim($_POST['name'], ' ');
+            $surname = trim($_POST['surname'], ' ');
+            $email = trim($_POST['email'], ' ');
+            $password = trim($_POST['password'], ' ');
+
+            $auth->setDataForReg($name, $surname, $email, $password);
+            echo $logIn = $auth->auth();
+            if ($logIn) {
+                echo "<p style=\"text-align: center;margin-top: 10px;font-size: 20px;color: white\">Вы авторизовались, {$name}!</p>-->";
+                header("Location: login");
+            } else {
+                echo "<p style=\"text-align: center;margin-top: 10px;font-size: 20px;color: white\">Неверный логин или пароль!</p>";
+            }
+        }
+        ?>
 </form>
+
+<?php
+// Сделать историю покупки : сделать новую страничку сделать бд многие ко многим подготовить запрос Ну и вывести

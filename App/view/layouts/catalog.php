@@ -11,12 +11,12 @@
     <title>Coffezin</title>
 </head>
 <body>
-<?php echo $header ?>
-<div class="container">
-    <ul>
-        <?php echo $content ?>
-    </ul>
-</div>
-<?php echo $footer ?>
+    <?php echo $header ?>
+        <div class="container">
+            <ul>
+                <?php echo $content ?>
+            </ul>
+        </div>
+    <?php echo $footer ?>
 </body>
 </html>

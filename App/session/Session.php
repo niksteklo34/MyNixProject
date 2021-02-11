@@ -22,7 +22,11 @@ class Session
 
     public function sessionExists(): bool
     {
-        return empty($_SESSION) ? false : true;
+        if (isset($_SESSION) && !empty($_SESSION)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public function setName($name): void
@@ -45,7 +49,7 @@ class Session
         session_destroy();
     }
 
-    public function set(string $key, string $value): void
+    public function set(string $key, $value): void
     {
         $_SESSION[$key] = $value;
     }

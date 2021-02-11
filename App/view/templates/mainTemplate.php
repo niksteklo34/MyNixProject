@@ -7,7 +7,7 @@ $auth = new \App\session\Authentication();
 </head>
 <div class="mt-4">
     <div class="text text-center">
-        <?php if (!$auth->isAuth()): ?>
+        <?php if ($auth->isAuth() && !isset($_SESSION['name'])): ?>
         <H1>Добро пожаловать, гость!</H1><br><br>
         <?php else: ?>
         <H1>Добро пожаловать, <?php echo $auth->session->get('name') ?>!</H1><br><br>

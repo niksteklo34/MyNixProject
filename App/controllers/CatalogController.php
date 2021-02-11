@@ -24,11 +24,11 @@ class CatalogController
 
         $productObject = new Product();
 
-        $products = $productObject->getAll();
+        $Products = $productObject->getAll();
 
         $obj = new renderClass();
 
-        $obj->render($template, $layout, $products);
+        $obj->render($template, $layout, $Products);
     }
 
 }

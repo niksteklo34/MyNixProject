@@ -4,33 +4,48 @@
 namespace App\Session;
 
 use App\Session\Session;
+use App\models\User;
 
 class Authentication
 {
     public Session $session;
-    public $login;
+    public User $user;
+    public $id;
+    public $name;
+    public $surname;
+    public $email;
     public $pass;
-
 
     public function __construct()
     {
         $this->session = new Session();
-        $this->login = 'Nikita';
-        $this->pass = 'Niksteklo34';
+        $this->user = new User();
     }
 
-    public function auth(string $login, string $surname, string $email, string $pass)
+    public function setDataForReg($name, $surname, $email, $pass)
     {
-        if ($this->login == $login && $this->pass == $pass) {
-//            $this->session->setSavePath(dirname(__DIR__) . "/storage/sessions");
-            $this->session->set('name', $login);
-            $this->session->set('surname', $surname);
-            $this->session->set('email', $email);
-            $this->session->set('pass', $pass);
+        $this->name = $name;
+        $this->surname = $surname;
+        $this->email = $email;
+        $this->pass = $pass;
+    }
+
+    public function auth()
+    {
+        $resultUser = $this->user->checkUser($this->email);
+        $resultUser = $resultUser[0];
+        var_dump($resultUser);
+        if ($resultUser->name == $this->name && $resultUser->surname == $this->surname && $resultUser->email == $this->email && $resultUser->password == $this->pass){
+            $this->session->set('id', $resultUser->id);
+            $this->session->set('name', $this->name);
+            $this->session->set('surname', $this->surname);
+            $this->session->set('email', $this->email);
+            $this->session->set('pass', $this->pass);
             return true;
         } else {
             return false;
         }
+
     }
 
     public function isAuth()
