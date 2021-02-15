@@ -44,8 +44,10 @@
 
         $checkUser = $array['baseUser']->checkUser($email);
 
+            $createUser = $array['baseUser']->createUser($name, $surname, $email, $password);
+
         if (empty($checkUser)) {
-            $createUser = $userInfo->createUser($name, $surname, $email, $password);
+//            $createUser = $userInfo->createUser($name, $surname, $email, $password);
             echo "<p style=\"text-align: center;margin-top: 10px;font-size: 20px;color: white\">Вы зарегистрировались, {$name}!<br>Теперь <a href=\"login\">войдите</a></p>";
         } else {
             echo "<p style=\"text-align: center;margin-top: 10px;font-size: 20px;color: white\">Такой email уже существует!</p>";

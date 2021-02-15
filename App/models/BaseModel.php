@@ -3,21 +3,19 @@
 
 namespace App\models;
 
-
-use App\models\DB;
 use PDO;
 
 class BaseModel
 {
     // как использовать селект с продуктом
-    public function select($data,$tableName,$search = '')
+    public function get($data,$tableName,$search = null)
     {
-        $query = "SELECT {$data} FROM {$tableName} {$search}";
+        return "SELECT {$data} FROM {$tableName} {$search}";
     }
 
-    public function insert($tableName, $columns, $data)
+    public function write($tablesName, $columns, $data)
     {
-        $query = "INSERT INTO {$tableName}({$columns}) VALUES ('{$data}')";
+        return "INSERT INTO {$tablesName}({$columns}) VALUES ({$data})";
     }
 
     public function delete($tableName, $condition)

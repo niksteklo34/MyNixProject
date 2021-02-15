@@ -2,7 +2,7 @@
     <link rel="stylesheet" href="css/catalog.css">
 </head>
 <?php
-    if ($session->keyExists('cart_list') && $session->get('cart_list') != 0) {
+    if ($session->keyExists('cart_list') && count($session->get('cart_list')) > 0) {
         $countProducts = count($session->get('cart_list'));
         echo "<h3>В корзине {$countProducts} товаров</h3>";
     } else {

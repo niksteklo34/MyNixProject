@@ -8,17 +8,18 @@ class User
 {
 
     public $db_connect;
+    public BaseModel $baseModel;
 
     public function __construct()
     {
-        $db_connect = DB::getInstance();
-        $this->db_connect = $db_connect->connect();
+        $this->db_connect = DB::getInstance()->connect();
+        $this->baseModel = new BaseModel();
     }
 
     public function createUser($name, $surname, $email, $password)
     {
         $connect = $this->db_connect;
-        $query = "INSERT INTO user(name, surname, email, password) VALUES ('{$name}','{$surname}','{$email}','{$password}')";
+        $query = $this->baseModel->write('user','name, surname, email, password', "{$name}','{$surname}','{$email}','{$password}");
         $resultQuery = $connect->prepare($query);
         $resultQuery->execute();
         if ($resultQuery) {
@@ -31,7 +32,7 @@ class User
     public function checkUser($email)
     {
         $connect = $this->db_connect;
-        $query = "SELECT * FROM user WHERE email = '{$email}'";
+        $query = $this->baseModel->get("*","user","WHERE email = '$email'");
         $resultQuery = $connect->prepare($query);
         $resultQuery->execute();
         return $userInfo = $resultQuery->fetch(PDO::FETCH_OBJ);
@@ -49,7 +50,7 @@ class User
     public function makeOrder(int $user, int $product)
     {
         $connect = $this->db_connect;
-        $query = "INSERT INTO users_orders(user_id,product_id,date) VALUES ({$user}, {$product}, NOW())";
+        $query = $this->baseModel->write('users_orders', 'user_id, product_id,date', "{$user}, {$product}, NOW()");
         $prepareQuery = $connect->prepare($query);
         $prepareQuery->execute();
         if ($prepareQuery) {

@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
-use App\models\BaseModel;
 use PDO;
 
 class Product extends BaseModel
 {
-    public $db_connect;
+    private $db_connect;
+
     public $id;
     public $name;
     public $img;
@@ -15,16 +15,18 @@ class Product extends BaseModel
     public $price;
     public $status;
 
+    public BaseModel $baseModel;
+
     public function __construct()
     {
-        $db_connect = DB::getInstance();
-        $this->db_connect = $db_connect->connect();
+        $this->db_connect = DB::getInstance()->connect();
+        $this->baseModel = new BaseModel();
     }
 
     public function getProductsDb()
     {
         $connect = $this->db_connect;
-        $query = "SELECT * FROM products";
+        $query = $this->baseModel->get('*','products');
         $dbProduct = $connect->prepare($query);
         $dbProduct->execute();
         return $products = $dbProduct->fetchAll(PDO::FETCH_OBJ);

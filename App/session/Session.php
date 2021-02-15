@@ -70,9 +70,9 @@ class Session
         return $_SESSION["$key"];
     }
 
-    public function delete($key): void
+    public function delete($key, $value = null): void
     {
-        if ($this->sessionExists()) unset($_SESSION[$key]);
+        if ($this->sessionExists()) unset($_SESSION[$key][$value]);
     }
 
     public function keyExists($key) : bool
