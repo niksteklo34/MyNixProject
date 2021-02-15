@@ -1,12 +1,8 @@
-<?php
-$session = new \App\Session\Session();
-?>
-
 <head>
     <link rel="stylesheet" href="css/product.css">
 </head>
 <body>
-    <?php if (!isset($_SESSION['name'])): ?>
+    <?php if (!$session->keyExists('name')): ?>
     <h1>Вы не авторизованы<br><a href="login">Войти</a></h1>
     <?php else: ?>
     <h1>Вы авторизованы как - <?php echo $session->get('name')?></h1>
@@ -14,11 +10,9 @@ $session = new \App\Session\Session();
             Фамилия: <?php echo $session->get('surname')?><br>
             Email: <?php echo $session->get('email')?></h3>
     <?php endif; ?>
+
     <?php if ($session->sessionExists()): ?>
-        <?php
-        $allOrders = new \App\models\User();
-        $listOrders = $allOrders->fegAllOrdersForUser($session->get('name'));
-        ?>
+        <?php $listOrders = $array['baseUser']->fegAllOrdersForUser($session->get('id')) ?>
         <?php if (!empty($listOrders)): ?>
         <h1>Список покупок</h1>
         <ol>

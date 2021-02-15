@@ -9,6 +9,7 @@ use App\Exceptions\MyException;
 use App\Exceptions\LayoutRendererException;
 use App\Exceptions\TemplateRendererException;
 use App\Exceptions\NonIdException;
+use App\exceptions\DbException;
 use App\Session\Session;
 
 $log = new Logger('logFile', '../App/storage/log');
@@ -29,6 +30,9 @@ try {
     echo $errors->getMessage();
 } catch (MyException $errors) {
     $log->warning('Id not found');
+    echo $errors->getMessage();
+} catch (DbException $errors) {
+    $log->warning($errors->getMessage());
     echo $errors->getMessage();
 } catch (NonIdException $errors) {
     $log->warning($errors->getMessage());

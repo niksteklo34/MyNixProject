@@ -2,7 +2,7 @@
 
 
 namespace App\models;
-
+use PDO;
 
 class User
 {
@@ -19,7 +19,8 @@ class User
     {
         $connect = $this->db_connect;
         $query = "INSERT INTO user(name, surname, email, password) VALUES ('{$name}','{$surname}','{$email}','{$password}')";
-        $resultQuery = $connect->query($query);
+        $resultQuery = $connect->prepare($query);
+        $resultQuery->execute();
         if ($resultQuery) {
             return true;
         } else {
@@ -31,23 +32,30 @@ class User
     {
         $connect = $this->db_connect;
         $query = "SELECT * FROM user WHERE email = '{$email}'";
-        $resultQuery = $connect->query($query);
-        $products = array();
-        while ($product = $resultQuery->fetch_object()) {
-            $products[] = $product;
-        }
-        return $products;
+        $resultQuery = $connect->prepare($query);
+        $resultQuery->execute();
+        return $userInfo = $resultQuery->fetch(PDO::FETCH_OBJ);
     }
 
-    public function fegAllOrdersForUser($personName)
+    public function fegAllOrdersForUser($personId)
     {
         $connect = $this->db_connect;
-        $query = "select user.name,surname, products.title,price,date from user join coffezin.users_orders on coffezin.users_orders.user_id = coffezin.user.id join coffezin.products on coffezin.products.id = coffezin.users_orders.product_id WHERE user.name = '{$personName}'";
-        $resultQuery = $connect->query($query);
-        $products = array();
-        while ($product = $resultQuery->fetch_object()) {
-            $products[] = $product;
+        $query = "select user.name,surname, products.title,price,date from user join users_orders on users_orders.user_id = user.id join products on products.id = users_orders.product_id WHERE user.id = '{$personId}';";
+        $resultQuery = $connect->prepare($query);
+        $resultQuery->execute();
+        return $userOrders = $resultQuery->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    public function makeOrder(int $user, int $product)
+    {
+        $connect = $this->db_connect;
+        $query = "INSERT INTO users_orders(user_id,product_id,date) VALUES ({$user}, {$product}, NOW())";
+        $prepareQuery = $connect->prepare($query);
+        $prepareQuery->execute();
+        if ($prepareQuery) {
+            return true;
+        } else {
+            return false;
         }
-        return $products;
     }
 }

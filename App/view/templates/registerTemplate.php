@@ -42,9 +42,7 @@
         $email = trim($_POST['email'],  ' ');
         $password = trim($_POST['password'],  ' ');
 
-        $userInfo = new \App\models\User();
-
-        $checkUser = $userInfo->checkUser($email);
+        $checkUser = $array['baseUser']->checkUser($email);
 
         if (empty($checkUser)) {
             $createUser = $userInfo->createUser($name, $surname, $email, $password);

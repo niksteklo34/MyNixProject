@@ -2,11 +2,17 @@
 
 namespace App\models;
 
-use mysqli;
+use App\exceptions\DbException;
+use PDO;
 
 class DB
 {
     private static $instance;
+
+    private $host;
+    private $user;
+    private $password;
+    private $db_name;
 
     public static function getInstance() : DB
     {
@@ -17,16 +23,22 @@ class DB
         return self::$instance;
     }
 
-    // реализовать на снглтон
-    private $host = '192.168.10.10';
-    private $user = 'homestead';
-    private $password = 'secret';
-    private $db_name = 'coffezin';
-
+    public function __construct()
+    {
+        $dbConfig = require_once dirname(__DIR__) . '/config/db_config.php';
+        $this->host = $dbConfig['host'];
+        $this->user = $dbConfig['user'];
+        $this->password = $dbConfig['password'];
+        $this->db_name = $dbConfig['db_name'];
+    }
 
     public function connect()
     {
-        return $db_connect = new mysqli($this->host, $this->user, $this->password, $this->db_name);
+        if ($this->host && $this->user && $this->password && $this->db_name) {
+            return $db_connect = new PDO("mysql:dbname={$this->db_name};host={$this->host}", $this->user, $this->password);
+        } else {
+            throw new DbException('DB is not connected');
+        }
     }
 
 }

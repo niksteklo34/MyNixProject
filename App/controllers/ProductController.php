@@ -23,12 +23,14 @@ class ProductController
         $layout = 'product';
 
         $productObject = new Product();
+        $products = $productObject->productMapper();
 
-        $products = $productObject->getAll();
+        $uri = trim($_SERVER['REQUEST_URI'], '/');
+        $uri = explode('/', $uri);
 
         $obj = new renderClass();
 
-        $obj->render($template, $layout, $products);
+        $obj->render($template, $layout, ['products' => $products, 'uri' => $uri]);
     }
 
 }

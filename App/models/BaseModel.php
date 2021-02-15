@@ -5,6 +5,7 @@ namespace App\models;
 
 
 use App\models\DB;
+use PDO;
 
 class BaseModel
 {
@@ -29,13 +30,13 @@ class BaseModel
         $query = "UPDATE {$tableName} SET {$columnSetNewData} WHERE {$condition}";
     }
 
-    public function getProductId($id)
+    public function getById($table, $id)
     {
         $db_connect = (DB::getInstance())->connect();
-        $query = "SELECT * FROM products WHERE id = " . $id;
-        $resultQuery = $db_connect->query($query);
-        $product = $resultQuery->fetch_object();
-        return $product;
+        $query = "SELECT * FROM " . $table . " WHERE id = " . $id;
+        $dbProduct = $db_connect->prepare($query);
+        $dbProduct->execute();
+        return $product = $dbProduct->fetch(PDO::FETCH_OBJ);
     }
 
 }

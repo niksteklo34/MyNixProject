@@ -24,11 +24,13 @@ class CatalogController
 
         $productObject = new Product();
 
-        $Products = $productObject->getAll();
+        $Products = $productObject->productMapper();
+
+        $userBaseModel = new \App\models\BaseModel();
 
         $obj = new renderClass();
 
-        $obj->render($template, $layout, $Products);
+        $obj->render($template, $layout, ['Products' => $Products, 'UserModel' => $userBaseModel]);
     }
 
 }

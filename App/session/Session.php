@@ -4,6 +4,12 @@ namespace App\Session;
 
 class Session
 {
+    public Authentication $auth;
+
+    public function __construct()
+    {
+        $this->auth = new Authentication;
+    }
 
     public function getId(): string
     {
@@ -67,5 +73,14 @@ class Session
     public function delete($key): void
     {
         if ($this->sessionExists()) unset($_SESSION[$key]);
+    }
+
+    public function keyExists($key) : bool
+    {
+        if (array_key_exists("$key", $_SESSION)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

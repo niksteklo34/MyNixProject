@@ -1,6 +1,3 @@
-<?php
-$auth = new \App\session\Authentication();
-?>
 <head>
     <link rel="stylesheet" href="css/login.css">
 </head>
@@ -48,8 +45,10 @@ $auth = new \App\session\Authentication();
             $email = trim($_POST['email'], ' ');
             $password = trim($_POST['password'], ' ');
 
+            $auth = $array['Auth'];
+
             $auth->setDataForReg($name, $surname, $email, $password);
-            echo $logIn = $auth->auth();
+            $logIn = $auth->auth();
             if ($logIn) {
                 echo "<p style=\"text-align: center;margin-top: 10px;font-size: 20px;color: white\">Вы авторизовались, {$name}!</p>-->";
                 header("Location: login");

@@ -3,18 +3,21 @@
 
 namespace Controllers;
 
+use App\models\User;
 use App\Session\Authentication;
 use App\Tools\renderClass;
 
 class AuthController
 {
     public renderClass $renderClass;
-    public Authentication $authentication;
+    public Authentication $auth;
+    public User $baseUser;
 
     public function __construct()
     {
         $this->renderClass = new renderClass();
-        $this->authentication = new Authentication();
+        $this->auth = new Authentication();
+        $this->baseUser = new User();
     }
 
     public function login() {
@@ -25,7 +28,9 @@ class AuthController
         }
         $layout = 'login';
 
-        $this->renderClass->render($template, $layout, []);
+        $Auth = $this->auth;
+
+        $this->renderClass->render($template, $layout, ['Auth' => $Auth]);
     }
 
     public function logout() {
@@ -36,16 +41,18 @@ class AuthController
         $template = 'registerTemplate';
         $layout = 'register';
 
-        $this->renderClass->render($template, $layout, []);
+        $baseUser = $this->baseUser;
+
+        $this->renderClass->render($template, $layout, ['baseUser' => $baseUser]);
     }
 
     public function user() {
         $template = 'userTemplate';
         $layout = 'user';
 
-        $session = $this->authentication;
+        $baseUser = $this->baseUser;
 
-        $this->renderClass->render($template, $layout, $session);
+        $this->renderClass->render($template, $layout, ['baseUser' => $baseUser]);
     }
 
 }

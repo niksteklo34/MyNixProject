@@ -1,21 +1,15 @@
-<?php
-$ses = new \App\Session\Authentication();
-?>
 <head>
     <link rel="stylesheet" href="css/catalog.css">
 </head>
-    <?php if ($ses->isAuth()): ?>
-        <?php if(isset($_SESSION['cart_list'])): ?>
-        <?php if (count($_SESSION['cart_list']) > 0): ?>
-            <h3>В корзине <?php echo count($_SESSION['cart_list']); ?> товаров</h3>
-        <?php else: ?>
-            <h3>В корзине пусто...</h3>
-        <?php endif; ?>
-        <?php else: ?>
-            <h3>В корзине пусто...</h3>
-    <?php endif; ?>
-    <?php endif; ?>
-<?php foreach ($products as $product): ?>
+<?php
+    if ($session->keyExists('cart_list') && $session->get('cart_list') != 0) {
+        $countProducts = count($session->get('cart_list'));
+        echo "<h3>В корзине {$countProducts} товаров</h3>";
+    } else {
+        echo "<h3>В корзине пусто...</h3>";
+    }
+?>
+<?php foreach ($array['Products'] as $product): ?>
     <li>
         <div class="product-item">
             <div class="row">
@@ -37,9 +31,8 @@ $ses = new \App\Session\Authentication();
     </li>
 <?php endforeach ?>
 <?php
-$productBaseModel = new \App\models\BaseModel();
 if (!empty($_POST)) {
-    $product = $productBaseModel->getProductId($_POST['Product']);
+    $product = $array['UserModel']->getById('products',$_POST['Product']);
     $_SESSION['cart_list'][] = $product;
     header('Location: catalog');
 }
