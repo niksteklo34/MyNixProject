@@ -3,10 +3,10 @@
 </head>
 <div class="mt-4">
     <div class="text text-center">
-        <?php if ($session->sessionExists() && !$session->keyExists('name')): ?>
-        <H1>Добро пожаловать, гость!</H1><br><br>
+        <?php if ($session->sessionExists() && $session->keyExists('name')): ?>
+            <H1>Добро пожаловать, <?php echo $session->get('name') ?>!</H1><br><br>
         <?php else: ?>
-        <H1>Добро пожаловать, <?php echo $session->get('name') ?>!</H1><br><br>
+            <H1>Добро пожаловать, гость!</H1><br><br>
         <?php endif; ?>
         <form class="text-center" action="" method="post">
             <div class="test form-floating mb-3">

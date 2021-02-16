@@ -45,10 +45,9 @@
             $email = trim($_POST['email'], ' ');
             $password = trim($_POST['password'], ' ');
 
-            $auth = $array['Auth'];
+            $array['Auth']->setDataForReg($name, $surname, $email, $password);
+            $logIn = $array['Auth']->auth();
 
-            $auth->setDataForReg($name, $surname, $email, $password);
-            $logIn = $auth->auth();
             if ($logIn) {
                 echo "<p style=\"text-align: center;margin-top: 10px;font-size: 20px;color: white\">Вы авторизовались, {$name}!</p>-->";
                 header("Location: login");
@@ -58,6 +57,3 @@
         }
         ?>
 </form>
-
-<?php
-// Сделать историю покупки : сделать новую страничку сделать бд многие ко многим подготовить запрос Ну и вывести

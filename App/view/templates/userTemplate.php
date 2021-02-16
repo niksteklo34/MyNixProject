@@ -10,7 +10,6 @@
             Фамилия: <?php echo $session->get('surname')?><br>
             Email: <?php echo $session->get('email')?></h3>
     <?php endif; ?>
-
     <?php if ($session->sessionExists()): ?>
         <?php $listOrders = $array['baseUser']->fegAllOrdersForUser($session->get('id')) ?>
         <?php if (!empty($listOrders)): ?>

@@ -25,11 +25,7 @@ class Product extends BaseModel
 
     public function getProductsDb()
     {
-        $connect = $this->db_connect;
-        $query = $this->baseModel->get('*','products');
-        $dbProduct = $connect->prepare($query);
-        $dbProduct->execute();
-        return $products = $dbProduct->fetchAll(PDO::FETCH_OBJ);
+        return $this->baseModel->get('products','*');
     }
 
     public function productMapper()
