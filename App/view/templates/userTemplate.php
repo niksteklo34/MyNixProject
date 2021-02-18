@@ -30,7 +30,7 @@
         <?php endforeach; ?>
         </ol>
         <?php endif; ?>
-        <form method="post">
+        <form action="user/logout" method="post">
             <button class="btn btn-success" name="logout">Выйти</button>
         </form>
     <?php endif; ?>

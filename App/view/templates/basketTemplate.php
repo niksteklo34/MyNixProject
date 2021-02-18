@@ -23,7 +23,7 @@
                         <div class="product-img col-lg-3 col-md-3 col-4" style="margin-top: 10px"><img src="<?php echo $value->img ?>" alt="" height="75px"></div>
                         <div class="product-name col-lg-9 col-md-9 col-8"><?php echo $value->title ?></div>
                         <div class="price col-lg-10 col-md-10 col-10"><?php echo $value->price ?> грн</div>
-                        <form action="" method="post">
+                        <form action="basket/remove" method="post">
                             <div class="price col-lg-2 col-md-2 col-2"><button type="submit" name="deleteProduct" value="<?php echo $key?>">Удалить</button></div>
                         </form>
                     </div>
@@ -32,40 +32,18 @@
         </ul>
     <?php $fullPrice = $value->price + $fullPrice?>
 <?php endforeach; ?>
-
 <h1 style="color: red;margin: 15px 0">Общая самма заказа: <?php echo $fullPrice?> Грн</h1>
 <div class="row box align-items-center"
     <div class="text-right">
-        <form action="" method="post" style="width: 100%;">
             <div class="row">
-                <button name="delAll" value="fdf" type="submit" class="btn btn-primary col-lg-3 col-md-3 col-3" style="">Очистить заказ</button>
+                <form action="basket/remove" method="post" style="width: 100%;">
+                    <button name="delAll" value="fdf" type="submit" class="btn btn-primary col-lg-3 col-md-3 col-3" style="">Очистить заказ</button>
+                </form>
                 <div class="col-lg-6 col-md-6 col-6"></div>
-                <button name="takeOrder" value="df" type="submit" class="btn btn-primary col-lg-3 col-md-3 col-3" style="">Оформить заказ</button>
+                <form action="basket/order" method="post" style="width: 100%;">
+                    <button name="takeOrder" value="df" type="submit" class="btn btn-primary col-lg-3 col-md-3 col-3" style="">Оформить заказ</button>
+                </form>
             </div>
-        </form>
     </div>
 </div>
-
-<?php
-if (!empty($_POST)) {
-    if (isset($_POST['deleteProduct'])) {
-        $delProduct = $_POST['deleteProduct'];
-        $session->delete('cart_list',"$delProduct");
-        header('Location: basket');
-    }
-    if (isset($_POST['delAll'])) {
-        $session->set('cart_list', []);
-        header('Location: basket');
-    }
-    if (isset($_POST['takeOrder'])) {
-        $userModel = new \App\Models\User();
-        foreach ($array['products'] as $value) {
-            $userModel->makeOrder($session->get('id'), $value->id);
-        }
-        echo "<h1 style='text-align: center'>Ваш заказ создан!</h1>";
-        $session->set('cart_list', []);
-        header("refresh: 2","Location: basket");
-    }
-}
-?>
 <?php endif; ?>

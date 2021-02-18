@@ -23,8 +23,7 @@ class User
 
     public function userExist($email)
     {
-        $query = $this->baseModel->get("user","*","email = '$email'");
-        return $query[0];
+        return $this->baseModel->get("user","*","email = '$email'");
     }
 
     public function fegAllOrdersForUser($personId)

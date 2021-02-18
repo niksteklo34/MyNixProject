@@ -2,16 +2,17 @@
 
 namespace Controllers;
 
+use App\models\BaseModel;
 use App\Tools\renderClass;
 use App\Models\Product;
 
 class CatalogController
 {
-    public array $route;
+    public BaseModel $baseModel;
 
-    public function __construct(array $route)
+    public function __construct()
     {
-        $this->route = $route;
+        $this->baseModel = new BaseModel();
     }
 
     public function Index() {
@@ -19,18 +20,25 @@ class CatalogController
 //        $o = new StorageController();
 //        $o->getProductDataByIdOLD();
 
-        $template = $this->route['controller'] . 'Template';
-        $layout = $this->route['controller'];
+        $template = 'catalogTemplate';
+        $layout = 'catalog';
 
         $productObject = new Product();
 
-        $Products = $productObject->productMapper();
-
-        $userBaseModel = new \App\models\BaseModel();
+        $products = $productObject->productMapper();
 
         $obj = new renderClass();
 
-        $obj->render($template, $layout, ['Products' => $Products, 'UserModel' => $userBaseModel]);
+        $obj->render($template, $layout, ['products' => $products]);
+    }
+
+    public function addProduct()
+    {
+        if (!empty($_POST)) {
+            $product = $this->baseModel->getById('products',$_POST['Product']);
+            $_SESSION['cart_list'][] = $product;
+            header('Location: ../catalog');
+        }
     }
 
 }

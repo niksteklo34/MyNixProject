@@ -30,6 +30,7 @@ class Authentication
     public function auth()
     {
         $resultUser = $this->user->userExist($this->email);
+        $resultUser = $resultUser[0];
         $session = new Session();
         if ($resultUser->name == $this->name && $resultUser->surname == $this->surname && $resultUser->email == $this->email && $resultUser->password == $this->pass){
             $session->set('id', $resultUser->id);

@@ -1,7 +1,7 @@
 <head>
     <link rel="stylesheet" href="css/login.css">
 </head>
-<form action="" method="post">
+<form action="login/auth" method="post">
     <div class="form">
         <h1>Войти</h1>
         <hr class="over-text">
@@ -37,23 +37,5 @@
         <div class="button">
             <button class="apply btn btn-success col"><a href="register" style="text-decoration: none;color: white">Зарегистрироваться</a></button>
         </div>
-
-        <?php
-        if (!empty($_POST['name'])) {
-            $name = trim($_POST['name'], ' ');
-            $surname = trim($_POST['surname'], ' ');
-            $email = trim($_POST['email'], ' ');
-            $password = trim($_POST['password'], ' ');
-
-            $array['Auth']->setDataForReg($name, $surname, $email, $password);
-            $logIn = $array['Auth']->auth();
-
-            if ($logIn) {
-                echo "<p style=\"text-align: center;margin-top: 10px;font-size: 20px;color: white\">Вы авторизовались, {$name}!</p>-->";
-                header("Location: login");
-            } else {
-                echo "<p style=\"text-align: center;margin-top: 10px;font-size: 20px;color: white\">Неверный логин или пароль!</p>";
-            }
-        }
-        ?>
+        <p style="color: white; margin-top: 10px">Пожалуйста, заполните поля правильно</p>
 </form>

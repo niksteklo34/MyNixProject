@@ -1,7 +1,7 @@
 <head>
     <link rel="stylesheet" href="css/login.css">
 </head>
-<form action="" method="post">
+<form action="register/reg" method="post">
     <div class="form">
         <h1>Регистрация</h1>
         <hr class="over-text">
@@ -35,21 +35,4 @@
             <button type="submit" class="apply btn btn-success col" style="padding: 10px 75px 10px 75px">Зарегистрироваться</button>
         </div>
     </div>
-        <?php
-        if (!empty($_POST['name'])) {
-        $name = trim($_POST['name'], ' ');
-        $surname = trim($_POST['surname'], ' ');
-        $email = trim($_POST['email'],  ' ');
-        $password = trim($_POST['password'],  ' ');
-
-        $userExist = $array['baseUser']->userExist($email);
-
-        if (empty($userExist)) {
-            $createUser = $array['baseUser']->createUser($name, $surname, $email, $password);
-            echo "<p style=\"text-align: center;margin-top: 10px;font-size: 20px;color: white\">Вы зарегистрировались, {$name}!<br>Теперь <a href=\"login\">войдите</a></p>";
-        } else {
-            echo "<p style=\"text-align: center;margin-top: 10px;font-size: 20px;color: white\">Такой email уже существует!</p>";
-        }
-        }
-        ?>
 </form>
