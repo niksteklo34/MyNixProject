@@ -1,8 +1,8 @@
 <?php
 
-namespace App\models;
+namespace Core;
 
-use App\exceptions\DbException;
+use Core\Exceptions\DbException;
 use PDO;
 
 class DB
@@ -26,7 +26,7 @@ class DB
 
     public function __construct()
     {
-        $dbConfig = require_once dirname(__DIR__) . '/config/db_config.php';
+        $dbConfig = require_once dirname(__DIR__) . '/Core/config/db_config.php';
         $this->dbConfig = $dbConfig;
     }
 

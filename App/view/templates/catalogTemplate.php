@@ -1,13 +1,13 @@
 <head>
     <link rel="stylesheet" href="css/catalog.css">
 </head>
-<?php if ($session->keyExists('cart_list') && count($session->get('cart_list')) > 0): ?>
-    <?php $countProducts = count($session->get('cart_list')); ?>
+<?php if ($tools['session']->keyExists('cart_list') && count($tools['session']->get('cart_list')) > 0): ?>
+    <?php $countProducts = count($tools['session']->get('cart_list')); ?>
     <h3>В корзине <?php echo $countProducts ?> товаров</h3>
 <?php else: ?>
     <h3>В корзине пусто...</h3>
 <?php endif; ?>
-<?php foreach ($array['products'] as $product): ?>
+<?php foreach ($tools['products'] as $product): ?>
     <li>
         <div class="product-item">
             <div class="row">

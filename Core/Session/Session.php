@@ -1,10 +1,22 @@
 <?php
 
-namespace App\Session;
+namespace Core\Session;
+
 
 class Session
 {
+    private static $instance;
+
     public Authentication $auth;
+
+    public static function getInstance() : Session
+    {
+        if (self::$instance === null) {
+            self::$instance = new self();
+        }
+
+        return self::$instance;
+    }
 
     public function __construct()
     {

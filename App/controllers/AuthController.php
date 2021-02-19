@@ -3,10 +3,10 @@
 
 namespace Controllers;
 
-use App\models\User;
-use App\Session\Authentication;
-use App\Session\Session;
-use App\Tools\renderClass;
+use App\Models\User;
+use Core\Session\Authentication;
+use Core\Session\Session;
+use Core\Tools\renderClass;
 
 class AuthController
 {
@@ -20,7 +20,7 @@ class AuthController
         $this->renderClass = new renderClass();
         $this->auth = new Authentication();
         $this->baseUser = new User();
-        $this->session = new Session();
+        $this->session = Session::getInstance();
     }
 
     public function login() {
@@ -78,9 +78,11 @@ class AuthController
         $template = 'userTemplate';
         $layout = 'user';
 
+        $session = $this->session;
+
         $baseUser = $this->baseUser;
 
-        $this->renderClass->render($template, $layout, ['baseUser' => $baseUser]);
+        $this->renderClass->render($template, $layout, ['baseUser' => $baseUser, 'session' => $session]);
     }
 
     public function logout()

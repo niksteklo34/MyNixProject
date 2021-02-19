@@ -3,8 +3,8 @@
 namespace Controllers;
 
 use App\models\User;
-use App\Session\Session;
-use App\Tools\renderClass;
+use Core\Session\Session;
+use Core\Tools\renderClass;
 
 class BasketController
 {
@@ -14,7 +14,7 @@ class BasketController
 
     public function __construct()
     {
-        $this->session = new Session();
+        $this->session = Session::getInstance();
         if (isset($_SESSION['cart_list'])) {
             $this->products = $_SESSION['cart_list'];
         }
@@ -31,9 +31,11 @@ class BasketController
             $products = [];
         }
 
+        $session = $this->session;
+
         $obj = new renderClass();
 
-        $obj->render($template, $layout, ['products' => $products]);
+        $obj->render($template, $layout, ['products' => $products, 'session' => $session]);
     }
 
     public function remove()

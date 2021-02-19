@@ -1,10 +1,10 @@
 <?php
 
-namespace Router;
+namespace Core;
 
-use App\Exceptions\TemplateRendererException;
-use App\Exceptions\LayoutRendererException;
-use App\tools\logger\Logger;
+use Core\Exceptions\TemplateRendererException;
+use Core\Exceptions\LayoutRendererException;
+use Niksteklo34\Logger\Logger;
 
 class Router
 {
@@ -39,7 +39,7 @@ class Router
     }
 
     public function matchRoute() {
-        $logger = new Logger('TemplateRendererLogs');
+        $logger = new Logger('logFile', 'Storage/log');
         if (self::checkRoute(self::getUrlString())) {
             $controllerName = ucfirst(self::$route['controller']) . "Controller";
             $actionName = ucfirst(self::$route['action']);

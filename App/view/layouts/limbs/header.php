@@ -1,8 +1,3 @@
-<?php
-use App\Session\Session;
-$session = new Session();
-?>
-
 <nav class="navbar navbar-expand-lg">
     <div class="links container-md">
         <a class="brand navbar-brand" href="..">Coffezin</a>
@@ -13,7 +8,7 @@ $session = new Session();
         <?php if (!isset($_SESSION['name'])): ?>
         <a class="username" href="login">Войти</a>
         <?php else: ?>
-        <p class="username" href="login">Привет, <?php echo $session->get('name')?>!</p>
+        <p class="username" href="login">Привет, <?php echo $_SESSION['name'] ?>!</p>
         <?php endif; ?>
     </div>
 </nav>

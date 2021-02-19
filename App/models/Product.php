@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use PDO;
+use Core\DB;
 
 class Product extends BaseModel
 {

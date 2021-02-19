@@ -2,16 +2,16 @@
     <link rel="stylesheet" href="css/product.css">
 </head>
 <body>
-    <?php if (!$session->keyExists('name')): ?>
+    <?php if (!$tools['session']->keyExists('name')): ?>
     <h1>Вы не авторизованы<br><a href="login">Войти</a></h1>
     <?php else: ?>
-    <h1>Вы авторизованы как - <?php echo $session->get('name')?></h1>
-        <h3 style="color: white;margin-top: 50px;margin-bottom: 50px">Имя: <?php echo $session->get('name')?><br>
-            Фамилия: <?php echo $session->get('surname')?><br>
-            Email: <?php echo $session->get('email')?></h3>
+    <h1>Вы авторизованы как - <?php echo $tools['session']->get('name')?></h1>
+        <h3 style="color: white;margin-top: 50px;margin-bottom: 50px">Имя: <?php echo $tools['session']->get('name')?><br>
+            Фамилия: <?php echo $tools['session']->get('surname')?><br>
+            Email: <?php echo $tools['session']->get('email')?></h3>
     <?php endif; ?>
-    <?php if ($session->sessionExists()): ?>
-        <?php $listOrders = $array['baseUser']->fegAllOrdersForUser($session->get('id')) ?>
+    <?php if ($tools['session']->sessionExists() && $tools['session']->keyExists('name')): ?>
+        <?php $listOrders = $tools['baseUser']->fegAllOrdersForUser($tools['session']->get('id')) ?>
         <?php if (!empty($listOrders)): ?>
         <h1>Список покупок</h1>
         <ol>
@@ -37,8 +37,8 @@
     <?php
     if (!empty($_POST)) {
         if (isset($_POST['logout'])) {
-            echo "<br><h3>До свидания, {$session->get('name')}<br>Вы выйдете через 3 секунды...</h3>";
-            $session->destroy();
+            echo "<br><h3>До свидания, {$tools['session']->get('name')}<br>Вы выйдете через 3 секунды...</h3>";
+            $tools['session']->destroy();
             header('refresh: 2', "Location: login");
         }
     }

@@ -6,10 +6,10 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Router\\' => array($baseDir . '/Router'),
     'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
     'Niksteklo34\\Logger\\' => array($vendorDir . '/niksteklo34/logger/src'),
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
+    'Core\\' => array($baseDir . '/Core'),
     'Controllers\\' => array($baseDir . '/App/Controllers'),
     'App\\' => array($baseDir . '/App'),
 );

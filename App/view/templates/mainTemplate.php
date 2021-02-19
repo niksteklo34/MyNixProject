@@ -3,8 +3,8 @@
 </head>
 <div class="mt-4">
     <div class="text text-center">
-        <?php if ($session->sessionExists() && $session->keyExists('name')): ?>
-            <H1>Добро пожаловать, <?php echo $session->get('name') ?>!</H1><br><br>
+        <?php if ($tools['session']->sessionExists() && $tools['session']->keyExists('name')): ?>
+            <H1>Добро пожаловать, <?php echo $tools['session']->get('name') ?>!</H1><br><br>
         <?php else: ?>
             <H1>Добро пожаловать, гость!</H1><br><br>
         <?php endif; ?>

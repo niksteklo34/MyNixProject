@@ -1,18 +1,19 @@
 <?php
 
-require_once "../vendor/autoload.php";
-require_once '../App/config/routes.php';
+require_once '../vendor/autoload.php';
+require_once '../Core/config/routes.php';
 
-use Router\Router;
+use Core\Router;
 use Niksteklo34\Logger\Logger;
-use App\Exceptions\MyException;
-use App\Exceptions\LayoutRendererException;
-use App\Exceptions\TemplateRendererException;
-use App\Exceptions\NonIdException;
-use App\exceptions\DbException;
-use App\Session\Session;
+use Core\Exceptions\MyException;
+use Core\Exceptions\LayoutRendererException;
+use Core\Exceptions\TemplateRendererException;
+use Core\Exceptions\NonIdException;
+use Core\Exceptions\DbException;
+use Core\Session\Session;
+use Models\User;
 
-$log = new Logger('logFile', '../App/storage/log');
+$log = new Logger('logFile', '../Core/Storage/log');
 
 $session = new Session();
 $session->start();

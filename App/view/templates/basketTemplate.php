@@ -5,17 +5,17 @@
     <h2>Корзина</h2>
     <hr>
 </div>
-<?php if (!$session->sessionExists()): ?>
+<?php if (!$tools['session']->sessionExists()): ?>
     <li style="list-style-type: none; background-color: olive; margin: 30px;padding: 30px;border: black 5px solid;border-radius: 45px">
         <h1 style="text-align: center">Вы не авторизованы. <a href="login">войти</a></h1><br>
     </li>
-<?php elseif ($session->sessionExists() && empty($array['products'])): ?>
+<?php elseif ($tools['session']->sessionExists() && empty($tools['products'])): ?>
     <li style="list-style-type: none; background-color: olive; margin: 30px;padding: 30px;border: black 5px solid;border-radius: 45px">
         <h1 style="text-align: center">Корзина пуста...</h1><br>
     </li>
 <?php else: ?>
     <?php  $fullPrice = 0; ?>
-    <?php foreach ($array['products'] as $key => $value): ?>
+    <?php foreach ($tools['products'] as $key => $value): ?>
         <ul>
             <li style="list-style-type: none;">
                 <div class="product-item">

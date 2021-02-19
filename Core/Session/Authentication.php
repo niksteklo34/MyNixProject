@@ -1,9 +1,9 @@
 <?php
 
 
-namespace App\Session;
+namespace Core\Session;
 
-use App\models\User;
+use App\Models\User;
 
 class Authentication
 {

@@ -2,17 +2,20 @@
 
 namespace Controllers;
 
-use App\models\BaseModel;
-use App\Tools\renderClass;
+use App\Models\BaseModel;
+use Core\Session\Session;
+use Core\Tools\renderClass;
 use App\Models\Product;
 
 class CatalogController
 {
     public BaseModel $baseModel;
+    private Session $session;
 
     public function __construct()
     {
         $this->baseModel = new BaseModel();
+        $this->session = Session::getInstance();
     }
 
     public function Index() {
@@ -29,7 +32,7 @@ class CatalogController
 
         $obj = new renderClass();
 
-        $obj->render($template, $layout, ['products' => $products]);
+        $obj->render($template, $layout, ['products' => $products, 'session' => $this->session]);
     }
 
     public function addProduct()
