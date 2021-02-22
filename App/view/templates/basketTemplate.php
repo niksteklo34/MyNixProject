@@ -32,16 +32,17 @@
         </ul>
     <?php $fullPrice = $value->price + $fullPrice?>
 <?php endforeach; ?>
+<?php $_SESSION['fullPrice'] = $fullPrice ?>
 <h1 style="color: red;margin: 15px 0">Общая самма заказа: <?php echo $fullPrice?> Грн</h1>
 <div class="row box align-items-center"
     <div class="text-right">
-            <div class="row">
-                <form action="basket/remove" method="post" style="width: 100%;">
-                    <button name="delAll" value="fdf" type="submit" class="btn btn-primary col-lg-3 col-md-3 col-3" style="">Очистить заказ</button>
+            <div class="row text-right" style="width: 100%">
+                <form action="basket/remove" class="col-lg-3 col-md-3 col-3" method="post">
+                    <button name="delAll" value="fdf" type="submit" class="btn btn-primary" style="width: 150px">Очистить заказ</button>
                 </form>
                 <div class="col-lg-6 col-md-6 col-6"></div>
-                <form action="basket/order" method="post" style="width: 100%;">
-                    <button name="takeOrder" value="df" type="submit" class="btn btn-primary col-lg-3 col-md-3 col-3" style="">Оформить заказ</button>
+                <form action="basket/order" class="col-lg-3 col-md-3 col-3" method="post">
+                    <button name="takeOrder" value="df" type="submit" class="btn btn-primary" style="width: 150px">Оформить заказ</button>
                 </form>
             </div>
     </div>

@@ -15,6 +15,6 @@
             </div>
             <button type="button" class="btn btn-primary">Искать</button><br><br>
         </form>
-        <button type="button" class="catalog btn btn-primary"><h3>Посетить каталог товаров</h3></button>
+        <a href="catalog" class="catalog btn btn-primary"><h3>Посетить каталог товаров</h3></a>
     </div>
 </div>

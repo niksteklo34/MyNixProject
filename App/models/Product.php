@@ -2,13 +2,10 @@
 
 namespace App\Models;
 
-use PDO;
-use Core\DB;
+use App\Services\ProductService;
 
 class Product extends BaseModel
 {
-    private $db_connect;
-
     public $id;
     public $name;
     public $img;
@@ -16,22 +13,16 @@ class Product extends BaseModel
     public $price;
     public $status;
 
-    public BaseModel $baseModel;
+    public ProductService $productService;
 
     public function __construct()
     {
-        $this->db_connect = DB::getInstance()->connect();
-        $this->baseModel = new BaseModel();
-    }
-
-    public function getProductsDb()
-    {
-        return $this->baseModel->get('products','*');
+        $this->productService = new ProductService();
     }
 
     public function productMapper()
     {
-        $products = $this->getProductsDb();
+        $products = $this->productService->getAll();
         $productData = [];
         foreach ($products as $product) {
 

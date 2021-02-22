@@ -19,10 +19,6 @@ class CatalogController
     }
 
     public function Index() {
-        // ДЗ
-//        $o = new StorageController();
-//        $o->getProductDataByIdOLD();
-
         $template = 'catalogTemplate';
         $layout = 'catalog';
 

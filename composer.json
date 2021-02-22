@@ -10,6 +10,7 @@
     },
     "require": {
         "monolog/monolog": "^2.2",
-        "niksteklo34/logger": "dev-master"
+        "niksteklo34/logger": "dev-master",
+        "niksteklo34/mailer": "dev-master"
     }
 }

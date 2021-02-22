@@ -3,6 +3,7 @@
 namespace Controllers;
 
 use App\models\User;
+use App\Services\OrderService;
 use Core\Session\Session;
 use Core\Tools\renderClass;
 
@@ -57,8 +58,11 @@ class BasketController
     {
         if (!empty($_POST)) {
             if (isset($_POST['takeOrder'])) {
+                $order = new OrderService();
+                $this->userModel->makeOrder($this->session->get("id"), $this->session->get('fullPrice'));
+                $lastOrderId = $order->getLastId();
                 foreach ($this->products as $value) {
-                    $this->userModel->makeOrder($this->session->get('id'), $value->id);
+                    $order->createAllProductsByIdOrder($value->id, $lastOrderId, 131);
                 }
                 $this->session->set('cart_list', []);
                 echo "<h1 style='text-align: center'>Ваш заказ создан, вернуться на <a style='text-align: center' href='../main'>домашнюю страницу</a>!</h1>";

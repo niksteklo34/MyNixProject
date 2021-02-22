@@ -3,40 +3,76 @@
 
 namespace App\Models;
 
+use App\Services\OrderService;
+use App\Services\ProductService;
+use App\Services\UserService;
+use Core\Exceptions\UserException;
 use Core\DB;
 
 class User
 {
 
-    public $db_connect;
     public BaseModel $baseModel;
+    private UserService $userService;
+    private OrderService $orderService;
 
     public function __construct()
     {
-        $this->db_connect = DB::getInstance()->connect();
+        $this->userService = new UserService();
+        $this->orderService = new OrderService();
         $this->baseModel = new BaseModel();
     }
 
-    public function createUser($name, $surname, $email, $password)
+    public function checkUserExist($email)
     {
-        $connect = $this->db_connect;
-        $this->baseModel->write('user','name, surname, email, password', [$name,$surname,$email,$password]);
+        $user = $this->userService->getByEmail($email);
+        if (!$user) {
+            throw new UserException('Wrong name or password! Try again');
+        } else {
+            return $user;
+        }
     }
 
-    public function userExist($email)
+    public function createUser($name, $surname, $email, $password): bool
     {
-        return $this->baseModel->get("user","*","email = '$email'");
+        return ($this->userService->create($name, $surname, $email, $password));
     }
 
-    public function fegAllOrdersForUser($personId)
+    public function getName(int $id): string
     {
-        $query = "select user.name,surname, products.title,price,date from user join users_orders on users_orders.user_id = user.id join products on products.id = users_orders.product_id WHERE user.id = '{$personId}';";
-        return $this->baseModel->get(null,null,null,null,$query);
+        $user = $this->userService->getById($id);
+        return $user->name;
     }
 
-    public function makeOrder(int $user, int $product)
+    public function getUser(int $id)
     {
-        $date = date("Y-m-d H:i:s");
-        $this->baseModel->write('users_orders', 'user_id, product_id, date', [$user, $product, $date]);
+        return $this->userService->getById($id);
+    }
+
+    public function register(string $name, string $surname, string $email, string $password): bool
+    {
+        return ($this->userService->create($name, $surname, $email, $password));
+    }
+
+    public function update(int $id, string $name, string $surname, string $email, string $password): bool
+    {
+        return ($this->userService->update($id, $name, $surname, $email, $password));
+    }
+
+    public function delete(int $id): bool
+    {
+
+        return $this->userService->delete($id);
+    }
+
+    public function getAllOrdersForUser($user_id)
+    {
+        return $this->userService->getAllOrdersForUser($user_id);
+    }
+
+    public function makeOrder(int $user_id, $totalPrice, $comments = null)
+    {
+        $this->orderService->create($user_id, $totalPrice,$comments);
+        return true;
     }
 }

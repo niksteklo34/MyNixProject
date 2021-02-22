@@ -80,9 +80,12 @@ class AuthController
 
         $session = $this->session;
 
+        $orders = $this->baseUser->getAllOrdersForUser($this->session->get('id'));
+
         $baseUser = $this->baseUser;
 
-        $this->renderClass->render($template, $layout, ['baseUser' => $baseUser, 'session' => $session]);
+        $this->renderClass->render($template, $layout, ['baseUser' => $baseUser, 'session' => $session, 'orders' => $orders]);
+
     }
 
     public function logout()
