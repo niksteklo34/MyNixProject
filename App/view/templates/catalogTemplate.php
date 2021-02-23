@@ -15,12 +15,17 @@
                 <?php elseif ($product->status == 0): ?>
                 <div class="availability-yes col-lg-3 col-md-3" style="color: rebeccapurple">Нет в наличии</div>
                 <?php endif; ?>
+                <?php if ($tools['session']->sessionExists() && $tools['session']->get('name')): ?>
                 <form action="catalog/addProduct" method="post" class="row" style="width: 100%">
                     <div class="col-lg-3 col-md-3 col-3"></div>
                     <button class="btn btn-primary col-lg-3 col-md-3 col-3" type="submit" name="AddWish" value="<?php echo $product->id ?>" style="width: 400px">В избранные</button>
                     <div class="col-lg-3 col-md-3 col-3"></div>
                     <button class="btn btn-primary col-lg-3 col-md-3 col-3" type="submit" name="AddCart" value="<?php echo $product->id ?>" style="width: 400px">В корзину</button>
                 </form>
+                <?php else: ?>
+                <div class="col-lg-8 col-md-8 col-8"></div>
+                <a href="../login" class="btn btn-primary col-lg-3 col-md-3 col-3" style="color: white; margin-bottom: 20px">Войдите, чтобы купить</a>
+                <?php endif; ?>
             </div>
         </div>
     </li>
