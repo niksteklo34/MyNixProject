@@ -2,24 +2,71 @@
 
 namespace Controllers;
 
-use App\Tools\renderClass;
+use App\models\User;
+use App\Services\OrderService;
+use Core\Session\Session;
+use Core\Tools\renderClass;
 
 class BasketController
 {
-    public array $route;
+    public Session $session;
+    public User $userModel;
+    public renderClass $renderClass;
+    public $products;
 
-    public function __construct(array $route)
+    public function __construct()
     {
-        $this->route = $route;
+        $this->session = Session::getInstance();
+        if (isset($_SESSION['cart_list'])) {
+            $this->products = $_SESSION['cart_list'];
+        }
+        $this->userModel = new User();
+        $this->renderClass = new renderClass();
     }
 
     public function Index() {
-        $template = $this->route['controller'] . 'Template';
-        $layout = $this->route['controller'];
+        $template = 'basketTemplate';
+        $layout = 'basket';
 
-        $obj = new renderClass();
+        if (isset($_SESSION['cart_list'])) {
+            $products = $this->products;
+        } else {
+            $products = [];
+        }
 
-        $obj->render($template, $layout, []);
+        $session = $this->session;
+
+        $this->renderClass->render($template, $layout, ['products' => $products, 'session' => $session]);
     }
 
+    public function remove()
+    {
+        if (!empty($_POST)) {
+            if (isset($_POST['deleteProduct'])) {
+                $delProduct = $_POST['deleteProduct'];
+                $this->session->delete('cart_list',"$delProduct");
+                header('Location: ../basket');
+            }
+            if (isset($_POST['delAll'])) {
+                $this->session->set('cart_list', []);
+                header('Location: ../basket');
+            }
+        }
+    }
+
+    public function makeOrder()
+    {
+        if (!empty($_POST)) {
+            if (isset($_POST['takeOrder'])) {
+                $order = new OrderService();
+                $this->userModel->makeOrder($this->session->get("id"), $this->session->get('fullPrice'));
+                $lastOrderId = $order->getLastId();
+                foreach ($this->products as $value) {
+                    $order->createAllProductsByIdOrder($value->id, $lastOrderId, 131);
+                }
+                $this->session->set('cart_list', []);
+                echo "<h1 style='text-align: center'>Ваш заказ создан, вернуться на <a style='text-align: center' href='../main'>домашнюю страницу</a>!</h1>";
+            }
+        }
+    }
 }

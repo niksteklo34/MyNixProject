@@ -4,12 +4,13 @@
     "autoload": {
         "psr-4": {
             "App\\": "App/",
-            "Router\\": "Router/",
+            "Core\\": "Core/",
             "Controllers\\": "App/Controllers"
         }
     },
     "require": {
         "monolog/monolog": "^2.2",
-        "niksteklo34/logger": "dev-master"
+        "niksteklo34/logger": "dev-master",
+        "niksteklo34/mailer": "dev-master"
     }
 }

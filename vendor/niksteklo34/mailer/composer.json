@@ -1,0 +1,20 @@
+{
+    "name": "niksteklo34/mailer",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Nikita Miroshnichenko",
+            "email": "nik123mik456@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Niksteklo34\\mailer\\": "src/"
+        }
+    },
+    "require": {
+        "swiftmailer/swiftmailer": "^6.0",
+        "vlucas/phpdotenv": "^5.3"
+    },
+    "description": ""
+}

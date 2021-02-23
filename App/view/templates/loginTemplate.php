@@ -1,10 +1,7 @@
-<?php
-$auth = new \App\session\Authentication();
-?>
 <head>
     <link rel="stylesheet" href="css/login.css">
 </head>
-<form action="" method="post">
+<form action="login/auth" method="post">
     <div class="form">
         <h1>Войти</h1>
         <hr class="over-text">
@@ -40,12 +37,5 @@ $auth = new \App\session\Authentication();
         <div class="button">
             <button class="apply btn btn-success col"><a href="register" style="text-decoration: none;color: white">Зарегистрироваться</a></button>
         </div>
-        <?php if (!empty($_POST)): ?>
-            <?php if($auth->auth($_POST['name'], $_POST['surname'], $_POST['email'], $_POST['password'])): ?>
-                    <p style="text-align: center;margin-top: 10px;font-size: 20px;color: white">Вы авторизовались, <?php echo $auth->login?>!</p>
-                    <?php header("Location: login"); ?>
-                <?php else: ?>
-                    <p style="text-align: center;margin-top: 10px;font-size: 20px;color: white">Неверный логин или пароль!</p>
-            <?php endif; ?>
-        <?php endif; ?>
+        <p style="color: white; margin-top: 10px">Пожалуйста, заполните поля правильно</p>
 </form>

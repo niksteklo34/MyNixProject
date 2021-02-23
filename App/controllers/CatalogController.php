@@ -2,33 +2,54 @@
 
 namespace Controllers;
 
-use App\Tools\renderClass;
+use App\Models\BaseModel;
+use App\Services\ProductService;
+use Core\Session\Session;
+use Core\Tools\renderClass;
 use App\Models\Product;
 
 class CatalogController
 {
-    public array $route;
+    public ProductService $productService;
+    private Session $session;
 
-    public function __construct(array $route)
+    public function __construct()
     {
-        $this->route = $route;
+        $this->productService = new ProductService();
+        $this->session = Session::getInstance();
     }
 
     public function Index() {
-        // ДЗ
-//        $o = new StorageController();
-//        $o->getProductDataByIdOLD();
-
-        $template = $this->route['controller'] . 'Template';
-        $layout = $this->route['controller'];
+        $template = 'catalogTemplate';
+        $layout = 'catalog';
 
         $productObject = new Product();
 
-        $products = $productObject->getAll();
+        $products = $productObject->productMapper();
 
         $obj = new renderClass();
 
-        $obj->render($template, $layout, $products);
+        $obj->render($template, $layout, ['products' => $products, 'session' => $this->session]);
+    }
+
+    public function addProduct()
+    {
+        if (!empty($_POST)) {
+            if (isset($_POST['AddCart'])) {
+                if ($this->session->sessionExists() && $this->session->keyExists('name')) {
+                    $product = $this->productService->getProductsWithCategoriesById($_POST['AddCart']);
+                    $_SESSION['cart_list'][] = $product;
+                }
+                header('Location: ../catalog');
+            }
+            if (isset($_POST['AddWish'])) {
+                if ($this->session->sessionExists() && $this->session->keyExists('name')) {
+                    $product = $this->productService->getProductsWithCategoriesById($_POST['AddWish']);
+                    $_SESSION['wish_list'][] = $product;
+                }
+                header('Location: ../catalog');
+            }
+        }
     }
 
 }

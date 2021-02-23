@@ -1,31 +1,52 @@
-<head>
-    <link rel="stylesheet" href="css/basket.css">
+<head xmlns="http://www.w3.org/1999/html">
+    <link rel="stylesheet" href="/css/catalog.css">
 </head>
 <div class="header">
     <h2>Корзина</h2>
     <hr>
 </div>
-<ol>
-    <li>
-        <div class="product-item">
-            <div class="row box align-items-center">
-                <div class="product-img col-lg-3 col-md-3 col-4">Много текста вместо картинки и тд</div>
-                <div class="product-name col-lg-9 col-md-9 col-8">Кофемолка POLARIS PCG 0815</div>
-                <div class="price col-lg-12 col-md-12 col-12">999 грн</div>
-            </div>
-        </div>
+<?php if (!$tools['session']->sessionExists()): ?>
+    <li style="list-style-type: none; background-color: olive; margin: 30px;padding: 30px;border: black 5px solid;border-radius: 45px">
+        <h1 style="text-align: center">Вы не авторизованы. <a href="login">войти</a></h1><br>
     </li>
-    <hr class="between-items">
-    <li>
-        <div class="product-item">
-            <div class="row box align-items-center">
-                <div class="product-img col-lg-3 col-md-3 col-4">Много текста вместо картинки и тд</div>
-                <div class="product-name col-lg-9 col-md-9 col-8">Кофемолка GORENJE SMK150E (CG9139-GS)</div>
-                <div class="price col-lg-12 col-md-12 col-12">1199 грн</div>
-            </div>
-        </div>
+<?php elseif ($tools['session']->sessionExists() && empty($tools['products'])): ?>
+    <li style="list-style-type: none; background-color: olive; margin: 30px;padding: 30px;border: black 5px solid;border-radius: 45px">
+        <h1 style="text-align: center">Корзина пуста...</h1><br>
     </li>
-</ol>
-<div class="text-right">
-    <button name="submit" type="submit" class="btn btn-primary">Оформить заказ</button>
+<?php else: ?>
+    <?php  $fullPrice = 0; ?>
+    <?php foreach ($tools['products'] as $key => $value): ?>
+        <ul>
+            <li style="list-style-type: none;">
+                <div class="product-item">
+                    <div class="row box align-items-center" style="max-width: 1000px">
+                        <div class="product-img col-lg-3 col-md-3 col-4" style="margin-top: 10px"><img src="<?php echo $value->img ?>" alt="" height="75px"></div>
+                        <div class="product-name col-lg-9 col-md-9 col-9"><?php echo $value->title ?></div>
+                        <div class="col-lg-3 col-md-3 col-3"></div>
+                        <div class="price col-lg-3 col-md-3 col-3"><?php echo $value->price ?> грн</div>
+                        <div class="col-lg-3 col-md-3 col-3"></div>
+                        <form action="basket/remove" method="post">
+                            <div class="price col-lg-3 col-md-3 col-3"><button type="submit" name="deleteProduct" value="<?php echo $key?>">Удалить</button></div>
+                        </form>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    <?php $fullPrice = $value->price + $fullPrice?>
+<?php endforeach; ?>
+<?php $_SESSION['fullPrice'] = $fullPrice ?>
+<h1 style="color: red;margin: 15px 0">Общая самма заказа: <?php echo $fullPrice?> Грн</h1>
+<div class="row box align-items-center"
+    <div class="text-right">
+            <div class="row text-right" style="width: 100%">
+                <form action="basket/remove" class="col-lg-3 col-md-3 col-3" method="post">
+                    <button name="delAll" value="fdf" type="submit" class="btn btn-primary" style="width: 150px">Очистить заказ</button>
+                </form>
+                <div class="col-lg-6 col-md-6 col-6"></div>
+                <form action="basket/order" class="col-lg-3 col-md-3 col-3" method="post">
+                    <button name="takeOrder" value="df" type="submit" class="btn btn-primary" style="width: 150px">Оформить заказ</button>
+                </form>
+            </div>
+    </div>
 </div>
+<?php endif; ?>

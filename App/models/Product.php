@@ -1,10 +1,10 @@
 <?php
 
-
 namespace App\Models;
 
+use App\Services\ProductService;
 
-class Product
+class Product extends BaseModel
 {
     public $id;
     public $name;
@@ -12,24 +12,29 @@ class Product
     public $description;
     public $price;
     public $status;
+    public $category;
 
+    public ProductService $productService;
 
-    public function getAll()
+    public function __construct()
     {
-        $DB = 'products.txt';
-        $productsFromDB = file_get_contents($DB, true);
-        $products = explode('==========', $productsFromDB);
+        $this->productService = new ProductService();
+    }
+
+    public function productMapper()
+    {
+        $products = $this->productService->getProductsWithCategories();
         $productData = [];
         foreach ($products as $product) {
-            $productProperties = explode(';;;', $product);
 
             $object = new Product();
-            $object->id = $productProperties[0];
-            $object->name = $productProperties[1];
-            $object->img = $productProperties[2];
-            $object->description = $productProperties[3];
-            $object->price = $productProperties[4];
-            $object->status = $productProperties[5];
+            $object->id = $product->id;
+            $object->name = $product->title;
+            $object->img = $product->img;
+            $object->description = $product->description;
+            $object->price = $product->price;
+            $object->status = $product->status;
+            $object->category = $product->category;
 
             array_push($productData, $object);
         }
