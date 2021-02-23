@@ -3,18 +3,19 @@
 namespace Controllers;
 
 use App\Models\BaseModel;
+use App\Services\ProductService;
 use Core\Session\Session;
 use Core\Tools\renderClass;
 use App\Models\Product;
 
 class CatalogController
 {
-    public BaseModel $baseModel;
+    public ProductService $productService;
     private Session $session;
 
     public function __construct()
     {
-        $this->baseModel = new BaseModel();
+        $this->productService = new ProductService();
         $this->session = Session::getInstance();
     }
 
@@ -34,9 +35,20 @@ class CatalogController
     public function addProduct()
     {
         if (!empty($_POST)) {
-            $product = $this->baseModel->getById('products',$_POST['Product']);
-            $_SESSION['cart_list'][] = $product;
-            header('Location: ../catalog');
+            if (isset($_POST['AddCart'])) {
+                if ($this->session->sessionExists() && $this->session->keyExists('name')) {
+                    $product = $this->productService->getProductsWithCategoriesById($_POST['AddCart']);
+                    $_SESSION['cart_list'][] = $product;
+                }
+                header('Location: ../catalog');
+            }
+            if (isset($_POST['AddWish'])) {
+                if ($this->session->sessionExists() && $this->session->keyExists('name')) {
+                    $product = $this->productService->getProductsWithCategoriesById($_POST['AddWish']);
+                    $_SESSION['wish_list'][] = $product;
+                }
+                header('Location: ../catalog');
+            }
         }
     }
 

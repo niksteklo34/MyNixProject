@@ -12,6 +12,7 @@ class Product extends BaseModel
     public $description;
     public $price;
     public $status;
+    public $category;
 
     public ProductService $productService;
 
@@ -22,7 +23,7 @@ class Product extends BaseModel
 
     public function productMapper()
     {
-        $products = $this->productService->getAll();
+        $products = $this->productService->getProductsWithCategories();
         $productData = [];
         foreach ($products as $product) {
 
@@ -33,6 +34,7 @@ class Product extends BaseModel
             $object->description = $product->description;
             $object->price = $product->price;
             $object->status = $product->status;
+            $object->category = $product->category;
 
             array_push($productData, $object);
         }

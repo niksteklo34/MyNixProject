@@ -21,10 +21,12 @@
                 <div class="product-item">
                     <div class="row box align-items-center" style="max-width: 1000px">
                         <div class="product-img col-lg-3 col-md-3 col-4" style="margin-top: 10px"><img src="<?php echo $value->img ?>" alt="" height="75px"></div>
-                        <div class="product-name col-lg-9 col-md-9 col-8"><?php echo $value->title ?></div>
-                        <div class="price col-lg-10 col-md-10 col-10"><?php echo $value->price ?> грн</div>
+                        <div class="product-name col-lg-9 col-md-9 col-9"><?php echo $value->title ?></div>
+                        <div class="col-lg-3 col-md-3 col-3"></div>
+                        <div class="price col-lg-3 col-md-3 col-3"><?php echo $value->price ?> грн</div>
+                        <div class="col-lg-3 col-md-3 col-3"></div>
                         <form action="basket/remove" method="post">
-                            <div class="price col-lg-2 col-md-2 col-2"><button type="submit" name="deleteProduct" value="<?php echo $key?>">Удалить</button></div>
+                            <div class="price col-lg-3 col-md-3 col-3"><button type="submit" name="deleteProduct" value="<?php echo $key?>">Удалить</button></div>
                         </form>
                     </div>
                 </div>

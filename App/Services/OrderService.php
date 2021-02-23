@@ -100,10 +100,10 @@ class OrderService
 
     public function createAllProductsByIdOrder(int $product_id, int $order_id, int $quantity): bool
     {
-        $sql = "INSERT INTO orders_products (product_id, order_id, quantity)
-                VALUES (:product_id, :order_id, :quantity)";
+        $sql = "INSERT INTO order_products (product_id, order_id, qty)
+                VALUES (:product_id, :order_id, :qty)";
         $statement = $this->connect()->prepare($sql);
-        $statement->execute(['product_id' => $product_id, 'order_id' => $order_id, 'quantity' => $quantity]);
+        $statement->execute(['product_id' => $product_id, 'order_id' => $order_id, 'qty' => $quantity]);
         return true;
     }
 

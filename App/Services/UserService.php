@@ -81,10 +81,10 @@ class UserService
 
     public function getAllOrdersForUser($user_id)
     {
-        $sql = 'select user.name,surname,email , orders_products.quantity, products.title , products.price
-                from orders join orders_products on orders_products.order_id = orders.id
+        $sql = 'select user.name,surname,email , order_products.qty, products.title , products.price
+                from orders join order_products on order_products.order_id = orders.id
                 join user on user.id = orders.user_id
-                join products on products.id = orders_products.product_id
+                join products on products.id = order_products.product_id
                 WHERE user.id = :user_id;';
 
         $statement = $this->connect()->prepare($sql);

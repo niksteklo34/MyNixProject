@@ -11,6 +11,7 @@ class BasketController
 {
     public Session $session;
     public User $userModel;
+    public renderClass $renderClass;
     public $products;
 
     public function __construct()
@@ -20,6 +21,7 @@ class BasketController
             $this->products = $_SESSION['cart_list'];
         }
         $this->userModel = new User();
+        $this->renderClass = new renderClass();
     }
 
     public function Index() {
@@ -34,9 +36,7 @@ class BasketController
 
         $session = $this->session;
 
-        $obj = new renderClass();
-
-        $obj->render($template, $layout, ['products' => $products, 'session' => $session]);
+        $this->renderClass->render($template, $layout, ['products' => $products, 'session' => $session]);
     }
 
     public function remove()

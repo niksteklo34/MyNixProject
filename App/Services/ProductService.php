@@ -80,4 +80,26 @@ class ProductService
         return true;
     }
 
+    public function getProductsWithCategories()
+    {
+        $sql = "SELECT products.id,title,img,description,price,status, categories.category
+                FROM products, categories
+                WHERE products.category_id = categories.id;";
+        $statement = $this->connect()->query($sql);
+        $statement->setFetchMode(PDO::FETCH_OBJ);
+        return $statement->fetchAll();
+    }
+
+    public function getProductsWithCategoriesById($id)
+    {
+        $sql = "SELECT products.id,title,img,description,price,status, categories.category
+                FROM products, categories
+                WHERE products.id = :id AND products.category_id = categories.id";
+        $statement = $this->connect()->prepare($sql);
+        $statement->execute(['id' => $id]);
+        $statement->setFetchMode(PDO::FETCH_OBJ);
+        $statement->setFetchMode(PDO::FETCH_CLASS, 'App\models\Product');
+        return $statement->fetch();
+    }
+
 }

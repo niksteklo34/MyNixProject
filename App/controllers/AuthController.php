@@ -43,7 +43,11 @@ class AuthController
             $password = trim($_POST['password'], ' ');
 
             $this->auth->setDataForReg($name, $surname, $email, $password);
-            $this->auth->auth();
+            $auth = $this->auth->auth();
+            if ($auth) {
+                $_SESSION['cart_list'] = [];
+                $_SESSION['wish_list'] = [];
+            }
             header("Location: ../login");
         }
     }
@@ -80,12 +84,40 @@ class AuthController
 
         $session = $this->session;
 
-        $orders = $this->baseUser->getAllOrdersForUser($this->session->get('id'));
-
         $baseUser = $this->baseUser;
 
-        $this->renderClass->render($template, $layout, ['baseUser' => $baseUser, 'session' => $session, 'orders' => $orders]);
+        $this->renderClass->render($template, $layout, ['baseUser' => $baseUser, 'session' => $session]);
 
+    }
+
+    public function wish() {
+        $template = 'wishTemplate';
+        $layout = 'user';
+
+        $this->renderClass->render($template, $layout, ['session' => $this->session]);
+    }
+
+    public function removeWish()
+    {
+        if (!empty($_POST)) {
+            if (isset($_POST['deleteProduct'])) {
+                $delProduct = $_POST['deleteProduct'];
+                $this->session->delete('wish_list',$delProduct);
+                header('Location: ../user/wish');
+            }
+        }
+    }
+
+    public function shopList()
+    {
+        $template = 'shopListTemplate';
+        $layout = 'user';
+
+        if (isset($_SESSION['name'])) {
+            $orders = $this->baseUser->getAllOrdersForUser($this->session->get('id'));
+        }
+
+        $this->renderClass->render($template, $layout, ['session' => $this->session, 'orders' => $orders]);
     }
 
     public function logout()
