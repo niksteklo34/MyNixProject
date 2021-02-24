@@ -35,7 +35,9 @@ class CatalogController
             if (isset($_POST['AddCart'])) {
                 if ($this->authSession->session->sessionExists() && $this->authSession->session->keyExists('name')) {
                     $product = $this->productModel->getProductsWithCategoriesById($_POST['AddCart']);
+                    $oldPrice = $this->authSession->session->get('fullPrice');
                     $_SESSION['cart_list'][] = $product;
+                    $this->authSession->session->set('fullPrice', $product->price + $oldPrice);
                 }
                 header('Location: ../catalog');
             }

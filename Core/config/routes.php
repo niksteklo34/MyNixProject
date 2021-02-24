@@ -8,6 +8,7 @@ Router::addNewRoute('^basket$', ['controller' => 'basket', "action" => "index"])
 
 Router::addNewRoute('^basket/remove$', ['controller' => 'basket', "action" => "remove"]);
 Router::addNewRoute('^basket/order$', ['controller' => 'basket', "action" => "makeOrder"]);
+Router::addNewRoute('^basket/setQty$', ['controller' => 'basket', "action" => "setQty"]);
 
 Router::addNewRoute('^login$', ['controller' => 'auth', "action" => "login"]);
 Router::addNewRoute('^login/auth$', ['controller' => 'auth', "action" => "authorization"]);

@@ -4,11 +4,12 @@ namespace App\Models;
 
 use App\Services\ProductService;
 
-class Product extends BaseModel
+class Product
 {
     public $id;
-    public $name;
+    public $title;
     public $img;
+    public $qty;
     public $description;
     public $price;
     public $status;
@@ -31,15 +32,15 @@ class Product extends BaseModel
         return $this->productService->getById($id);
     }
 
-//    public function update($id, $title, $img, $description, $price, $status)
-//    {
-//        return $this->productService->update($id, $title, $img, $description, $price, $status);
-//    }
+    public function update($id, $title, $img, $description, $price, $status)
+    {
+        return $this->productService->update($id, $title, $img, $description, $price, $status);
+    }
 
-//    public function delete($product_id)
-//    {
-//        return $this->productService->delete($product_id);
-//    }
+    public function delete($product_id)
+    {
+        return $this->productService->delete($product_id);
+    }
 
     public function productMapper()
     {
@@ -49,7 +50,7 @@ class Product extends BaseModel
 
             $object = new Product();
             $object->id = $product->id;
-            $object->name = $product->title;
+            $object->title = $product->title;
             $object->img = $product->img;
             $object->description = $product->description;
             $object->price = $product->price;

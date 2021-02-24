@@ -59,7 +59,6 @@ class User
 
     public function delete(int $id): bool
     {
-
         return $this->userService->delete($id);
     }
 

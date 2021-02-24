@@ -5,7 +5,7 @@
     <li>
         <div class="product-item">
             <div class="row">
-                <div class="product-name col-lg-12 col-md-12 col-12"><?php echo $product->name?></div>
+                <div class="product-name col-lg-12 col-md-12 col-12"><?php echo $product->title?></div>
                 <div class="product-img col-lg-3 col-md-3 col-3"><a href="product/<?php echo $product->id?>"><img src="<?php echo $product->img?>" height="128px" style="text-align: center" alt="<?php echo $product->id?>"></a></div>
                 <div class="product-desc col-lg-9 col-md-9 col-9"><?php echo $product->description?></div>
                 <div class="price col-lg-3 col-md-3 "><?php echo $product->price ?> грн</div>
