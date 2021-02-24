@@ -18,11 +18,6 @@ class Session
         return self::$instance;
     }
 
-    public function __construct()
-    {
-        $this->auth = new Authentication;
-    }
-
     public function getId(): string
     {
         return session_id();

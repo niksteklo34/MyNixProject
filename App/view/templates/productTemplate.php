@@ -1,23 +1,7 @@
 <head>
     <link rel="stylesheet" href="/css/product.css">
 </head>
-<?php
-use App\Exceptions\NonIdException;
-
-$product = $array['product'];
-
-if (empty($product)) {
-    throw new NonIdException("Product not found");
-}
-?>
-
-<?php if ($session->keyExists('cart_list') && count($session->get('cart_list')) > 0): ?>
-    <?php $countProducts = count($session->get('cart_list')); ?>
-    <h3>В корзине <?php echo $countProducts ?> товаров</h3>
-<?php else: ?>
-    <h3>В корзине пусто...</h3>
-<?php endif; ?>
-
+<?php $product = $tools['product'] ?>
 <div class="row">
     <div class="product-img col-lg-5 col-md-5"><img src="<?php echo $product->img?>" height="400" alt=""></div>
     <div class="product-info col-lg-5 col-md-5">

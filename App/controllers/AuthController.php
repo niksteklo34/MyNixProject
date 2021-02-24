@@ -4,33 +4,35 @@ namespace Controllers;
 
 use App\Models\User;
 use Core\Session\Authentication;
-use Core\Session\Session;
 use Core\Tools\renderClass;
 
 class AuthController
 {
     public renderClass $renderClass;
-    public Authentication $auth;
-    public Session $session;
+    public Authentication $authSession;
     public User $baseUser;
 
     public function __construct()
     {
         $this->renderClass = new renderClass();
-        $this->auth = new Authentication();
+        $this->authSession = new Authentication();
         $this->baseUser = new User();
-        $this->session = Session::getInstance();
     }
 
-    public function login() {
-        if (!isset($_SESSION['name'])) {
+    public function login()
+    {
+        $sessionName = $this->authSession->session->keyExists('name');
+
+        if (!$sessionName) {
             $template = 'loginTemplate';
         } else {
             $template = 'loginedTemplate';
         }
         $layout = 'login';
 
-        $this->renderClass->render($template, $layout, ['Auth' => $this->auth]);
+        $Auth = $this->authSession;
+
+        $this->renderClass->render($template, $layout, ['Auth' => $Auth]);
     }
 
     public function authorization()
@@ -41,8 +43,8 @@ class AuthController
             $email = trim($_POST['email'], ' ');
             $password = trim($_POST['password'], ' ');
 
-            $this->auth->setDataForReg($name, $surname, $email, $password);
-            $auth = $this->auth->auth();
+            $this->authSession->setDataForReg($name, $surname, $email, $password);
+            $auth = $this->authSession->auth();
             if ($auth) {
                 $_SESSION['cart_list'] = [];
                 $_SESSION['wish_list'] = [];
@@ -51,14 +53,15 @@ class AuthController
         }
     }
 
-    public function reg() {
+    public function register()
+    {
         $template = 'registerTemplate';
         $layout = 'register';
 
         $this->renderClass->render($template, $layout, []);
     }
 
-    public function registration()
+    public function checkAndCreateUser()
     {
         if (!empty($_POST['name'])) {
             $name = trim($_POST['name'], ' ');
@@ -66,8 +69,8 @@ class AuthController
             $email = trim($_POST['email'], ' ');
             $password = trim($_POST['password'], ' ');
 
-            $userExist = $this->baseUser->userExist($email);
-            if (empty($userExist)) {
+            $userExist = $this->baseUser->checkUserExist($email);
+            if (!$userExist) {
                 $this->baseUser->createUser($name, $surname, $email, $password);
                 echo "<p style=\"text-align: center;margin-top: 10px;font-size: 20px;color: black\">Вы зарегистрировались, {$name}!<br>Теперь <a href=\"../login\">войдите</a></p>";
             } else {

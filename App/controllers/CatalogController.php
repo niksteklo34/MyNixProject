@@ -2,49 +2,46 @@
 
 namespace Controllers;
 
-use App\Models\BaseModel;
-use App\Services\ProductService;
-use Core\Session\Session;
+use Core\Session\Authentication;
 use Core\Tools\renderClass;
 use App\Models\Product;
 
 class CatalogController
 {
-    public ProductService $productService;
-    private Session $session;
+    public Product $productModel;
+    private Authentication $authSession;
+    private renderClass $renderClass;
 
     public function __construct()
     {
-        $this->productService = new ProductService();
-        $this->session = Session::getInstance();
+        $this->productModel = new Product();
+        $this->authSession = new Authentication();
+        $this->renderClass = new renderClass();
     }
 
     public function Index() {
         $template = 'catalogTemplate';
         $layout = 'catalog';
 
-        $productObject = new Product();
+        $products = $this->productModel->productMapper();
+        $session = $this->authSession->session;
 
-        $products = $productObject->productMapper();
-
-        $obj = new renderClass();
-
-        $obj->render($template, $layout, ['products' => $products, 'session' => $this->session]);
+        $this->renderClass->render($template, $layout, ['products' => $products, 'session' => $session]);
     }
 
     public function addProduct()
     {
         if (!empty($_POST)) {
             if (isset($_POST['AddCart'])) {
-                if ($this->session->sessionExists() && $this->session->keyExists('name')) {
-                    $product = $this->productService->getProductsWithCategoriesById($_POST['AddCart']);
+                if ($this->authSession->session->sessionExists() && $this->authSession->session->keyExists('name')) {
+                    $product = $this->productModel->getProductsWithCategoriesById($_POST['AddCart']);
                     $_SESSION['cart_list'][] = $product;
                 }
                 header('Location: ../catalog');
             }
             if (isset($_POST['AddWish'])) {
-                if ($this->session->sessionExists() && $this->session->keyExists('name')) {
-                    $product = $this->productService->getProductsWithCategoriesById($_POST['AddWish']);
+                if ($this->authSession->session->sessionExists() && $this->authSession->session->keyExists('name')) {
+                    $product = $this->productModel->getProductsWithCategoriesById($_POST['AddWish']);
                     $_SESSION['wish_list'][] = $product;
                 }
                 header('Location: ../catalog');

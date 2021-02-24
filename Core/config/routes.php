@@ -18,8 +18,8 @@ Router::addNewRoute('^user/wish', ['controller' => 'user', "action" => "wish"]);
 Router::addNewRoute('^user/removeWish', ['controller' => 'user', "action" => "removeWish"]);
 Router::addNewRoute('^user/shopList', ['controller' => 'user', "action" => "shopList"]);
 
-Router::addNewRoute('^register$', ['controller' => 'auth', "action" => "reg"]);
-Router::addNewRoute('^register/reg$', ['controller' => 'auth', "action" => "registration"]);
+Router::addNewRoute('^register$', ['controller' => 'auth', "action" => "register"]);
+Router::addNewRoute('^register/reg$', ['controller' => 'auth', "action" => "checkAndCreateUser"]);
 
 Router::addNewRoute('^product/\d+$', ['controller' => 'product', "action" => "index"]);
 Router::addNewRoute('^product/\d+/order$', ['controller' => 'product', "action" => "addProduct"]);

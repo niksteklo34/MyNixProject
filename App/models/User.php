@@ -4,10 +4,7 @@
 namespace App\Models;
 
 use App\Services\OrderService;
-use App\Services\ProductService;
 use App\Services\UserService;
-use Core\Exceptions\UserException;
-use Core\DB;
 
 class User
 {
@@ -27,7 +24,7 @@ class User
     {
         $user = $this->userService->getByEmail($email);
         if (!$user) {
-            throw new UserException('Wrong name or password! Try again');
+            return false;
         } else {
             return $user;
         }
@@ -35,13 +32,14 @@ class User
 
     public function createUser($name, $surname, $email, $password): bool
     {
-        return ($this->userService->create($name, $surname, $email, $password));
+        return $this->userService->create($name, $surname, $email, $password);
     }
 
     public function getName(int $id): string
     {
         $user = $this->userService->getById($id);
         return $user->name;
+
     }
 
     public function getUser(int $id)

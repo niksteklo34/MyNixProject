@@ -2,18 +2,21 @@
 
 namespace Controllers;
 
-use App\models\BaseModel;
 use App\Models\Product;
-use App\Tools\renderClass;
+use Core\Session\Authentication;
+use Core\Tools\renderClass;
 
 class ProductController
 {
-
-    public BaseModel $baseModel;
+    public Authentication $authSession;
+    public renderClass $renderClass;
+    public Product $productModel;
 
     public function __construct()
     {
-        $this->baseModel = new BaseModel();
+        $this->renderClass = new renderClass();
+        $this->authSession = new Authentication();
+        $this->productModel = new Product();
     }
 
     public static function checkProduct($products, $uri){
@@ -30,23 +33,22 @@ class ProductController
         $template = 'productTemplate';
         $layout = 'product';
 
-        $productObject = new Product();
-        $products = $productObject->productMapper();
+        $products = $this->productModel->productMapper();
 
         $uri = trim($_SERVER['REQUEST_URI'], '/');
         $uri = explode('/', $uri);
 
+        $session = $this->authSession->session;
         $product = ProductController::checkProduct($products, $uri);
 
-        $obj = new renderClass();
-
-        $obj->render($template, $layout, ['product' => $product]);
+        $this->renderClass->render($template, $layout, ['product' => $product, 'session' => $session]);
     }
 
     public function addProduct()
     {
         if (!empty($_POST)) {
-            $product = $this->baseModel->getById('products',$_POST['add']);
+            $id = $_POST['add'];
+            $product = $this->productModel->getProduct($id);
             $_SESSION['cart_list'][] = $product;
             header("Location: ../{$product->id}");
         }

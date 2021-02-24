@@ -21,6 +21,26 @@ class Product extends BaseModel
         $this->productService = new ProductService();
     }
 
+    public function creatProduct($title, $img_link, $description, $price, $status)
+    {
+        return $this->productService->create($title, $img_link, $description, $price, $status);
+    }
+
+    public function getProduct(int $id)
+    {
+        return $this->productService->getById($id);
+    }
+
+//    public function update($id, $title, $img, $description, $price, $status)
+//    {
+//        return $this->productService->update($id, $title, $img, $description, $price, $status);
+//    }
+
+//    public function delete($product_id)
+//    {
+//        return $this->productService->delete($product_id);
+//    }
+
     public function productMapper()
     {
         $products = $this->productService->getProductsWithCategories();
@@ -39,5 +59,10 @@ class Product extends BaseModel
             array_push($productData, $object);
         }
         return $productData;
+    }
+
+    public function getProductsWithCategoriesById(int $id)
+    {
+        return $this->productService->getProductsWithCategoriesById($id);
     }
 }

@@ -2,27 +2,27 @@
 
 namespace Controllers;
 
-use Core\Session\Session;
+use Core\Session\Authentication;
 use Core\Tools\renderClass;
 
 class MainController
 {
-    private Session $session;
+    private Authentication $authSession;
+    private renderClass $renderClass;
 
-    public function __construct(array $route)
+    public function __construct()
     {
-        $this->session = Session::getInstance();
+        $this->authSession = new Authentication();
+        $this->renderClass = new renderClass();
     }
 
     public function Index() {
         $template = 'mainTemplate';
         $layout = 'main';
 
-        $session = $this->session;
+        $session = $this->authSession->session;
 
-        $obj = new renderClass();
-
-        $obj->render($template, $layout, ['session' => $session]);
+        $this->renderClass->render($template, $layout, ['session' => $session]);
     }
 
 }
