@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6b58307b9e1e437c8206ad06014c8865",
+    "content-hash": "cbde29b3c2baa589565894545713a478",
     "packages": [
         {
             "name": "doctrine/lexer",
@@ -1240,7 +1240,8 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "niksteklo34/logger": 20,
-        "niksteklo34/mailer": 20
+        "niksteklo34/mailer": 20,
+        "vlucas/phpdotenv": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

@@ -24,18 +24,12 @@ class DB
         return self::$instance;
     }
 
-    public function __construct()
-    {
-        $dbConfig = require_once dirname(__DIR__) . '/Core/config/db_config.php';
-        $this->dbConfig = $dbConfig;
-    }
-
     public function configMapper()
     {
-        $this->host = $this->dbConfig['host'];
-        $this->user = $this->dbConfig['user'];
-        $this->password = $this->dbConfig['password'];
-        $this->db_name = $this->dbConfig['db_name'];
+        $this->host = getenv('DB_HOST');
+        $this->user = getenv('DB_USER');
+        $this->password = getenv('DB_PASSWORD');
+        $this->db_name = getenv('DB_NAME');;
     }
 
     public function connect()

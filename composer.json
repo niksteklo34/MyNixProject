@@ -11,6 +11,8 @@
     "require": {
         "monolog/monolog": "^2.2",
         "niksteklo34/logger": "dev-master",
-        "niksteklo34/mailer": "dev-master"
+        "niksteklo34/mailer": "dev-master",
+        "vlucas/phpdotenv": "5.3.x-dev",
+        "ext-json": "*"
     }
 }

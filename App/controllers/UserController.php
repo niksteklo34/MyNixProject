@@ -63,20 +63,39 @@ class UserController
         $template = 'shopListTemplate';
         $layout = 'user';
 
+        $session = $this->authSession->session;
+
+        $this->renderClass->render($template, $layout, ['session' => $session /*'orders' => $orders*/]);
+    }
+
+    public function shopListApi()
+    {
         if (isset($_SESSION['name'])) {
             $orders = $this->baseUser->getAllOrdersForUser($this->authSession->session->get('id'));
         }
 
-        $session = $this->authSession->session;
+        $ordersArray = [];
+        foreach ($orders as $value) {
+            $order = [];
+            $order['name'] = $value->name;
+            $order['surname'] = $value->surname;
+            $order['email'] = $value->email;
+            $order['qty'] = $value->qty;
+            $order['title'] = $value->title;
+            $order['price'] = $value->price;
+            array_push($ordersArray, $order);
+        }
 
-        $this->renderClass->render($template, $layout, ['session' => $session, 'orders' => $orders]);
+        $jsonProductsStr = json_encode($ordersArray, JSON_UNESCAPED_UNICODE);
+
+        echo $jsonProductsStr;
     }
 
     public function logout()
     {
         if (!empty($_POST)) {
             if (isset($_POST['logout'])) {
-                echo "<br><h3>До свидания, {$this->authSession->session->get('name')}<br>Вы выйдете через 3 секунды...</h3>";
+                setcookie("PHPSESSID", 'false', time() - 1);
                 $this->authSession->session->destroy();
                 header("Location: ../../main");
             }

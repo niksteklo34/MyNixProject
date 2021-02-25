@@ -15,9 +15,10 @@ Router::addNewRoute('^login/auth$', ['controller' => 'auth', "action" => "author
 
 Router::addNewRoute('^user$', ['controller' => 'user', "action" => "index"]);
 Router::addNewRoute('^user/logout$', ['controller' => 'user', "action" => "logout"]);
-Router::addNewRoute('^user/wish', ['controller' => 'user', "action" => "wish"]);
-Router::addNewRoute('^user/removeWish', ['controller' => 'user', "action" => "removeWish"]);
-Router::addNewRoute('^user/shopList', ['controller' => 'user', "action" => "shopList"]);
+Router::addNewRoute('^user/wish$', ['controller' => 'user', "action" => "wish"]);
+Router::addNewRoute('^user/removeWish$', ['controller' => 'user', "action" => "removeWish"]);
+Router::addNewRoute('^user/shopList$', ['controller' => 'user', "action" => "shopList"]);
+Router::addNewRoute('^user/shopList/api$', ['controller' => 'user', "action" => "shopListApi"]);
 
 Router::addNewRoute('^register$', ['controller' => 'auth', "action" => "register"]);
 Router::addNewRoute('^register/reg$', ['controller' => 'auth', "action" => "checkAndCreateUser"]);

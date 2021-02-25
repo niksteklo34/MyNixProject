@@ -39,7 +39,6 @@ class User
     {
         $user = $this->userService->getById($id);
         return $user->name;
-
     }
 
     public function getUser(int $id)
