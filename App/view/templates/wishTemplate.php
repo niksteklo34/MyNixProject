@@ -3,10 +3,10 @@
 </head>
 <h2 style="text-align: left;margin: 20px 0">Списко желаний</h2>
 <hr style="background-color: white">
-<?php if (count($_SESSION['wish_list']) == 0): ?>
+<?php if ($tools['countWish'] == 0): ?>
 <h1 style="margin: 20px 0">В списке пусто!</h1>
 <?php else: ?>
-<?php foreach ($_SESSION['wish_list'] as $key => $value): ?>
+<?php foreach ($tools['wishList'] as $key => $value): ?>
     <hr>
         <ul>
             <li style="list-style-type: none;">
@@ -16,7 +16,7 @@
                         <div class="product-name col-lg-9 col-md-9 col-8"><?php echo $value->title ?></div>
                         <div class="price col-lg-10 col-md-10 col-10"><?php echo $value->price ?> грн</div>
                         <form action="removeWish" method="post">
-                            <div class="price col-lg-2 col-md-2 col-2"><button type="submit" name="deleteProduct" value="<?php echo $key?>">Удалить</button></div>
+                            <div class="price col-lg-2 col-md-2 col-2"><button type="submit" name="deleteProduct" value="<?php echo $value->id ?>">Удалить</button></div>
                         </form>
                     </div>
                 </div>

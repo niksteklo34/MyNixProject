@@ -8,9 +8,9 @@ use Core\Tools\renderClass;
 
 class AuthController
 {
-    public renderClass $renderClass;
-    public Authentication $authSession;
-    public User $baseUser;
+    private renderClass $renderClass;
+    private Authentication $authSession;
+    private User $baseUser;
 
     public function __construct()
     {
@@ -47,7 +47,6 @@ class AuthController
             $auth = $this->authSession->auth();
             if ($auth) {
                 $_SESSION['cart_list'] = [];
-                $_SESSION['wish_list'] = [];
             }
             header("Location: ../login");
         }

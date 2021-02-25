@@ -3,21 +3,24 @@
 namespace Controllers;
 
 use App\Models\User;
+use App\models\WishList;
 use Core\Session\Authentication;
 use Core\Tools\renderClass;
 
 class UserController
 {
 
-    public renderClass $renderClass;
-    public Authentication $authSession;
-    public User $baseUser;
+    private renderClass $renderClass;
+    private Authentication $authSession;
+    private WishList $wishListModel;
+    private User $baseUser;
 
     public function __construct()
     {
         $this->renderClass = new renderClass();
         $this->baseUser = new User();
         $this->authSession = new Authentication();
+        $this->wishListModel = new WishList();
     }
 
     public function index() {
@@ -37,8 +40,11 @@ class UserController
         $layout = 'user';
 
         $session = $this->authSession->session;
+        $userId = $this->authSession->session->get('id');
+        $wishList = $this->wishListModel->getWishForUser($userId);
+        $countWish = $this->wishListModel->countForUser($userId);
 
-        $this->renderClass->render($template, $layout, ['session' => $session]);
+        $this->renderClass->render($template, $layout, ['session' => $session, 'wishList' => $wishList, 'countWish' => $countWish]);
     }
 
     public function removeWish()
@@ -46,7 +52,7 @@ class UserController
         if (!empty($_POST)) {
             if (isset($_POST['deleteProduct'])) {
                 $delProduct = $_POST['deleteProduct'];
-                $this->authSession->session->delete('wish_list',$delProduct);
+                $this->wishListModel->deleteWish($delProduct);
                 header('Location: ../user/wish');
             }
         }

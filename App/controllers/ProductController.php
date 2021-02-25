@@ -8,9 +8,9 @@ use Core\Tools\renderClass;
 
 class ProductController
 {
-    public Authentication $authSession;
-    public renderClass $renderClass;
-    public Product $productModel;
+    private Authentication $authSession;
+    private renderClass $renderClass;
+    private Product $productModel;
 
     public function __construct()
     {

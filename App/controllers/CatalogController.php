@@ -2,21 +2,24 @@
 
 namespace Controllers;
 
+use App\models\WishList;
 use Core\Session\Authentication;
 use Core\Tools\renderClass;
 use App\Models\Product;
 
 class CatalogController
 {
-    public Product $productModel;
+    private Product $productModel;
     private Authentication $authSession;
     private renderClass $renderClass;
+    private WishList $wishListModel;
 
     public function __construct()
     {
         $this->productModel = new Product();
         $this->authSession = new Authentication();
         $this->renderClass = new renderClass();
+        $this->wishListModel = new WishList();
     }
 
     public function Index() {
@@ -43,8 +46,9 @@ class CatalogController
             }
             if (isset($_POST['AddWish'])) {
                 if ($this->authSession->session->sessionExists() && $this->authSession->session->keyExists('name')) {
-                    $product = $this->productModel->getProductsWithCategoriesById($_POST['AddWish']);
-                    $_SESSION['wish_list'][] = $product;
+                    $userId = $this->authSession->session->get('id');
+                    $productId = ($this->productModel->getProduct($_POST['AddWish']))->id;
+                    $this->wishListModel->createWish($userId, $productId);
                 }
                 header('Location: ../catalog');
             }

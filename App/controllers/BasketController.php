@@ -9,11 +9,11 @@ use Core\Tools\renderClass;
 
 class BasketController
 {
-    public Authentication $authSession;
-    public User $userModel;
-    public Order $orderModel;
-    public renderClass $renderClass;
-    public $products;
+    private Authentication $authSession;
+    private User $userModel;
+    private Order $orderModel;
+    private renderClass $renderClass;
+    private $products;
 
     public function __construct()
     {
