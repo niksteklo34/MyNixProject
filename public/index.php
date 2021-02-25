@@ -2,9 +2,6 @@
 require_once '../vendor/autoload.php';
 require_once '../Core/config/routes.php';
 
-//$o = new \App\models\WishList();
-//var_dump($o->deleteWish(8));
-
 use Core\Router;
 use Niksteklo34\Logger\Logger;
 use Core\Exceptions\MyException;

@@ -1,6 +1,16 @@
 <head>
     <link rel="stylesheet" href="css/catalog.css">
 </head>
+<form method="post">
+    <h2>Сортировка</h2>
+    <select name="sort">
+        <option value="a-z">А-Я / A-Z</option>
+        <option value="z-a">Я-А / Z-A</option>
+        <option value="lowPrice">От низокой до высокой</option>
+        <option value="highPrice">От высокой до низкой</option>
+    </select>
+    <input type="submit" value="Применить">
+</form>
 <?php foreach ($tools['products'] as $product): ?>
     <li>
         <div class="product-item">

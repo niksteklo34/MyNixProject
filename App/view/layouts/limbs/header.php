@@ -1,4 +1,4 @@
-<?php $count = (new \App\models\WishList())->countForUser($_SESSION['id']) ?>
+<?php if (isset($_SESSION['name'])) $count = (new \App\models\WishList())->countForUser($_SESSION['id']) ?>
 <nav class="navbar navbar-expand-lg">
     <div class="links container-md">
         <a class="brand navbar-brand" href="..">Coffezin</a>
