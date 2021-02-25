@@ -4,7 +4,7 @@ namespace App\models;
 
 use App\Services\CategoryService;
 
-class CategoryModel
+class Category
 {
     private CategoryService $categoryService;
 

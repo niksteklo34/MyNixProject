@@ -31,7 +31,7 @@ class ProductService
                 WHERE id = :id";
         $statement = $this->connect()->prepare($sql);
         $statement->execute(['id' => $id]);
-        $statement->setFetchMode(PDO::FETCH_CLASS, 'App\models\Product');
+        $statement->setFetchMode(PDO::FETCH_OBJ);
         return $statement->fetch();
     }
 
@@ -99,6 +99,17 @@ class ProductService
         $statement->execute(['id' => $id]);
         $statement->setFetchMode(PDO::FETCH_OBJ);
         return $statement->fetch();
+    }
+
+    public function search(string $word)
+    {
+        $sql = "SELECT * FROM products 
+                WHERE title LIKE '%$word%' 
+                OR description LIKE '%$word%'";
+        $statement = $this->connect()->prepare($sql);
+        $statement->execute();
+        $statement->setFetchMode(PDO::FETCH_OBJ);
+        return $statement->fetchAll();
     }
 
 }

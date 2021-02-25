@@ -42,8 +42,11 @@ class Product
         return $this->productService->delete($product_id);
     }
 
-    public function productMapper($products)
+    public function productMapper($products = null)
     {
+        if ($products === null) {
+            $products = $this->productService->getProductsWithCategories();
+        }
         $productData = [];
         foreach ($products as $product) {
 

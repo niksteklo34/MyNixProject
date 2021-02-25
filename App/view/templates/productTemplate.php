@@ -5,7 +5,7 @@
 <div class="row">
     <div class="product-img col-lg-5 col-md-5"><img src="<?php echo $product->img?>" height="400" alt=""></div>
     <div class="product-info col-lg-5 col-md-5">
-        <div class="product-name"><?php echo $product->name?></div>
+        <div class="product-name"><?php echo $product->title?></div>
         <div class="price-bar row align-items-center">
             <div class="price col-lg-7 col-md-7"><?php echo $product->price?> грн</div>
             <?php if ($product->status == 1): ?>
