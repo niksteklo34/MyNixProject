@@ -1,0 +1,6 @@
+class_name: OrderGuy
+modules:
+    enabled: [OrderHelper]
+steps:
+    - Codeception\Step\ConditionalAssertion
+bootstrap: bootstrap_order.php

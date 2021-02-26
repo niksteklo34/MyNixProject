@@ -4,7 +4,7 @@ namespace Controllers;
 
 use App\models\WishList;
 use App\Services\ProductService;
-use App\Services\SortService;
+use App\Models\Sort;
 use Core\Session\Authentication;
 use Core\Tools\renderClass;
 use App\Models\Product;
@@ -16,7 +16,7 @@ class CatalogController
     private renderClass $renderClass;
     private WishList $wishListModel;
     private ProductService $productService;
-    private SortService $sortService;
+    private Sort $sortModel;
 
     public function __construct()
     {
@@ -25,7 +25,7 @@ class CatalogController
         $this->renderClass = new renderClass();
         $this->wishListModel = new WishList();
         $this->productService = new ProductService();
-        $this->sortService = new SortService();
+        $this->sortModel = new Sort();
     }
 
     public function Index() {
@@ -36,16 +36,16 @@ class CatalogController
         if (!empty($_POST)) {
             switch ($_POST['sort']) {
                 case 'highPrice':
-                    $products = $this->sortService->toBottomPrice();
+                    $products = $this->sortModel->toBottomPrice();
                     break;
                 case 'lowPrice':
-                    $products = $this->sortService->toHighPrice();
+                    $products = $this->sortModel->toHighPrice();
                     break;
                 case 'a-z':
-                    $products = $this->sortService->titleSortFromA();
+                    $products = $this->sortModel->titleSortFromA();
                     break;
                 case 'z-a':
-                    $products = $this->sortService->titleSortFromZ();
+                    $products = $this->sortModel->titleSortFromZ();
                     break;
             }
         }
