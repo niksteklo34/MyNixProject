@@ -5,6 +5,7 @@ namespace Controllers;
 use App\models\WishList;
 use App\Services\ProductService;
 use App\Models\Sort;
+use Core\Pagination;
 use Core\Session\Authentication;
 use Core\Tools\renderClass;
 use App\Models\Product;
@@ -32,28 +33,18 @@ class CatalogController
         $template = 'catalogTemplate';
         $layout = 'catalog';
 
-        $products = $this->productService->getProductsWithCategories();
-        if (!empty($_POST)) {
-            switch ($_POST['sort']) {
-                case 'highPrice':
-                    $products = $this->sortModel->toBottomPrice();
-                    break;
-                case 'lowPrice':
-                    $products = $this->sortModel->toHighPrice();
-                    break;
-                case 'a-z':
-                    $products = $this->sortModel->titleSortFromA();
-                    break;
-                case 'z-a':
-                    $products = $this->sortModel->titleSortFromZ();
-                    break;
-            }
-        }
+        $total = $this->productService->count();
+        $page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
+        $perpage = 2;
 
-        $products = $this->productModel->productMapper($products);
+        $pagination = new Pagination($page, $perpage, $total);
+        $start = $pagination->getStart();
+
+        $products = $this->productService->pagination($start,$perpage);
+
         $session = $this->authSession->session;
 
-        $this->renderClass->render($template, $layout, ['products' => $products, 'session' => $session]);
+        $this->renderClass->render($template, $layout, ['pagination' => $pagination, 'products' => $products/*'products' => $products*/, 'session' => $session]);
     }
 
     public function addProduct()

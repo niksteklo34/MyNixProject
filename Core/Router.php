@@ -13,7 +13,7 @@ class Router
     const MAIN_ACTION = 'index';
 
     public static function getUrlString() {
-        return trim($_SERVER['REQUEST_URI'], '/');
+        return trim($_SERVER['REQUEST_URI']);
     }
 
     public static function addNewRoute(string $regexp, array $value) {
@@ -40,7 +40,7 @@ class Router
 
     public function matchRoute() {
         $logger = new Logger('logFile', 'Storage/log');
-        if (self::checkRoute(self::getUrlString())) {
+        if (self::checkRoute(self::removeQueryString(self::getUrlString()))) {
             $controllerName = ucfirst(self::$route['controller']) . "Controller";
             $actionName = ucfirst(self::$route['action']);
             $strNameSpace = "Controllers\\$controllerName";
@@ -54,6 +54,17 @@ class Router
         } else {
             $logger->warning("Layout not found", ["Route for: \"" . self::getUrlString() . "\" not found(Layout)"]);
             throw new LayoutRendererException('Layout of not found');
+        }
+    }
+
+    public static function removeQueryString($uri) {
+        if ($uri) {
+            $parts = explode('?', $uri);
+            if (strpos($parts['0'], "=") === false) {
+                return trim($parts['0'],'/');
+            } else {
+                return '';
+            }
         }
     }
 

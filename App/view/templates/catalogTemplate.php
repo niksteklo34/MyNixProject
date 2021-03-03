@@ -1,16 +1,7 @@
 <head>
     <link rel="stylesheet" href="css/catalog.css">
 </head>
-<form method="post">
-    <h2>Сортировка</h2>
-    <select name="sort">
-        <option value="a-z">А-Я / A-Z</option>
-        <option value="z-a">Я-А / Z-A</option>
-        <option value="lowPrice">От низокой до высокой</option>
-        <option value="highPrice">От высокой до низкой</option>
-    </select>
-    <input type="submit" value="Применить">
-</form>
+<ul>
 <?php foreach ($tools['products'] as $product): ?>
     <li>
         <div class="product-item">
@@ -25,7 +16,7 @@
                 <?php elseif ($product->status == 0): ?>
                 <div class="availability-yes col-lg-3 col-md-3" style="color: rebeccapurple">Нет в наличии</div>
                 <?php endif; ?>
-                <?php if ($tools['session']->sessionExists() && $tools['session']->get('name')): ?>
+                <?php if ($tools['session']->sessionExists() && $tools['session']->keyExists('name')): ?>
                 <form action="catalog/addProduct" method="post" class="row" style="width: 100%">
                     <div class="col-lg-3 col-md-3 col-3"></div>
                     <button class="btn btn-primary col-lg-3 col-md-3 col-3" type="submit" name="AddWish" value="<?php echo $product->id ?>" style="width: 400px">В избранные</button>
@@ -40,3 +31,7 @@
         </div>
     </li>
 <?php endforeach ?>
+  </ul>
+<?php if ($tools['pagination']->countPages > 1): ?>
+<div style="display: flex;justify-content: center;"><?php echo $tools['pagination'] ?></div>
+<?php endif; ?>

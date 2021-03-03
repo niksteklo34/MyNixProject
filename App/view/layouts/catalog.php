@@ -13,9 +13,7 @@
 <body>
     <?php echo $header ?>
         <div class="container">
-            <ul>
-                <?php echo $content ?>
-            </ul>
+              <?php echo $content ?>
         </div>
     <?php echo $footer ?>
 </body>

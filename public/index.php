@@ -14,6 +14,7 @@ use Core\Session\Authentication;
 $dotenv = Dotenv\Dotenv::createUnsafeImmutable(dirname(__DIR__));
 $dotenv->load();
 
+
 $log = new Logger('logFile', '../Core/Storage/log');
 
 $authSession = new Authentication();
