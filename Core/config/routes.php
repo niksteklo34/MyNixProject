@@ -30,3 +30,4 @@ Router::addNewRoute('^product/\d+/order$', ['controller' => 'product', "action" 
 
 Router::addNewRoute('^catalog$', ['controller' => 'catalog', "action" => "index"]);
 Router::addNewRoute('^catalog/addProduct$', ['controller' => 'catalog', "action" => "addProduct"]);
+Router::addNewRoute('^catalog/api', ['controller' => 'catalog', "action" => "catalogApi"]);

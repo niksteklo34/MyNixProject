@@ -112,4 +112,25 @@ class ProductService
         return $statement->fetchAll();
     }
 
+        public function count()
+    {
+        $sql = "SELECT COUNT(*) as count FROM products";
+        $statement = $this->connect()->query($sql);
+        $statement->setFetchMode(PDO::FETCH_OBJ);
+        $row = $statement->fetch();
+        return $row->count;
+    }
+
+    public function pagination(int $start, int $perpage)
+    {
+        $sql = "SELECT products.id,title,img,description,price,status, categories.category
+                FROM products, categories
+                WHERE products.category_id = categories.id
+                LIMIT $start, $perpage";
+        $statement = $this->connect()->prepare($sql);
+        $statement->execute();
+        $statement->setFetchMode(PDO::FETCH_OBJ);
+        return $statement->fetchAll();
+    }
+
 }
