@@ -2,6 +2,9 @@
     <link rel="stylesheet" href="css/catalog.css">
 </head>
 <ul>
+  <div style="">
+      <?php echo $tools['sorting']->getHtml(); ?>
+  </div>
 <?php foreach ($tools['products'] as $product): ?>
     <li>
         <div class="product-item">
@@ -33,5 +36,5 @@
 <?php endforeach ?>
   </ul>
 <?php if ($tools['pagination']->countPages > 1): ?>
-<div style="display: flex;justify-content: center;"><?php echo $tools['pagination'] ?></div>
+<div style="display: flex;justify-content: center;"><?php echo $tools['pagination']->getHtml() ?></div>
 <?php endif; ?>
