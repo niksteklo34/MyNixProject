@@ -33,13 +33,11 @@ hr {
 .container {
     margin-top: 75px;
 }
-/*.product-img {*/
-/*    background-color: white;*/
-/*    border: black 5px solid;*/
-/*    border-radius: 15px;*/
-/*    height: 400px;*/
-/*    width: 300px;*/
-/*}*/
+.product-img {
+    background-color: white;
+    height: 400px;
+    width: 300px;
+}
 .product-info {
     background-color: #808000;
     padding: 0 25px;
@@ -76,6 +74,23 @@ hr {
     margin-top: 40px;
     border: 5px black solid;
     border-radius: 15px;
+}
+
+.statusOk {
+    color: green;
+}
+
+.statusNo {
+    color: rebeccapurple;
+}
+
+.addBtn {
+    width: 300px;
+    margin: 20px 100px;
+}
+
+.linkBack {
+    margin: 15px auto
 }
 
 /* Footer */

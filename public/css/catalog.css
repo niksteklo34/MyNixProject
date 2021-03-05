@@ -37,6 +37,11 @@ li {
     margin-top: 75px;
     margin-bottom: 150px;
 }
+
+.product-img {
+    margin-top: 10px
+}
+
 .product-item {
     background-color: #808000;
     padding: 0 25px;
@@ -73,8 +78,56 @@ li {
     margin-top: 10px;
     margin-bottom: 10px;
 }
-body {
-    background-color: black;
+
+.btnBack {
+    text-decoration: none;
+    color: white;
+    margin: 20px 0
+}
+
+#order {
+    margin-top: 15px;
+    list-style-type: none;
+}
+
+.wishItem {
+    list-style-type: none;
+}
+
+.item {
+    max-width: 1000px
+}
+
+.btnBack {
+    text-decoration: none;
+    color: white;
+    margin: 20px 0
+}
+
+.listItem {
+    background-color: olive;
+    border: 5px solid black;
+    margin-top: 100px;
+    padding: 50px;
+    border-radius: 45px;
+}
+
+.totalPrice {
+    margin-top: 20px;
+    color: orange;
+    font-size: 24px;
+}
+
+.orderTitle {
+    color: white;
+}
+
+.productItem {
+    background-color: green;
+    padding: 0 25px;
+    margin-top: 25px;
+    border: 5px black solid;
+    border-radius: 15px;
 }
 
 /* Footer */

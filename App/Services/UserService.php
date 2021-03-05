@@ -79,16 +79,19 @@ class UserService
         return true;
     }
 
-    public function getAllOrdersForUser($user_id)
+    public function getAllOrdersForUser($order_id, $user_id)
     {
-        $sql = 'select user.name,surname,email , order_products.qty, products.title , products.price
-                from orders join order_products on order_products.order_id = orders.id
+        $sql = 'select user.name,surname,email , orders.created_at, orders.id, order_products.qty , products.title , products.price
+                from order_products join orders on order_products.order_id = orders.id
                 join user on user.id = orders.user_id
                 join products on products.id = order_products.product_id
-                WHERE user.id = :user_id;';
+                where order_products.order_id = :order_id and user.id = :user_id';
 
         $statement = $this->connect()->prepare($sql);
-        $statement->execute(['user_id' => $user_id]);
+        $statement->execute([
+            'user_id' => $user_id,
+            'order_id' => $order_id,
+        ]);
         $statement->setFetchMode(PDO::FETCH_OBJ);
         return $statement->fetchAll();
     }

@@ -28,6 +28,57 @@ hr {
     margin: 0;
 }
 
+.loginedMess{
+    margin-bottom: 100px;
+}
+
+.unloginedMess {
+    margin-bottom: 100px;
+}
+
+.inputSearch {
+    text-align: center;
+    margin-top: 30px
+}
+
+.emptyMess {
+    margin-top: 50px;
+    text-align: center
+}
+
+.productItem {
+    max-width: 40%;
+    margin: 30px auto;
+    list-style-type: none;
+    background-color: olive;
+    border: black 5px solid;
+    border-radius: 45px
+}
+
+.productName {
+    text-align: center;
+    margin: 15px;
+    font-size: 24px;
+    color: white
+}
+
+.productDesc {
+    font-size: 18px;
+    color: white
+}
+
+.productPrice {
+    margin: 20px;
+    color: red;
+    font-size: 20px
+}
+
+.img {
+    text-align: center;
+    margin-left: 15px
+}
+
+
 /* Container */
 
 .container {

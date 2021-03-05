@@ -61,9 +61,9 @@ class User
         return $this->userService->delete($id);
     }
 
-    public function getAllOrdersForUser($user_id)
+    public function getAllOrdersForUser($order_id, $user_id)
     {
-        return $this->userService->getAllOrdersForUser($user_id);
+        return $this->userService->getAllOrdersForUser($order_id, $user_id);
     }
 
     public function makeOrder(int $user_id, $totalPrice, $comments = null)

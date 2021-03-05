@@ -7,11 +7,11 @@ namespace Core;
 class Pagination
 {
 
-    public int $currentPage;
-    public int $perpage;
-    public int $total;
+    public $currentPage;
+    public $perpage;
+    public $total;
     public $countPages;
-    public string $uri;
+    public $uri;
 
     public function __construct($page, $perpage, $total)
     {
@@ -19,14 +19,7 @@ class Pagination
         $this->total = $total;
         $this->countPages = $this->getCountPage();
         $this->currentPage = $this->getCurrentPage($page);
-        $this->uri = $this->getParams();
-    }
-
-
-    // преобраз. объект к строке
-    public function __toString()
-    {
-        return $this->getHtml();
+        $this->uri = $this->getParamsFromUrl();
     }
 
     public function getCountPage()
@@ -41,13 +34,12 @@ class Pagination
         return $page;
     }
 
-    // начинаем выборку с какой записи
-    public function getStart()
+    public function getPageNumber()
     {
         return ($this->currentPage - 1) * $this->perpage;
     }
 
-    public function getParams()
+    public function getParamsFromUrl()
     {
         $url = $_SERVER['REQUEST_URI'];
         $url = explode('?', $url);

@@ -18,11 +18,10 @@ class MainController
 
     public function Index() {
         $template = 'mainTemplate';
-        $layout = 'main';
+        $layout = 'default';
 
         $session = $this->authSession->session;
-
-        $this->renderClass->render($template, $layout, ['session' => $session]);
+        $this->renderClass->render($template, $layout, compact('session'));
     }
 
 }

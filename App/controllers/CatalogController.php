@@ -3,10 +3,9 @@
 namespace Controllers;
 
 use App\models\WishList;
-use App\Services\ProductService;
-use App\Models\Sort;
 use Core\Pagination;
 use Core\Session\Authentication;
+use Core\Sorting;
 use Core\Tools\renderClass;
 use App\Models\Product;
 
@@ -16,8 +15,9 @@ class CatalogController
     private Authentication $authSession;
     private renderClass $renderClass;
     private WishList $wishListModel;
-    private ProductService $productService;
-    private Sort $sortModel;
+    public $page;
+    public $sort;
+
 
     public function __construct()
     {
@@ -25,26 +25,48 @@ class CatalogController
         $this->authSession = new Authentication();
         $this->renderClass = new renderClass();
         $this->wishListModel = new WishList();
-        $this->productService = new ProductService();
-        $this->sortModel = new Sort();
+        $this->page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
+        $this->sort = isset($_GET['sort']) ? $_GET['sort'] : 'price-ASC';
     }
 
     public function Index() {
-        $template = 'catalogTemplate';
-        $layout = 'catalog';
-
-        $total = $this->productService->count();
-        $page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
-        $perpage = 2;
-
-        $pagination = new Pagination($page, $perpage, $total);
-        $start = $pagination->getStart();
-
-        $products = $this->productService->pagination($start,$perpage);
-
         $session = $this->authSession->session;
+        $this->renderClass->render('catalogTemplate', 'default', compact('session'));
+    }
 
-        $this->renderClass->render($template, $layout, ['pagination' => $pagination, 'products' => $products/*'products' => $products*/, 'session' => $session]);
+    public function catalogApi() {
+        $total = $this->productModel->count();
+        $page = $this->page;
+        $perpage = 2;
+        $pagination = new Pagination($page, $perpage, $total);
+        $start = $pagination->getPageNumber();
+
+        $params = explode('-', $this->sort);
+
+        if (isset($this->sort) && isset($start)) {
+            $products = $this->productModel->paginationAndSort($params[1], $params[0], $start, $perpage);
+        }
+
+        $arrayProducts['length'] = (int) $total;
+
+        $arrayProducts['products'] = [];
+        foreach ($products as $product) {
+            $localProduct = [];
+            $localProduct['id'] = (int) $product->id;
+            $localProduct['category_id'] = $product->category_id;
+            $localProduct['img'] = $product->img;
+            $localProduct['description'] = $product->description;
+            $localProduct['price'] = (int) $product->price;
+            $localProduct['status'] = boolval($product->status);
+            $localProduct['title'] = $product->title;
+            $localProduct['qty'] = (int) $product->qty;
+            $localProduct['category'] = $product->category;
+            array_push($arrayProducts['products'], $localProduct);
+        }
+
+        $jsonProducts = json_encode($arrayProducts, JSON_UNESCAPED_UNICODE);
+
+        echo $jsonProducts;
     }
 
     public function addProduct()

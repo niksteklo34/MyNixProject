@@ -22,6 +22,11 @@ class Product
         $this->productService = new ProductService();
     }
 
+    public function count()
+    {
+        return $this->productService->count();
+    }
+
     public function creatProduct($title, $img_link, $description, $price, $status)
     {
         return $this->productService->create($title, $img_link, $description, $price, $status);
@@ -67,5 +72,10 @@ class Product
     public function getProductsWithCategoriesById(int $id)
     {
         return $this->productService->getProductsWithCategoriesById($id);
+    }
+
+    public function paginationAndSort($desc, $sortRow, $start, $perpage)
+    {
+        return $this->productService->paginationAndSort($desc, $sortRow, $start, $perpage);
     }
 }

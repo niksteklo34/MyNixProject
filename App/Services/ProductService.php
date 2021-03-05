@@ -121,14 +121,14 @@ class ProductService
         return $row->count;
     }
 
-    public function pagination(int $start, int $perpage)
+    public function paginationAndSort($desc, $sortRow, $start, $perpage)
     {
-        $sql = "SELECT products.id,title,img,description,price,status, categories.category
+        $sql = "SELECT products.id,category_id,img,description,price,status,title,qty , categories.category
                 FROM products, categories
                 WHERE products.category_id = categories.id
+                ORDER BY products.{$sortRow} {$desc}
                 LIMIT $start, $perpage";
-        $statement = $this->connect()->prepare($sql);
-        $statement->execute();
+        $statement = $this->connect()->query($sql);
         $statement->setFetchMode(PDO::FETCH_OBJ);
         return $statement->fetchAll();
     }

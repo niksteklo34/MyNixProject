@@ -4,6 +4,7 @@ namespace Controllers;
 
 use App\Models\User;
 use App\models\WishList;
+use App\Services\OrderService;
 use Core\Session\Authentication;
 use Core\Tools\renderClass;
 
@@ -25,26 +26,26 @@ class UserController
 
     public function index() {
         $template = 'userTemplate';
-        $layout = 'user';
+        $layout = 'default';
 
         $session = $this->authSession->session;
 
         $baseUser = $this->baseUser;
 
-        $this->renderClass->render($template, $layout, ['baseUser' => $baseUser, 'session' => $session]);
+        $this->renderClass->render($template, $layout, compact('baseUser', 'session'));
 
     }
 
     public function wish() {
         $template = 'wishTemplate';
-        $layout = 'user';
+        $layout = 'default';
 
         $session = $this->authSession->session;
         $userId = $this->authSession->session->get('id');
         $wishList = $this->wishListModel->getWishForUser($userId);
         $countWish = $this->wishListModel->countForUser($userId);
 
-        $this->renderClass->render($template, $layout, ['session' => $session, 'wishList' => $wishList, 'countWish' => $countWish]);
+        $this->renderClass->render($template, $layout, compact('session', 'wishList', 'countWish'));
     }
 
     public function removeWish()
@@ -61,32 +62,22 @@ class UserController
     public function shopList()
     {
         $template = 'shopListTemplate';
-        $layout = 'user';
+        $layout = 'default';
 
         $session = $this->authSession->session;
 
-        $this->renderClass->render($template, $layout, ['session' => $session /*'orders' => $orders*/]);
+        $this->renderClass->render($template, $layout, compact('session'));
     }
 
     public function shopListApi()
     {
-        if (isset($_SESSION['name'])) {
-            $orders = $this->baseUser->getAllOrdersForUser($this->authSession->session->get('id'));
+        $userOrders = [];
+        $getAllOrders = (new OrderService())->getAll();
+        foreach ($getAllOrders as $order) {
+            array_push($userOrders, $this->baseUser->getAllOrdersForUser($order->id,$this->authSession->session->get('id')));
         }
 
-        $ordersArray = [];
-        foreach ($orders as $value) {
-            $order = [];
-            $order['name'] = $value->name;
-            $order['surname'] = $value->surname;
-            $order['email'] = $value->email;
-            $order['qty'] = $value->qty;
-            $order['title'] = $value->title;
-            $order['price'] = $value->price;
-            array_push($ordersArray, $order);
-        }
-
-        $jsonProductsStr = json_encode($ordersArray, JSON_UNESCAPED_UNICODE);
+        $jsonProductsStr = json_encode($userOrders, JSON_UNESCAPED_UNICODE);
 
         echo $jsonProductsStr;
     }

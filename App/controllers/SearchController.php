@@ -21,19 +21,17 @@ class SearchController
     public function Index()
     {
         $template = 'searchTemplate';
-        $layout = 'search';
+        $layout = 'default';
 
         if (!empty($_POST)) {
             $title = trim($_POST['title']);
             $products = $this->productService->search($title);
         }
 
-        if (!empty($products)) {
-            $products = $products;
-        } else {
+        if (empty($products)) {
             $products = [];
         }
 
-        $this->renderClass->render($template, $layout, ['products' => $products]);
+        $this->renderClass->render($template, $layout, compact('products'));
     }
 }
