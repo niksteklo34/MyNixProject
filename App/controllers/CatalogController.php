@@ -3,10 +3,9 @@
 namespace Controllers;
 
 use App\models\WishList;
-use App\Services\ProductService;
-use App\Models\Sort;
 use Core\Pagination;
 use Core\Session\Authentication;
+use Core\Sorting;
 use Core\Tools\renderClass;
 use App\Models\Product;
 
@@ -16,8 +15,9 @@ class CatalogController
     private Authentication $authSession;
     private renderClass $renderClass;
     private WishList $wishListModel;
-    private ProductService $productService;
-    private Sort $sortModel;
+    public $page;
+    public $sort;
+
 
     public function __construct()
     {
@@ -25,26 +25,27 @@ class CatalogController
         $this->authSession = new Authentication();
         $this->renderClass = new renderClass();
         $this->wishListModel = new WishList();
-        $this->productService = new ProductService();
-        $this->sortModel = new Sort();
+        $this->page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
+        $this->sort = isset($_GET['sort']) ? $_GET['sort'] : 'price-ASC';
     }
 
     public function Index() {
-        $template = 'catalogTemplate';
-        $layout = 'catalog';
-
-        $total = $this->productService->count();
-        $page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
+        $total = $this->productModel->count();
+        $page = $this->page;
         $perpage = 2;
-
         $pagination = new Pagination($page, $perpage, $total);
-        $start = $pagination->getStart();
+        $start = $pagination->getPageNumber();
 
-        $products = $this->productService->pagination($start,$perpage);
+        $sorting = new Sorting();
+        $params = explode('-', $this->sort);
+
+        if (isset($this->sort) && isset($start)) {
+            $products = $this->productModel->paginationAndSort($params[1], $params[0], $start, $perpage);
+        }
 
         $session = $this->authSession->session;
 
-        $this->renderClass->render($template, $layout, ['pagination' => $pagination, 'products' => $products/*'products' => $products*/, 'session' => $session]);
+        $this->renderClass->render('catalogTemplate', 'catalog', ['sorting' => $sorting, 'pagination' => $pagination, 'products' => $products, 'session' => $session]);
     }
 
     public function addProduct()
