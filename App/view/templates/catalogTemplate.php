@@ -3,6 +3,7 @@
   <script src="js/app.js" defer></script>
 </head>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <ul>
   <div style="">
       <?php echo $tools['sorting']->getHtml(); ?>
@@ -41,9 +42,14 @@
 <div style="display: flex;justify-content: center;"><?php echo $tools['pagination']->getHtml() ?></div>
 <?php endif; ?>
 =======
+=======
+>>>>>>> feature/Vue
 <div class="container">
   <div id="app">
     <products></products>
   </div>
 </div>
+<<<<<<< HEAD
+>>>>>>> feature/Vue
+=======
 >>>>>>> feature/Vue

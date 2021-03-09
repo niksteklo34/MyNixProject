@@ -31,12 +31,18 @@ class CatalogController
 
     public function Index() {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> feature/Vue
         $session = $this->authSession->session;
         $this->renderClass->render('catalogTemplate', 'default', compact('session'));
     }
 
     public function catalogApi() {
+<<<<<<< HEAD
+>>>>>>> feature/Vue
+=======
 >>>>>>> feature/Vue
         $total = $this->productModel->count();
         $page = $this->page;
@@ -45,12 +51,16 @@ class CatalogController
         $start = $pagination->getPageNumber();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         $sorting = new Sorting();
+=======
+>>>>>>> feature/Vue
         $params = explode('-', $this->sort);
 
         if (isset($this->sort) && isset($start)) {
             $products = $this->productModel->paginationAndSort($params[1], $params[0], $start, $perpage);
         }
+<<<<<<< HEAD
 =======
         $params = explode('-', $this->sort);
 >>>>>>> feature/Vue
@@ -58,6 +68,8 @@ class CatalogController
         if (isset($this->sort) && isset($start)) {
             $products = $this->productModel->paginationAndSort($params[1], $params[0], $start, $perpage);
         }
+=======
+>>>>>>> feature/Vue
 
         $arrayProducts['length'] = (int) $total;
 
@@ -79,7 +91,11 @@ class CatalogController
         $jsonProducts = json_encode($arrayProducts, JSON_UNESCAPED_UNICODE);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         $this->renderClass->render('catalogTemplate', 'catalog', ['sorting' => $sorting, 'pagination' => $pagination, 'products' => $products, 'session' => $session]);
+=======
+        echo $jsonProducts;
+>>>>>>> feature/Vue
 =======
         echo $jsonProducts;
 >>>>>>> feature/Vue

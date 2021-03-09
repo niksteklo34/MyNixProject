@@ -2071,7 +2071,10 @@ Context:
 =====
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> feature/Vue
 =====
 Level: warning
 Message: 
@@ -2176,4 +2179,7 @@ Context:
 2021-03-05 04:38:40
 =====
 
+<<<<<<< HEAD
+>>>>>>> feature/Vue
+=======
 >>>>>>> feature/Vue
