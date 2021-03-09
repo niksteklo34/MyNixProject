@@ -21,13 +21,25 @@ class OrderService
         return $statement->fetchAll();
     }
 
-    public function getAllByUserId(int $user_id)
+    public function getAllByUserId(int $user_id, int $start, int $perpage)
     {
-        $sql = "SELECT user_id, user_name, user_email, address, total_price, contact_phone, comments 
+        $sql = "SELECT id, user_id, total_price, created_at
                 FROM orders 
-                WHERE user_id = :user_id";
+                WHERE user_id = :user_id
+                LIMIT $start, $perpage";
         $statement = $this->connect()->prepare($sql);
         $statement->execute(['user_id' => $user_id]);
+        $statement->setFetchMode(PDO::FETCH_OBJ);
+        return $statement->fetchAll();
+    }
+
+    public function getProductsByOrder(int $order_id)
+    {
+        $sql = "select products.title,price , op.qty, o.id,total_price, o.created_at
+                from products join order_products op on products.id = op.product_id
+                join orders o on o.id = op.order_id where o.id = :order_id";
+        $statement = $this->connect()->prepare($sql);
+        $statement->execute(['order_id' => $order_id]);
         $statement->setFetchMode(PDO::FETCH_OBJ);
         return $statement->fetchAll();
     }

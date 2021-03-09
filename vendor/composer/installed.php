@@ -57,6 +57,16 @@
       ),
       'reference' => '59374f2fef0cabb9e8ddb53277e85cdca74328de',
     ),
+    'codeception/module-db' => 
+    array (
+      'pretty_version' => 'dev-master',
+      'version' => 'dev-master',
+      'aliases' => 
+      array (
+        0 => '9999999-dev',
+      ),
+      'reference' => 'fb3471944aabe876cb08c39f5565ec9f48be4332',
+    ),
     'codeception/module-phpbrowser' => 
     array (
       'pretty_version' => '1.0.2',
@@ -406,8 +416,8 @@
     array (
       'provided' => 
       array (
-        0 => '1.0',
-        1 => '1.0.0',
+        0 => '1.0.0',
+        1 => '1.0',
       ),
     ),
     'ralouphie/getallheaders' => 

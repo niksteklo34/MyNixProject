@@ -130,6 +130,12 @@ li {
     border-radius: 15px;
 }
 
+.date {
+    margin-top: 10px;
+    color: white;
+    font-size: 20px;
+}
+
 /* Footer */
 
 .footer {

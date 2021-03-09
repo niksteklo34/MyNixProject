@@ -4,7 +4,7 @@
     <product v-for="(product, index) in products" :key="index"
              :id = "product.id" :title = "product.title" :img = "product.img" :description = "product.description" :status = "product.status" :price = "product.price" :category ="product.category"
     ></product>
-    <pagination :total="length" :itemsOnPage="2" @page-changed="changePage"></pagination>
+    <pagination @pageChanged="toChangePage" :total="length" :itemsOnPage="2"></pagination>
   </div>
 </template>
 
@@ -31,7 +31,7 @@ name: "products",
       this.products = data.products;
       this.length = data.length;
     },
-    changePage(page) {
+    toChangePage(page) {
       this.pageNumber = page
     },
     changeSort(sortRule) {

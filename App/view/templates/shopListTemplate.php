@@ -5,9 +5,12 @@
   <h1>Список покупок</h1>
   <ol>
     <li id="order">
-      <script src="/js/shopList.js"></script>
+      <script src="/js/shopList.js" defer></script>
     </li>
   </ol>
+  <?php
+    echo $tools['pagination']->getHtml();
+  ?>
   <a href="../user" class="btnBack btn btn-success">Назад</a>
 </div>
 

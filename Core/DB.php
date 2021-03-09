@@ -41,5 +41,4 @@ class DB
             throw new DbException('DB is not connected');
         }
     }
-
 }

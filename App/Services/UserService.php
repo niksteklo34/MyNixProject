@@ -9,6 +9,12 @@ use Core\DB;
 
 class UserService
 {
+//    public PDO $getConnect;
+//
+//    public function __construct(PDO $PDO)
+//    {
+//        $this->getConnect = $PDO;
+//    }
 
     public function connect(): PDO
     {
@@ -61,7 +67,7 @@ class UserService
     {
         $sql = "INSERT INTO user (name, surname, email, password) 
                 VALUE (:name, :surname, :email, :password)";
-        $statement = $this->connect()->prepare($sql);
+        $statement = $this->getConnect->prepare($sql);
         $statement->execute(['name' => $name,  'surname' => $surname, 'email' => $email, 'password' => $password,]);
         return true;
     }
@@ -79,17 +85,16 @@ class UserService
         return true;
     }
 
-    public function getAllOrdersForUser($order_id, $user_id)
+    public function getAllOrdersForUser($order_id)
     {
         $sql = 'select user.name,surname,email , orders.created_at, orders.id, order_products.qty , products.title , products.price
                 from order_products join orders on order_products.order_id = orders.id
                 join user on user.id = orders.user_id
                 join products on products.id = order_products.product_id
-                where order_products.order_id = :order_id and user.id = :user_id';
+                where order_products.order_id = :order_id';
 
         $statement = $this->connect()->prepare($sql);
         $statement->execute([
-            'user_id' => $user_id,
             'order_id' => $order_id,
         ]);
         $statement->setFetchMode(PDO::FETCH_OBJ);

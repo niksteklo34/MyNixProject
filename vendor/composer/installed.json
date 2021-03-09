@@ -347,6 +347,62 @@
             "install-path": "../codeception/module-asserts"
         },
         {
+            "name": "codeception/module-db",
+            "version": "dev-master",
+            "version_normalized": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Codeception/module-db.git",
+                "reference": "fb3471944aabe876cb08c39f5565ec9f48be4332"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Codeception/module-db/zipball/fb3471944aabe876cb08c39f5565ec9f48be4332",
+                "reference": "fb3471944aabe876cb08c39f5565ec9f48be4332",
+                "shasum": ""
+            },
+            "require": {
+                "codeception/codeception": "*@dev",
+                "php": ">=5.6.0 <9.0"
+            },
+            "conflict": {
+                "codeception/codeception": "<4.0"
+            },
+            "time": "2021-01-12T20:06:08+00:00",
+            "default-branch": true,
+            "type": "library",
+            "installation-source": "source",
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Bodnarchuk"
+                },
+                {
+                    "name": "Gintautas Miselis"
+                }
+            ],
+            "description": "DB module for Codeception",
+            "homepage": "http://codeception.com/",
+            "keywords": [
+                "codeception",
+                "database-testing",
+                "db-testing"
+            ],
+            "support": {
+                "issues": "https://github.com/Codeception/module-db/issues",
+                "source": "https://github.com/Codeception/module-db/tree/master"
+            },
+            "install-path": "../codeception/module-db"
+        },
+        {
             "name": "codeception/module-phpbrowser",
             "version": "1.0.2",
             "version_normalized": "1.0.2.0",
@@ -5485,6 +5541,7 @@
         "codeception/lib-asserts",
         "codeception/lib-innerbrowser",
         "codeception/module-asserts",
+        "codeception/module-db",
         "codeception/module-phpbrowser",
         "codeception/phpunit-wrapper",
         "codeception/stub",

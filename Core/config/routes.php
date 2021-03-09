@@ -3,6 +3,7 @@
 use Core\Router;
 
 Router::addNewRoute('^$', ['controller' => 'main', "action" => "index"]);
+Router::addNewRoute('^myapp$', ['controller' => 'main', "action" => "index"]);
 Router::addNewRoute('^main$', ['controller' => 'main', "action" => "index"]);
 Router::addNewRoute('^basket$', ['controller' => 'basket', "action" => "index"]);
 

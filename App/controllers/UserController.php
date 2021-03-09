@@ -5,6 +5,7 @@ namespace Controllers;
 use App\Models\User;
 use App\models\WishList;
 use App\Services\OrderService;
+use Core\Pagination;
 use Core\Session\Authentication;
 use Core\Tools\renderClass;
 
@@ -15,6 +16,9 @@ class UserController
     private Authentication $authSession;
     private WishList $wishListModel;
     private User $baseUser;
+    private OrderService $orderService;
+    private Pagination $pagination;
+    private $page;
 
     public function __construct()
     {
@@ -22,6 +26,9 @@ class UserController
         $this->baseUser = new User();
         $this->authSession = new Authentication();
         $this->wishListModel = new WishList();
+        $this->orderService = new OrderService();
+        $this->page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
+        $this->pagination = new Pagination($this->page, 2, 3);
     }
 
     public function index() {
@@ -61,20 +68,37 @@ class UserController
 
     public function shopList()
     {
-        $template = 'shopListTemplate';
-        $layout = 'default';
-
         $session = $this->authSession->session;
 
-        $this->renderClass->render($template, $layout, compact('session'));
+        $pagination = $this->pagination;
+
+        $this->renderClass->render('shopListTemplate', 'default', compact('pagination', 'session'));
     }
 
     public function shopListApi()
     {
+        $userId = $this->authSession->session->get('id');
         $userOrders = [];
-        $getAllOrders = (new OrderService())->getAll();
-        foreach ($getAllOrders as $order) {
-            array_push($userOrders, $this->baseUser->getAllOrdersForUser($order->id,$this->authSession->session->get('id')));
+        $getAllOrdersForUser = $this->orderService->getAllByUserId($userId, $this->pagination->getPageNumber(), 2);
+        foreach ($getAllOrdersForUser as $order) {
+            $userOrder = [];
+            $productsOrder = [];
+            $userOrder['id'] = $order->id;
+            $userOrder['user_id'] = $order->user_id;
+            $userOrder['total_price'] = $order->total_price;
+            $userOrder['date'] = $order->created_at;
+            $productsDb = $this->orderService->getProductsByOrder($order->id);
+            foreach ($productsDb as $product) {
+                $productOrder = [];
+                $productOrder['title'] = $product->title;
+                $productOrder['price'] = $product->price;
+                $productOrder['qty'] = $product->qty;
+                $productOrder['id'] = $product->id;
+                $productOrder['total_price'] = $product->total_price;
+                array_push($productsOrder, $productOrder);
+            }
+            $userOrder['products'] = $productsOrder;
+            array_push($userOrders, $userOrder);
         }
 
         $jsonProductsStr = json_encode($userOrders, JSON_UNESCAPED_UNICODE);

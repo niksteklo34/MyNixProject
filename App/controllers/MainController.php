@@ -17,6 +17,7 @@ class MainController
     }
 
     public function Index() {
+        echo 'Coffezin';
         $template = 'mainTemplate';
         $layout = 'default';
 
