@@ -28,11 +28,11 @@ class AuthController
         } else {
             $template = 'loginedTemplate';
         }
-        $layout = 'login';
+        $layout = 'default';
 
         $Auth = $this->authSession;
 
-        $this->renderClass->render($template, $layout, ['Auth' => $Auth]);
+        $this->renderClass->render($template, $layout, compact('Auth'));
     }
 
     public function authorization()
@@ -55,7 +55,7 @@ class AuthController
     public function register()
     {
         $template = 'registerTemplate';
-        $layout = 'register';
+        $layout = 'default';
 
         $this->renderClass->render($template, $layout, []);
     }

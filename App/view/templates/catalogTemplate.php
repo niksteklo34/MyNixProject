@@ -1,6 +1,8 @@
 <head>
-    <link rel="stylesheet" href="css/catalog.css">
+  <link rel="stylesheet" href="/css/catalog.css">
+  <script src="js/app.js" defer></script>
 </head>
+<<<<<<< HEAD
 <ul>
   <div style="">
       <?php echo $tools['sorting']->getHtml(); ?>
@@ -38,3 +40,10 @@
 <?php if ($tools['pagination']->countPages > 1): ?>
 <div style="display: flex;justify-content: center;"><?php echo $tools['pagination']->getHtml() ?></div>
 <?php endif; ?>
+=======
+<div class="container">
+  <div id="app">
+    <products></products>
+  </div>
+</div>
+>>>>>>> feature/Vue

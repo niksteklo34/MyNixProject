@@ -31,7 +31,7 @@ class ProductController
 
     public function Index() {
         $template = 'productTemplate';
-        $layout = 'product';
+        $layout = 'default';
 
         $products = $this->productModel->productMapper();
 
@@ -41,7 +41,7 @@ class ProductController
         $session = $this->authSession->session;
         $product = ProductController::checkProduct($products, $uri);
 
-        $this->renderClass->render($template, $layout, ['product' => $product, 'session' => $session]);
+        $this->renderClass->render($template, $layout, compact('product', 'session'));
     }
 
     public function addProduct()

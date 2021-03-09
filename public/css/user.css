@@ -39,6 +39,16 @@ hr {
     border-radius: 15px;
     background-color: #808000;
 }
+
+.userName {
+    color: white;
+    margin-top: 50px;
+    margin-bottom: 50px
+}
+
+.infoBtn {
+    margin-bottom: 10px;
+}
 /* Footer */
 
 .footer {

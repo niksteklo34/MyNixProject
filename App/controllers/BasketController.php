@@ -27,9 +27,6 @@ class BasketController
     }
 
     public function Index() {
-        $template = 'basketTemplate';
-        $layout = 'basket';
-
         $sessionCartList = $this->authSession->session->keyExists('cart_list');
 
         if ($sessionCartList) {
@@ -40,7 +37,7 @@ class BasketController
 
         $session = $this->authSession->session;
 
-        $this->renderClass->render($template, $layout, ['products' => $products, 'session' => $session]);
+        $this->renderClass->render('basketTemplate', 'default', compact('products', 'session'));
     }
 
     public function remove()

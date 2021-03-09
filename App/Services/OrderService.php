@@ -14,7 +14,7 @@ class OrderService
 
     public function getAll()
     {
-        $sql = "SELECT user_id, user_name, user_email, address, total_price, contact_phone, comments  
+        $sql = "SELECT id, user_id, total_price  
                 FROM orders";
         $statement = $this->connect()->query($sql);
         $statement->setFetchMode(PDO::FETCH_OBJ);

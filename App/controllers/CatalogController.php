@@ -30,22 +30,59 @@ class CatalogController
     }
 
     public function Index() {
+<<<<<<< HEAD
+=======
+        $session = $this->authSession->session;
+        $this->renderClass->render('catalogTemplate', 'default', compact('session'));
+    }
+
+    public function catalogApi() {
+>>>>>>> feature/Vue
         $total = $this->productModel->count();
         $page = $this->page;
         $perpage = 2;
         $pagination = new Pagination($page, $perpage, $total);
         $start = $pagination->getPageNumber();
 
+<<<<<<< HEAD
         $sorting = new Sorting();
         $params = explode('-', $this->sort);
 
         if (isset($this->sort) && isset($start)) {
             $products = $this->productModel->paginationAndSort($params[1], $params[0], $start, $perpage);
         }
+=======
+        $params = explode('-', $this->sort);
+>>>>>>> feature/Vue
 
-        $session = $this->authSession->session;
+        if (isset($this->sort) && isset($start)) {
+            $products = $this->productModel->paginationAndSort($params[1], $params[0], $start, $perpage);
+        }
 
+        $arrayProducts['length'] = (int) $total;
+
+        $arrayProducts['products'] = [];
+        foreach ($products as $product) {
+            $localProduct = [];
+            $localProduct['id'] = (int) $product->id;
+            $localProduct['category_id'] = $product->category_id;
+            $localProduct['img'] = $product->img;
+            $localProduct['description'] = $product->description;
+            $localProduct['price'] = (int) $product->price;
+            $localProduct['status'] = boolval($product->status);
+            $localProduct['title'] = $product->title;
+            $localProduct['qty'] = (int) $product->qty;
+            $localProduct['category'] = $product->category;
+            array_push($arrayProducts['products'], $localProduct);
+        }
+
+        $jsonProducts = json_encode($arrayProducts, JSON_UNESCAPED_UNICODE);
+
+<<<<<<< HEAD
         $this->renderClass->render('catalogTemplate', 'catalog', ['sorting' => $sorting, 'pagination' => $pagination, 'products' => $products, 'session' => $session]);
+=======
+        echo $jsonProducts;
+>>>>>>> feature/Vue
     }
 
     public function addProduct()
