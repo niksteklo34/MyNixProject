@@ -24,4 +24,20 @@
     <div class="product-desc col-lg-12 col-md-12"><?php echo $product->description?></div>
     <a href="../<?php $_SERVER['SERVER_NAME'] ?>catalog" class="linkBack btn btn-success">В каталог</a>
   </div>
+
+  <h3>Коментарии</h3>
+  <form action="<?php echo $product->id ?>/comment" method="post">
+    <input type="text" maxlength="1000" height="20px" minlength="10" name="comment" required>
+    <button value="<?php echo $product->id ?>" type="submit" name="submitComment">Отправить</button>
+  </form>
+    <div class="comments">
+      <?php foreach ($tools['comments'] as $comment): ?>
+        <?php $fullName = $comment->name . ' ' . $comment->surname ?>
+        <div class="comment-item">
+          <h4 class="name"><?php echo $fullName ?></h4>
+          <p class="text"><?php echo $comment->text ?></p>
+          <p class="date"><?php echo $comment->created_at ?></p>
+        </div>
+      <?php endforeach; ?>
+    </div>
 </div>

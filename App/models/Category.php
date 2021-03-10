@@ -10,7 +10,7 @@ class Category
 
     public function __construct()
     {
-        $this->categoryService = new CategoryService();
+        $this->categoryService = new CategoryService(CategoryService::connect());
     }
 
     public function getAll()

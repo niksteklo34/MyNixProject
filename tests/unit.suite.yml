@@ -4,11 +4,11 @@
 
 actor: UnitTester
 modules:
-    enabled:
-        - Asserts
-        - \Helper\Unit
-        - Db:
-              dsn: "mysql:host=%DB_HOST%;dbname=%DB_NAME%"
-              user: "%DB_USER%"
-              password: "%DB_PASSWORD%"
-    step_decorators: ~        
+  enabled:
+    - Asserts
+    - \Helper\Unit
+    - Db:
+        dsn: "mysql:host=%DB_HOST%;dbname=%DB_NAME%"
+        user: "%DB_USER%"
+        password: "%DB_PASSWORD%"
+  step_decorators: ~

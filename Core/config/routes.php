@@ -27,6 +27,7 @@ Router::addNewRoute('^register$', ['controller' => 'auth', "action" => "register
 Router::addNewRoute('^register/reg$', ['controller' => 'auth', "action" => "checkAndCreateUser"]);
 
 Router::addNewRoute('^product/\d+$', ['controller' => 'product', "action" => "index"]);
+Router::addNewRoute('^product/\d+/comment$', ['controller' => 'product', "action" => "addComment"]);
 Router::addNewRoute('^product/\d+/order$', ['controller' => 'product', "action" => "addProduct"]);
 
 Router::addNewRoute('^catalog$', ['controller' => 'catalog', "action" => "index"]);

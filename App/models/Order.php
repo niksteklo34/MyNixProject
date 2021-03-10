@@ -12,7 +12,7 @@ class Order
 
     public function __construct()
     {
-        $this->orderService = new OrderService();
+        $this->orderService = new OrderService(OrderService::connect());
     }
 
     public function createAllProductsByIdOrder($product_id, $order_id, $qty)

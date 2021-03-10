@@ -9,23 +9,33 @@ use Core\DB;
 
 class UserService
 {
-//    public PDO $getConnect;
-//
-//    public function __construct(PDO $PDO)
-//    {
-//        $this->getConnect = $PDO;
-//    }
+    public PDO $DbConnect;
 
-    public function connect(): PDO
+    public function __construct(PDO $PDO)
+    {
+        $this->DbConnect = $PDO;
+    }
+
+    public static function connect(): PDO
     {
         return DB::getInstance()->connect();
+    }
+
+    public function validationUserName($name)
+    {
+        return preg_match('#^[a-zA-Z]+$#', $name) ? true : false;
+    }
+
+    public function validationUserPassword($password)
+    {
+        return mb_strlen($password) >= 8;
     }
 
     public function getAll()
     {
         $sql = "SELECT id, name, surname, email
                 FROM user";
-        $statement = $this->connect()->query($sql);
+        $statement = $this->DbConnect->query($sql);
         $statement->setFetchMode(PDO::FETCH_OBJ);
         return $statement->fetchAll();
     }
@@ -35,7 +45,7 @@ class UserService
         $sql = "SELECT id, name, surname, email
                 FROM user
                 WHERE id = :id";
-        $statement = $this->connect()->prepare($sql);
+        $statement = $this->DbConnect->prepare($sql);
         $statement->execute(['id' => $id]);
         $statement->setFetchMode(PDO::FETCH_OBJ);
         return $statement->fetch();
@@ -46,7 +56,7 @@ class UserService
         $sql = "SELECT id, name, surname, email, password 
                 FROM user
                 WHERE name = :name";
-        $statement = $this->connect()->prepare($sql);
+        $statement = $this->DbConnect->prepare($sql);
         $statement->execute(['name' => $name]);
         $statement->setFetchMode(PDO::FETCH_OBJ);
         return $statement->fetchAll();
@@ -57,7 +67,7 @@ class UserService
         $sql = "SELECT id, name, surname, email, password 
                 FROM user
                 WHERE email = :email";
-        $statement = $this->connect()->prepare($sql);
+        $statement = $this->DbConnect->prepare($sql);
         $statement->execute(['email' => $email]);
         $statement->setFetchMode(PDO::FETCH_OBJ);
         return $statement->fetch();
@@ -67,7 +77,7 @@ class UserService
     {
         $sql = "INSERT INTO user (name, surname, email, password) 
                 VALUE (:name, :surname, :email, :password)";
-        $statement = $this->getConnect->prepare($sql);
+        $statement = $this->DbConnect->prepare($sql);
         $statement->execute(['name' => $name,  'surname' => $surname, 'email' => $email, 'password' => $password,]);
         return true;
     }
@@ -80,7 +90,7 @@ class UserService
                        email = :email, 
                        password = :password) 
                 WHERE id = :id";
-        $statement = $this->connect()->prepare($sql);
+        $statement = $this->DbConnect->prepare($sql);
         $statement->execute(['id' => $id, 'name' => $name, 'surname' => $surname, 'email' => $email, 'password' => $password]);
         return true;
     }
@@ -93,7 +103,7 @@ class UserService
                 join products on products.id = order_products.product_id
                 where order_products.order_id = :order_id';
 
-        $statement = $this->connect()->prepare($sql);
+        $statement = $this->DbConnect->prepare($sql);
         $statement->execute([
             'order_id' => $order_id,
         ]);
@@ -105,7 +115,7 @@ class UserService
     {
         $sql = "DELETE FROM user
                 WHERE id = :id";
-        $statement = $this->connect()->prepare($sql);
+        $statement = $this->DbConnect->prepare($sql);
         $statement->execute(['id' => $id]);
         return true;
     }

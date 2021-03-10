@@ -15,7 +15,7 @@
             <a class="username" style="color:white; margin-right: 200px; text-decoration: none"  href="../user/wish"><img src="https://img.icons8.com/ios-glyphs/30/000000/add-to-favorites.png"/> <?php echo $count ?></a>
         <?php endif; ?>
         <?php if (!isset($_SESSION['name'])): ?>
-            <a class="username" href="login">Войти</a>
+            <a class="username" href="../login">Войти</a>
         <?php else: ?>
             <p class="username" href="login">Привет, <?php echo $_SESSION['name'] ?>!</p>
         <?php endif; ?>

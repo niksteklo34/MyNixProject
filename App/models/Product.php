@@ -19,7 +19,7 @@ class Product
 
     public function __construct()
     {
-        $this->productService = new ProductService();
+        $this->productService = new ProductService(ProductService::connect());
     }
 
     public function count()

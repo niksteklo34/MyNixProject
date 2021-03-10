@@ -7,7 +7,14 @@ use PDO;
 
 class OrderService
 {
-    public function connect(): PDO
+    public PDO $DbConnect;
+
+    public function __construct(PDO $PDO)
+    {
+        $this->DbConnect = $PDO;
+    }
+
+    public static function connect(): PDO
     {
         return DB::getInstance()->connect();
     }
@@ -126,6 +133,16 @@ class OrderService
         $statement->execute(['order_id' => $order_id]);
         $statement->setFetchMode(PDO::FETCH_OBJ);
         return $statement->fetchAll();
+    }
+
+    public function countForUser($user_id)
+    {
+        $sql = "SELECT COUNT(*) as count FROM orders where user_id = :user_id";
+        $statement = $this->connect()->prepare($sql);
+        $statement->execute(['user_id' => $user_id]);
+        $statement->setFetchMode(PDO::FETCH_OBJ);
+        $row = $statement->fetch();
+        return $row->count;
     }
 
     public function getLastId(): int
