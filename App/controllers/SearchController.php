@@ -15,7 +15,7 @@ class SearchController
     public function __construct()
     {
         $this->renderClass = new renderClass();
-        $this->productService = new ProductService();
+        $this->productService = new ProductService(ProductService::connect());
     }
 
     public function Index()

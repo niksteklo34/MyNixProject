@@ -32,7 +32,9 @@ class UserController
         $this->shopListModel = new ShopList();
         $this->orderService = new OrderService(OrderService::connect());
         $this->page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
+        if($this->authSession->session->keyExists('name')) {
         $this->pagination = new Pagination($this->page, 2, $this->shopListModel->countForUser($this->authSession->session->get('id')));
+        }
     }
 
     public function index() {

@@ -13,7 +13,9 @@
         "niksteklo34/logger": "dev-master",
         "niksteklo34/mailer": "dev-master",
         "vlucas/phpdotenv": "5.3.x-dev",
-        "ext-json": "*"
+        "ext-json": "*",
+      "ext-mcrypt": "*",
+        "phpseclib/mcrypt_compat": "dev-master"
     },
     "require-dev": {
         "codeception/codeception": "4.1.x-dev",

@@ -31,13 +31,17 @@
     <button value="<?php echo $product->id ?>" type="submit" name="submitComment">Отправить</button>
   </form>
     <div class="comments">
-      <?php foreach ($tools['comments'] as $comment): ?>
-        <?php $fullName = $comment->name . ' ' . $comment->surname ?>
-        <div class="comment-item">
-          <h4 class="name"><?php echo $fullName ?></h4>
-          <p class="text"><?php echo $comment->text ?></p>
-          <p class="date"><?php echo $comment->created_at ?></p>
-        </div>
-      <?php endforeach; ?>
+      <?php if (empty($tools['comments'])): ?>
+        <h2>Коментариев нет</h2>
+      <?php else: ?>
+        <?php foreach ($tools['comments'] as $comment): ?>
+          <?php $fullName = $comment->name . ' ' . $comment->surname ?>
+          <div class="comment-item">
+            <h4 class="name"><?php echo $fullName ?></h4>
+            <p class="text"><?php echo $comment->text ?></p>
+            <p class="date"><?php echo $comment->created_at ?></p>
+          </div>
+        <?php endforeach; ?>
+      <?php endif; ?>
     </div>
 </div>

@@ -25,7 +25,7 @@ class CommentService
     {
         $sql = "SELECT id, product_id, text
                 FROM comments";
-        $statement = $this->connect()->query($sql);
+        $statement = $this->DbConnect->query($sql);
         $statement->setFetchMode(PDO::FETCH_OBJ);
         return $statement->fetchAll();
     }
@@ -35,7 +35,7 @@ class CommentService
         $sql = "SELECT id, product_id, text 
                 FROM comments
                 WHERE id = :id";
-        $statement = $this->connect()->prepare($sql);
+        $statement = $this->DbConnect->prepare($sql);
         $statement->execute(['id' => $id]);
         $statement->setFetchMode(PDO::FETCH_OBJ);
         return $statement->fetch();
@@ -48,7 +48,7 @@ class CommentService
                 join user on comments.user_id = user.id
                 WHERE product_id = :product_id
                 ORDER BY created_at DESC";
-        $statement = $this->connect()->prepare($sql);
+        $statement = $this->DbConnect->prepare($sql);
         $statement->execute(['product_id' => $product_id]);
         $statement->setFetchMode(PDO::FETCH_OBJ);
         return $statement->fetchAll();
@@ -61,7 +61,7 @@ class CommentService
                 FROM comments
                 join user on comments.user_id = user.id
                 WHERE user_id = :user_id";
-        $statement = $this->connect()->prepare($sql);
+        $statement = $this->DbConnect->prepare($sql);
         $statement->execute(['user_id' => $user_id]);
         $statement->setFetchMode(PDO::FETCH_OBJ);
         return $statement->fetchAll();
@@ -71,7 +71,7 @@ class CommentService
     {
         $sql = "INSERT INTO comments(user_id, product_id, text)
                 VALUE (:user_id, :product_id, :comment);";
-        $statement = $this->connect()->prepare($sql);
+        $statement = $this->DbConnect->prepare($sql);
         $statement->execute([
             'user_id' => $user_id,
             'product_id' => $product_id,
@@ -87,7 +87,7 @@ class CommentService
                      product_id = :product_id,
                      comment = :comment) 
                 WHERE id = :id";
-        $statement = $this->connect()->prepare($sql);
+        $statement = $this->DbConnect->prepare($sql);
         $statement->execute([
             'id' => $id,
             'user_id' => $user_id,
@@ -101,7 +101,7 @@ class CommentService
     {
         $sql = "DELETE FROM comments 
                 WHERE id = :id";
-        $statement = $this->connect()->prepare($sql);
+        $statement = $this->DbConnect->prepare($sql);
         $statement->execute(['id' => $id]);
         return true;
     }
