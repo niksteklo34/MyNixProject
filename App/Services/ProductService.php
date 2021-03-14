@@ -9,8 +9,14 @@ use PDO;
 
 class ProductService
 {
+    public PDO $DbConnect;
 
-    public function connect(): PDO
+    public function __construct(PDO $PDO)
+    {
+        $this->DbConnect = $PDO;
+    }
+
+    public static function connect(): PDO
     {
         return DB::getInstance()->connect();
     }

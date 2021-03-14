@@ -28,6 +28,10 @@ hr {
     margin: 0;
 }
 
+.pagination {
+    margin-left: 300px;
+}
+
 /* Container */
 
 li {
@@ -88,6 +92,10 @@ li {
 #order {
     margin-top: 15px;
     list-style-type: none;
+}
+
+.active{
+    background-color: blue; border-radius: 45px; margin: 5px;
 }
 
 .wishItem {

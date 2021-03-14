@@ -20,7 +20,7 @@
       </div>
       <div class="form-floating mb-3">
         <label for="password">Пароль</label>
-        <input type="password" class="form-control" id="password" placeholder="Пароль" name="password" required>
+        <input type="password" class="form-control" id="password" placeholder="Пароль" min="8" name="password" required>
       </div>
     </div>
     <div class="checkbox">

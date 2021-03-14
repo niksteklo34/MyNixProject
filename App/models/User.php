@@ -8,15 +8,13 @@ use App\Services\UserService;
 
 class User
 {
-    public BaseModel $baseModel;
     private UserService $userService;
     private OrderService $orderService;
 
     public function __construct()
     {
-        $this->userService = new UserService();
-        $this->orderService = new OrderService();
-        $this->baseModel = new BaseModel();
+        $this->userService = new UserService(UserService::connect());
+        $this->orderService = new OrderService(OrderService::connect());
     }
 
     public function checkUserExist($email)

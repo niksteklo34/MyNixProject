@@ -7,7 +7,14 @@ use PDO;
 
 class CategoryService
 {
-    public function connect(): PDO
+    public PDO $DbConnect;
+
+    public function __construct(PDO $PDO)
+    {
+        $this->DbConnect = $PDO;
+    }
+
+    public static function connect(): PDO
     {
         return DB::getInstance()->connect();
     }

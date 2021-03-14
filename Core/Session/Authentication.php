@@ -32,7 +32,11 @@ class Authentication
     public function auth()
     {
         $resultUser = $this->user->checkUserExist($this->email);
-        if ($resultUser->name == $this->name && $resultUser->surname == $this->surname && $resultUser->email == $this->email && $resultUser->password == $this->pass){
+        if ($resultUser->name == $this->name &&
+            $resultUser->surname == $this->surname &&
+            $resultUser->email == $this->email &&
+            password_verify($this->pass, $resultUser->password)
+        ){
             $this->session->set('id', $resultUser->id);
             $this->session->set('name', $this->name);
             $this->session->set('surname', $this->surname);

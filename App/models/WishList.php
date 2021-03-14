@@ -10,7 +10,7 @@ class WishList
 
     public function __construct()
     {
-        $this->wishListService = new WishListService();
+        $this->wishListService = new WishListService(WishListService::connect());
     }
 
     public function getWishById(int $id)

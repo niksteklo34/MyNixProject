@@ -2,6 +2,8 @@
 
 namespace Controllers;
 
+use App\models\Order;
+use App\models\ShopList;
 use App\Models\User;
 use App\models\WishList;
 use App\Services\OrderService;
@@ -15,6 +17,7 @@ class UserController
     private renderClass $renderClass;
     private Authentication $authSession;
     private WishList $wishListModel;
+    private ShopList $shopListModel;
     private User $baseUser;
     private OrderService $orderService;
     private Pagination $pagination;
@@ -26,9 +29,12 @@ class UserController
         $this->baseUser = new User();
         $this->authSession = new Authentication();
         $this->wishListModel = new WishList();
-        $this->orderService = new OrderService();
+        $this->shopListModel = new ShopList();
+        $this->orderService = new OrderService(OrderService::connect());
         $this->page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
-        $this->pagination = new Pagination($this->page, 2, 3);
+        if($this->authSession->session->keyExists('name')) {
+        $this->pagination = new Pagination($this->page, 2, $this->shopListModel->countForUser($this->authSession->session->get('id')));
+        }
     }
 
     public function index() {

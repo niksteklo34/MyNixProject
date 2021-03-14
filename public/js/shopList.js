@@ -12,16 +12,19 @@ async function setLayoutForOrders()
     let orderLayout = '';
 
     let orders = await getOrders();
-    console.log(orders)
 
-    let order = orders.forEach( i => {
-        orderLayout += `
+    if (orders.length == 0) {
+        orderLayout += '<h1>Список пуст</h1>';
+    } else {
+
+        let order = orders.forEach(i => {
+            orderLayout += `
             <div class="listItem">
             <h2 class="orderTitle">Заказ № ${i.id}</h2>
             <div class="date">${i.date}</div>
         `;
-        i.products.forEach( i => {
-            orderLayout += `
+            i.products.forEach(i => {
+                orderLayout += `
                 <div class="productItem">
                     <div class="row box align-items-center" style="max-width: 1000px">
                         <div class="product-name col-lg-6 col-md-6 col-6">${i.title} грн</div>
@@ -30,13 +33,14 @@ async function setLayoutForOrders()
                     </div>
                 </div>
             `;
-            fullPrice = Number(i.qty) * Number(i.price);
-        })
-        orderLayout += `
+                fullPrice = Number(i.qty) * Number(i.price);
+            })
+            orderLayout += `
             <div class="totalPrice col-lg-6 col-md-6 col-6" style="margin-bottom: 10px">Общая стоимость: ${fullPrice} грн</div>
             </div>
         `;
-    })
+        })
+    }
 
     document.getElementById('order').innerHTML = orderLayout;
 }

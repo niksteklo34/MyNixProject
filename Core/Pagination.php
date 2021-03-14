@@ -76,6 +76,6 @@ class Pagination
             $page1right = "<li style='background-color: lightcoral; border-radius: 45px; margin: 5px'><a style='color: white' class='nav-link' href='{$this->uri}page=" . ($this->currentPage + 1) . "'>" . ($this->currentPage + 1) . "</a></li>";
         }
 
-        return "<ul class='pagination'>" . $back.$page1left . '<li class="active"><a>'.$this->currentPage.'</a></li>'.$page1right.$next . '</ul>';
+        return "<ul class='pagination'>" . $back.$page1left . '<li class="active"><a class="active-link" style="color: white; padding: 40px;">'.$this->currentPage.'</a></li>'.$page1right.$next . '</ul>';
     }
 }

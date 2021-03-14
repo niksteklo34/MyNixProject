@@ -13,7 +13,6 @@ class DB
     private $user;
     private $password;
     private $db_name;
-    private $dbConfig;
 
     public static function getInstance() : DB
     {
